@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Container from "../../../Utils/Container/Container";
 import useProperties from "../../../Hooks/GetProperties/useProperties";
 import PropertyCard from "./PropertyCard";
+import Loading from "../../../Components/Loading/Loading";
 
 const Allproperties = () => {
   useEffect(() => {
@@ -10,8 +11,11 @@ const Allproperties = () => {
       behavior: "smooth",
     });
   }, []);
-  const { properties } = useProperties();
+  const { properties, refetch, isLoading, isError} = useProperties();
   console.log(properties);
+  if(isLoading){
+    return <Loading></Loading>
+  }
   return (
    <div className="my-10">
      <Container>
