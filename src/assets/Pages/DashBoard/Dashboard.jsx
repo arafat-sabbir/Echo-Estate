@@ -83,6 +83,11 @@ const DashBoard = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink to={"/dashboard/addProperty"}>
+                <FaUser /> Add Property
+              </NavLink>
+            </li>
+            <li>
               <NavLink to={"/dashboard/addedProperties"}>
                 <FaUser /> My Added Properties
               </NavLink>

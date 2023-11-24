@@ -47,7 +47,7 @@ const Navbar = () => {
             <NavLink to={"/allProperties"}>All Properties</NavLink>
           </li>
           <li className="hover:scale-110 duration-300 hover:text-main">
-            <NavLink to={"/dashboard"}>DashBoard</NavLink>
+            <NavLink to={"/dashboard/myProfile"}>DashBoard</NavLink>
           </li>
         </ul>
       )}

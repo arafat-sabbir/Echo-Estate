@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdDelete, MdOutlinePendingActions } from "react-icons/md";
 import { MdUpdate } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const AddedPropertiesCard = ({ item, handleDelete, handleupdate }) => {
+const AddedPropertiesCard = ({ item, handleDelete }) => {
+  const [status, setStatus] = useState(true);
   const {
     propertyImage,
     propertyTitle,
@@ -14,6 +17,13 @@ const AddedPropertiesCard = ({ item, handleDelete, handleupdate }) => {
     agentImage,
     agentName,
   } = item;
+  useEffect(() => {
+    if (propertyVerificationStatus === "verified") {
+      setStatus(false);
+    } else {
+      setStatus(true);
+    }
+  }, [propertyVerificationStatus]);
   return (
     <div>
       <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main  text-black">
@@ -31,7 +41,7 @@ const AddedPropertiesCard = ({ item, handleDelete, handleupdate }) => {
             >
               {agentName}
             </a>
-            <span className="text-xs text-black">4 hours ago</span>
+            <span className="text-xs text-black">{Math.floor(Math.random(1,24)*10)} hours Ago</span>
           </div>
         </div>
         <div>
@@ -64,12 +74,20 @@ const AddedPropertiesCard = ({ item, handleDelete, handleupdate }) => {
           </div>
         </div>
         <div className="flex justify-between mt-4">
-          <Link to={`/dashboard/updateProperty/${_id}`}
-
-            className="flex justify-center items-center gap-2 w-24 h-11 cursor-pointer rounded-md shadow-2xl text-white font-semibold bg-gradient-to-r from-[#072730] via-[#072730da] to-[#072730da] hover:shadow-xl hover:shadow-green-500 hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]"
-          >
-            <MdUpdate></MdUpdate>
-          </Link>
+          {propertyVerificationStatus === "verified" ? (
+            <Link to={`/dashboard/updateProperty/${_id}`}>
+              <button className="flex justify-center items-center gap-2 w-24 h-11 cursor-pointer rounded-md shadow-2xl text-white font-semibold bg-gradient-to-r from-[#072730] via-[#072730da] to-[#072730da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]">
+                <MdUpdate></MdUpdate>
+              </button>
+            </Link>
+          ) : (
+            <button
+              disabled={true}
+              className="flex justify-center items-center gap-2 w-24 h-11 cursor-not-allowed rounded-md shadow-2xl text-white font-semibold bg-gradient-to-r from-[#072730] via-[#072730da] to-[#072730da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]"
+            >
+              <MdUpdate></MdUpdate>
+            </button>
+          )}
           <button
             onClick={() => handleDelete(_id)}
             className="flex justify-center items-center gap-2 w-24 h-11 cursor-pointer rounded-md shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"

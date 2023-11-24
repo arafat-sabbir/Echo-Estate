@@ -1,92 +1,202 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Container from "../../../Utils/Container/Container";
 import useAxiosPublic from "../../../Hooks/AxiosPublic/useAxiosPublic";
+import { FaLocationDot } from "react-icons/fa6";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
+import { useEffect } from "react";
 
 const UpdateaddedProperties = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+  const property = useLoaderData();
+  const navigate = useNavigate();
+  const {
+    agentImage,
+    agentName,
+    propertyImage,
+    propertyLocation,
+    propertyTitle,
+    propertyPriceRange,
+    propertyVerificationStatus,
+    _id,
+    agentEmail,
+  } = property;
   const imageHostingKey = import.meta.env.VITE_IMAGE_HOST_KEY;
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const imageHostingAPi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = async (data) => {
-    const imagefile = { image: data?.photoUrl[0] };
+  const onSubmit = async (item) => {
+    const toastid = toast.loading("Updating Property");
+    const imagefile = { image: item?.photoUrl[0] };
     const res = await axiosPublic.post(imageHostingAPi, imagefile, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
-    console.log(res.data.data.display_url);
+    const updateData = {
+      propertyImage: res.data.data.display_url,
+      propertyTitle: item.propertyTitle,
+      propertyLocation: item.propertyLocation,
+      propertyPriceRange: item.propertyPriceRange,
+    };
+    axiosSecure.patch(`/updateProperty/${_id}`, updateData).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        toast.success("Updated Property Successfully", { id: toastid });
+        navigate("/dashboard/addedProperties");
+      }
+    });
   };
   return (
     <div>
       <Container>
-        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Photo</span>
-            </label>
-            <input
-              type="file"
-              className="file-input file-input-bordered file-input-error w-full border-dashed"
-              {...register("photoUrl", { required: true })}
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Property Title</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Property Title"
-              name="title"
-              className="input input-bordered bg-white border-dashed border-main focus:border-main"
-              {...register("propertyTitle", { required: true })}
-            />
-            {errors.propertyTitle && (
-              <p className="text-red-500 mt-4">Please Add Property Title</p>
-            )}
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Property Location</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Property Location"
-              name="location"
-              className="input input-bordered bg-white border-dashed border-main focus:border-main"
-              {...register("propertyLocation", { required: true })}
-            />
-            {errors.propertyLocation && (
-              <p className="text-red-500 mt-4">Please Add Property Location</p>
-            )}
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Property Location</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Property Location"
-              name="location"
-              defaultValue={"location"}
-              className="input input-bordered bg-white border-dashed border-main focus:border-main"
-            />
-          </div>
+        <div className="mt-40 flex gap-8">
+          <div className="cursor-pointer rounded-xl bg-white p-3 shadow-[0_0_20px_#E6E6E6] hover:shadow-[0_0_10px_#FF5B22] w-1/2 mx-auto">
+            <div className="relative flex items-end overflow-hidden rounded-xl">
+              <img src={propertyImage} alt="wallpaper" />
 
-          <div className="form-control mt-6">
-            <input
-              className="btn bg-white border-dashed border-main hover:border-main"
-              type="submit"
-              value="Sign In"
-            />
+              <div className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-white p-2 shadow-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-yellow-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+
+                <span className="ml-1 text-sm text-slate-400">4.9</span>
+              </div>
+            </div>
+
+            <div className="mt-1 p-2">
+              <h2 className="text-slate-700 text-xl font-semibold mb-2">
+                {propertyTitle}
+              </h2>
+              <p className="mt-1 text-sm text-slate-600 font-semibold flex gap-2">
+                <FaLocationDot className="text-xl text-black"></FaLocationDot>
+                {propertyLocation}
+              </p>
+
+              <div className="mt-3 flex items-end justify-between">
+                <p>
+                  <span className="text-lg font-bold text-orange-500">
+                    {propertyPriceRange}
+                  </span>
+                  <span className="text-sm text-slate-400">/Price</span>
+                </p>
+              </div>
+            </div>
           </div>
-        </form>
+          <div className="shadow-[0_0_20px_#E6E6E6] rounded-xl w-1/2 mx-auto">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo</span>
+                </label>
+                <input
+                  type="file"
+                  className="file-input file-input-bordered file-input-error w-full border-dashed"
+                  {...register("photoUrl", { required: true })}
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Property Title</span>
+                </label>
+                <input
+                  type="text"
+                  defaultValue={propertyTitle}
+                  name="title"
+                  required
+                  className="input input-bordered bg-white border-dashed border-main focus:border-main"
+                  {...register("propertyTitle", { required: true })}
+                />
+                {errors.propertyTitle && (
+                  <p className="text-red-500 mt-4">Please Add Property Title</p>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Property Location</span>
+                </label>
+                <input
+                  type="text"
+                  defaultValue={propertyLocation}
+                  name="location"
+                  className="input input-bordered bg-white border-dashed border-main focus:border-main"
+                  {...register("propertyLocation", { required: true })}
+                />
+                {errors.propertyLocation && (
+                  <p className="text-red-500 mt-4">
+                    Please Add Property Location
+                  </p>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Price Range</span>
+                </label>
+                <input
+                  type="text"
+                  defaultValue={propertyPriceRange}
+                  name="location"
+                  className="input input-bordered bg-white border-dashed border-main focus:border-main"
+                  {...register("propertyPriceRange", { required: true })}
+                />
+                {errors.propertyPriceRange && (
+                  <p className="text-red-500 mt-4">Please Add a PriceRange</p>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Agent Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Property Location"
+                  name="location"
+                  defaultValue={agentName}
+                  disabled={true}
+                  className="input input-bordered bg-white border-dashed border-main focus:border-main"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Agent Email</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Property Location"
+                  name="location"
+                  defaultValue={agentEmail}
+                  disabled={true}
+                  className="input input-bordered bg-white border-dashed border-main focus:border-main"
+                />
+              </div>
+
+              <div className="form-control mt-6">
+                <button
+                  className="relative px-8 py-2  bg-[#072730] text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
+    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                >
+                  Update Property
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </Container>
     </div>
   );

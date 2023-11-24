@@ -22,7 +22,7 @@ const PropertyCard = ({ property }) => {
             >
               {agentName}
             </a>
-            <span className="text-xs text-black">4 hours ago</span>
+            <span className="text-xs text-black">{Math.floor(Math.random(1,10)*10)} hours ago</span>
           </div>
         </div>
         <div>

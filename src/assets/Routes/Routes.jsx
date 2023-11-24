@@ -19,11 +19,12 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import PropertyDetail from "../Pages/PropertyDetail/PropertyDetail";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import UpdateaddedProperties from "../Pages/UpdateAddedProperties/updateaddedProperties";
+import AddProperty from "../Pages/DashBoard/AgentDashBoard/AddProperty/AddProperty";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     element: <MainLayout></MainLayout>,
     children: [
       {
@@ -32,12 +33,21 @@ export const routes = createBrowserRouter([
       },
       {
         path: "allProperties",
-        element: <PrivateRoute><Allproperties></Allproperties></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Allproperties></Allproperties>
+          </PrivateRoute>
+        ),
       },
       {
-        path:'propertyDetail/:id',
-        element:<PrivateRoute><PropertyDetail></PropertyDetail></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/api/detailProperty/${params.id}`)
+        path: "propertyDetail/:id",
+        element: (
+          <PrivateRoute>
+            <PropertyDetail></PropertyDetail>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/detailProperty/${params.id}`),
       },
     ],
   },
@@ -51,7 +61,11 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <DashBoard></DashBoard>
+      </PrivateRoute>
+    ),
     children: [
       // all user routes
       {
@@ -90,8 +104,14 @@ export const routes = createBrowserRouter([
         element: <AddedProperties></AddedProperties>,
       },
       {
-        path:'updateProperty/:id',
-        element:<UpdateaddedProperties></UpdateaddedProperties>
+        path: "addProperty",
+        element: <AddProperty></AddProperty>,
+      },
+      {
+        path: "updateProperty/:id",
+        element: <UpdateaddedProperties></UpdateaddedProperties>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/detailProperty/${params.id}`),
       },
       {
         path: "soldProperties",

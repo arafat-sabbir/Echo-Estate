@@ -3,10 +3,17 @@ import Container from "../../../Utils/Container/Container";
 import { FaLocationDot } from "react-icons/fa6";
 import Button from "../../../Shared/Button";
 import Review from "../../../Components/Review/Review";
+import { useEffect } from "react";
 
 const PropertyDetail = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const propertyDetail = useLoaderData();
-  console.log(propertyDetail);
+
   const {
     propertyImage,
     propertyTitle,
@@ -22,7 +29,7 @@ const PropertyDetail = () => {
         <div className=" w-full m-4 shadow-sm flex flex-col md:flex-row justify-center">
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className=" w-full">
-              <img src={propertyImage} alt="" className="" />
+              <img src={propertyImage} alt="" className="rounded-xl" />
             </div>
             <div className="md:w-2/3 m-4 ">
               <div className="flex text-gray-500 text-sm m-2">
@@ -63,14 +70,14 @@ const PropertyDetail = () => {
                   </div>
                 </div>
               </div>
-             <div className="flex gap-10 mt-4">
-             <div className="border-r-2 pr-8 border-r-main">
-              <Button title={"Add To WishList"}></Button>
+              <div className="flex gap-10 mt-4">
+                <div className="border-r-2 pr-8 border-r-main">
+                  <Button title={"Add To WishList"}></Button>
+                </div>
+                <div className="">
+                  <Review property={propertyDetail}></Review>
+                </div>
               </div>
-              <div className="">
-              <Review property={propertyDetail}></Review>
-              </div>
-             </div>
             </div>
           </div>
         </div>
