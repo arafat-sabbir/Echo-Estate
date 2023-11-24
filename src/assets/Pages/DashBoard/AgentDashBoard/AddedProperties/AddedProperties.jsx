@@ -1,23 +1,36 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
-import useAuth from "../../../../../Auth/UseAuth/useAuth";
+import useAddedProperty from "../../../../../Hooks/UseAddedProperty/useAddedProperty";
 
 const AddedProperties = () => {
-    const axiosSecure = useAxiosSecure()
-    const {user} = useAuth()
-    const {data} = useQuery({
-        queryKey:["properties",user],
-        queryFn:async()=>{
-            const res = axiosSecure.get(`/getProperty?email=shanto018235@gmail.com`)
-            return res.data;
-        }
-    })
-    console.log(data);
-    return (
-        <div>
-            Added Properties
-        </div>
-    );
+  const { Properties,refetch,isLoading,isError } = useAddedProperty();
+  return (
+    <div>
+      <div className="overflow-x-auto">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th>
+          <label>
+            <input type="checkbox" className="checkbox" />
+          </label>
+        </th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Favorite Color</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    
+    </tbody>
+
+   
+    
+  </table>
+</div>
+    </div>
+  );
 };
 
 export default AddedProperties;
