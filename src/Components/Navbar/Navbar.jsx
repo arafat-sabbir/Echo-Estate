@@ -38,15 +38,15 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li>
+      <li className="hover:scale-110 duration-300 hover:text-main">
         <NavLink to={"/"}>Home</NavLink>
       </li>
       {user && (
         <ul className="lg:flex drop-shadow-2xl">
-          <li>
+          <li className="hover:scale-110 duration-300 hover:text-main">
             <NavLink to={"/allProperties"}>All Properties</NavLink>
           </li>
-          <li>
+          <li className="hover:scale-110 duration-300 hover:text-main">
             <NavLink to={"/dashboard"}>DashBoard</NavLink>
           </li>
         </ul>
@@ -76,7 +76,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content font-semibold mx-2 mt-3 z-[50] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content font-semibold mx-2 mt-3 z-[50] p-2 shadow bg-base-100 rounded-box w-52 hover:scale-110"
             >
               {links}
             </ul>
@@ -84,7 +84,7 @@ const Navbar = () => {
           <div className="hidden lg:flex  font-bold items-center">
           <Link
             to={"/"}
-              className="!flex font-bold items-center"
+              className="!flex font-bold items-center hover:scale-110 duration-300"
             >
               <img
                 className="w-22 h-12"
@@ -96,7 +96,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal  font-semibold gap-4 px-1">
+          <ul className="menu menu-horizontal  font-semibold gap-4 px-1 ">
             {links}
           </ul>
         </div>

@@ -16,6 +16,8 @@ import ManageProperties from "../Pages/DashBoard/AdminDashBoard/ManageProperties
 import ManageUsers from "../Pages/DashBoard/AdminDashBoard/ManageUser/ManageUsers";
 import ManageReviews from "../Pages/DashBoard/AdminDashBoard/ManageReview/ManageReviews";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import PropertyDetail from "../Pages/PropertyDetail/PropertyDetail";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -29,7 +31,12 @@ export const routes = createBrowserRouter([
       },
       {
         path: "allProperties",
-        element: <Allproperties></Allproperties>,
+        element: <PrivateRoute><Allproperties></Allproperties></PrivateRoute>,
+      },
+      {
+        path:'propertyDetail/:id',
+        element:<PrivateRoute><PropertyDetail></PropertyDetail></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:5000/api/detailProperty/${params.id}`)
       },
     ],
   },
@@ -43,7 +50,7 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashBoard></DashBoard>,
+    element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
     children: [
       // all user routes
       {

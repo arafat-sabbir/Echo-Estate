@@ -1,9 +1,10 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlinePendingActions } from "react-icons/md";
 import Button from "../../../Shared/Button";
+import { Link } from "react-router-dom";
 
 const PropertyCard = ({ property }) => {
-    const {agentImage,agentName,propertyImage,propertyLocation,propertyTitle,propertyPriceRange,propertyVerificationStatus}  = property;
+    const {agentImage,agentName,propertyImage,propertyLocation,propertyTitle,propertyPriceRange,propertyVerificationStatus,_id}  = property;
   return (
     <div>
       <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main  text-black">
@@ -42,9 +43,9 @@ const PropertyCard = ({ property }) => {
          <p className="text-md font-medium flex justify-center items-center">Status : {propertyVerificationStatus=="pending"?<MdOutlinePendingActions className="ml-1 mr-[2px]"></MdOutlinePendingActions>:""} {propertyVerificationStatus}</p>
          </div>
         </div>
-        <div className="flex justify-end">
+        <Link to={`/propertyDetail/${_id}`} className="flex justify-end">
           <Button title={"See Detail"}></Button>
-        </div>
+        </Link>
       </div>
     </div>
   );
