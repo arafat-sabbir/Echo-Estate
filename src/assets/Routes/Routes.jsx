@@ -18,6 +18,7 @@ import ManageReviews from "../Pages/DashBoard/AdminDashBoard/ManageReview/Manage
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import PropertyDetail from "../Pages/PropertyDetail/PropertyDetail";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
+import UpdateaddedProperties from "../Pages/UpdateAddedProperties/updateaddedProperties";
 
 export const routes = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ export const routes = createBrowserRouter([
       {
         path: "addedProperties",
         element: <AddedProperties></AddedProperties>,
+      },
+      {
+        path:'updateProperty/:id',
+        element:<UpdateaddedProperties></UpdateaddedProperties>
       },
       {
         path: "soldProperties",
