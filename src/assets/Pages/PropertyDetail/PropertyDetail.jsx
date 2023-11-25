@@ -6,10 +6,12 @@ import Review from "../../../Components/Review/Review";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
+import useAuth from "../../../Auth/UseAuth/useAuth";
 
 const PropertyDetail = () => {
   const axiosSecure = useAxiosSecure()
   const navigate = useNavigate()
+  const {user} = useAuth() 
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -27,6 +29,7 @@ const PropertyDetail = () => {
     propertyPriceRange,
     propertyVerificationStatus,
     _id,
+    agentEmail
   } = propertyDetail;
   const handleAddtoWishlist = (id) => {
     const wishListData = {
@@ -34,14 +37,16 @@ const PropertyDetail = () => {
       propertyTitle,
       agentImage,
       agentName,
+      agentEmail,
       propertyLocation,
       propertyPriceRange,
       propertyVerificationStatus,
       propertyId:_id,
+      wishedEmail:user.email,
+
     };
     axiosSecure.post('/addToWishlist',wishListData)
     .then(res=> {
-      console.log(res.data);
       if(res.data.insertedId){
         toast.success("Added To WishList SuccessFully")
         navigate('/dashboard/wishlist')

@@ -20,6 +20,7 @@ import PropertyDetail from "../Pages/PropertyDetail/PropertyDetail";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import UpdateaddedProperties from "../Pages/UpdateAddedProperties/updateaddedProperties";
 import AddProperty from "../Pages/DashBoard/AgentDashBoard/AddProperty/AddProperty";
+import MakeAnOffer from "../Pages/DashBoard/UserDashboard/MakeAnOffer/MakeAnOffer";
 
 export const routes = createBrowserRouter([
   {
@@ -89,6 +90,11 @@ export const routes = createBrowserRouter([
       {
         path: "wishlist",
         element: <Wishlist></Wishlist>,
+      },
+      {
+        path: "makeAnOffer/:id",
+        element: <MakeAnOffer></MakeAnOffer>,
+        loader: ({ params }) =>fetch(`http://localhost:5000/api/getWish/${params.id}`),
       },
       {
         path: "propertyBought",
