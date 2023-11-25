@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import useAuth from "../../../../../Auth/UseAuth/useAuth";
+import toast from "react-hot-toast";
 
 const RequestedProperties = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: requestedProperties = [] } = useQuery({
+  const { data: requestedProperties = [], refetch } = useQuery({
     queryKey: ["requestedProperties"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -14,7 +15,29 @@ const RequestedProperties = () => {
       return res.data;
     },
   });
-  console.log(requestedProperties);
+  const handleVerifyProperty = (id) => {
+    axiosSecure
+      .patch(`/updateOfferStatus/${id}?status=accepted`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          toast.success("Offer accepted Successfully");
+        }
+      });
+  };
+
+  const handleRejectProperty = (id) => {
+    axiosSecure
+      .patch(`/updateOfferStatus/${id}?status=rejected`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          toast.error("Offer Rejected");
+        }
+      });
+  };
   return (
     <div>
       <div className="flex flex-col container mx-auto">
@@ -61,6 +84,12 @@ const RequestedProperties = () => {
                     </th>
                     <th
                       scope="col"
+                      className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                    >
+                      Offered Status
+                    </th>
+                    <th
+                      scope="col"
                       className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
                     >
                       Accept
@@ -91,21 +120,30 @@ const RequestedProperties = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
                         ${item.offerredPriceRange}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <button
-                          type="button"
-                          className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                        >
-                          Accept
-                        </button>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                        {item.offerStatus}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <button
-                          type="button"
-                          className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                        >
-                          Reject
-                        </button>
+                      <td className="whitespace-nowrap text-end text-sm font-medium">
+                     {
+                      item.offerStatus==="accepted"?<p className="">Accepted</p>:   <button
+                      onClick={() => handleVerifyProperty(item._id)}
+                      type="button"
+                      className="flex shadow-2xl justify-center items-center gap-2 w-20 h-8 cursor-pointer rounded-2xl  text-white font-semibold bg-gradient-to-r from-[#072730] via-[#0e3c49da] to-[#0a3a47da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]"
+                    >
+                      Accept
+                    </button>
+                     }
+                      </td>
+                      <td className=" whitespace-nowrap text-end text-sm font-medium">
+                       {
+                        item.offerStatus==="accepted"?<p>Accepted</p>: <button
+                        onClick={() => handleRejectProperty(item._id)}
+                        type="button"
+                        className="w-20 h-8 rounded-full cursor-pointer  shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
+                      >
+                        Reject
+                      </button>
+                       }
                       </td>
                     </tr>
                   ))}

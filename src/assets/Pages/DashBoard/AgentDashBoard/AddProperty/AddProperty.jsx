@@ -5,10 +5,10 @@ import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Container from "../../../../../Utils/Container/Container";
 import useGetUser from "../../../../../Hooks/GetUserInfo/useGetUser";
+import axios from "axios";
 
 const AddProperty = () => {
   const imageHostingKey = import.meta.env.VITE_IMAGE_HOST_KEY;
-  const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { userinfo } = useGetUser();
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const AddProperty = () => {
   const onSubmit = async (item) => {
     const toastid = toast.loading("Adding Property");
     const imagefile = { image: item?.photoUrl[0] };
-    const res = await axiosPublic.post(imageHostingAPi, imagefile, {
+    const res = await axios.post(imageHostingAPi, imagefile, {
       headers: {
         "content-type": "multipart/form-data",
       },
@@ -65,6 +65,7 @@ const AddProperty = () => {
             <input
               type="text"
               name="title"
+              placeholder="Property Title"
               required
               className="input input-bordered bg-white border-dashed border-main focus:border-main"
               {...register("propertyTitle", { required: true })}
@@ -80,6 +81,7 @@ const AddProperty = () => {
             <input
               type="text"
               name="location"
+              placeholder="Property Location"
               className="input input-bordered bg-white border-dashed border-main focus:border-main"
               {...register("propertyLocation", { required: true })}
             />
@@ -94,6 +96,7 @@ const AddProperty = () => {
             <input
               type="text"
               name="location"
+              placeholder="Price Range"
               className="input input-bordered bg-white border-dashed border-main focus:border-main"
               {...register("propertyPriceRange", { required: true })}
             />
@@ -131,7 +134,7 @@ const AddProperty = () => {
               className="relative px-8 py-2  bg-[#072730] text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
     before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
             >
-              Update Property
+              Add Property
             </button>
           </div>
         </form>

@@ -48,7 +48,7 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://echo-state-server.vercel.app/api/detailProperty/${params.id}`),
+          fetch(`http://localhost:5000/api/detailProperty/${params.id}`),
       },
     ],
   },
@@ -94,7 +94,7 @@ export const routes = createBrowserRouter([
       {
         path: "makeAnOffer/:id",
         element: <MakeAnOffer></MakeAnOffer>,
-        loader: ({ params }) =>fetch(`https://echo-state-server.vercel.app/api/getWish/${params.id}`),
+        loader: ({ params }) =>fetch(`http://localhost:5000/api/getWish/${params.id}`),
       },
       {
         path: "propertyBought",
@@ -117,7 +117,7 @@ export const routes = createBrowserRouter([
         path: "updateProperty/:id",
         element: <UpdateaddedProperties></UpdateaddedProperties>,
         loader: ({ params }) =>
-          fetch(`https://echo-state-server.vercel.app/api/detailProperty/${params.id}`),
+          fetch(`http://localhost:5000/api/detailProperty/${params.id}`),
       },
       {
         path: "soldProperties",

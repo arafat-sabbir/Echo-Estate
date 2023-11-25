@@ -40,7 +40,7 @@ const PropertyCard = ({ property }) => {
           </div>
          <div className="flex justify-between mt-2">
          <p className="text-md font-medium text-black">Price Range : <span className="font-bold">{propertyPriceRange}</span></p>
-         <p className="text-md font-medium flex justify-center items-center">Status : {propertyVerificationStatus=="pending"?<MdOutlinePendingActions className="ml-1 mr-[2px]"></MdOutlinePendingActions>:""} {propertyVerificationStatus}</p>
+         <p className="text-md font-medium flex justify-center items-center">Status : {propertyVerificationStatus=="pending"?<MdOutlinePendingActions className="ml-1 mr-[2px]"></MdOutlinePendingActions>:""} <span className="uppercase">{propertyVerificationStatus}</span> </p>
          </div>
         </div>
         <Link to={`/propertyDetail/${_id}`} className="flex justify-end">

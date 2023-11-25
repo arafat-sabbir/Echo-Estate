@@ -16,8 +16,8 @@ const AddedProperties = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#0e3c49da",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -41,7 +41,7 @@ const AddedProperties = () => {
           Your Added Properties
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 justify-items-center lg:grid-cols-3 gap-10">
         {Properties?.map((item) => (
           <AddedPropertiesCard item={item} key={item._id} handleDelete={handleDelete} handleupdate={handleupdate}></AddedPropertiesCard>
         ))}

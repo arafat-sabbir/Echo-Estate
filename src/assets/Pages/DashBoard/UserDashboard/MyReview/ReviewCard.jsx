@@ -2,7 +2,7 @@ import { MdDelete } from "react-icons/md";
 
 const ReviewCard = ({ item, handleDelete }) => {
   return (
-    <div className="w-full max-w-md px-8 py-4 mt-16 bg-white border border-dashed border-main rounded-lg shadow-lg dark:bg-gray-800">
+    <div className="w-full max-w-md px-8 py-4 mt-16 relative bg-white h-[250px] border border-dashed border-main rounded-lg shadow-lg dark:bg-gray-800">
       <div className="flex justify-center -mt-16 md:justify-end">
         <img
           src={item.reviewerPhoto}
@@ -22,7 +22,7 @@ const ReviewCard = ({ item, handleDelete }) => {
         {item.review}
       </p>
 
-      <div className="flex justify-between items-center mt-6 mb-3">
+      <div className="flex justify-between items-center mt-6 mb-3 absolute bottom-2 right-0 left-0 px-10 ">
         <button
           onClick={() => handleDelete(item._id)}
           className="flex justify-center items-center gap-2 w-12 h-12 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
