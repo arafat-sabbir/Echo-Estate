@@ -6,7 +6,6 @@ import { MdUpdate } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const AddedPropertiesCard = ({ item, handleDelete }) => {
-  const [status, setStatus] = useState(true);
   const {
     propertyImage,
     propertyTitle,
@@ -17,13 +16,6 @@ const AddedPropertiesCard = ({ item, handleDelete }) => {
     agentImage,
     agentName,
   } = item;
-  useEffect(() => {
-    if (propertyVerificationStatus === "verified") {
-      setStatus(false);
-    } else {
-      setStatus(true);
-    }
-  }, [propertyVerificationStatus]);
   return (
     <div>
       <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main  text-black">

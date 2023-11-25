@@ -1,13 +1,15 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Container from "../../../Utils/Container/Container";
 import { FaLocationDot } from "react-icons/fa6";
 import Button from "../../../Shared/Button";
 import Review from "../../../Components/Review/Review";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 
 const PropertyDetail = () => {
+  const axiosSecure = useAxiosSecure()
+  const navigate = useNavigate()
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -27,33 +29,26 @@ const PropertyDetail = () => {
     _id,
   } = propertyDetail;
   const handleAddtoWishlist = (id) => {
-    mutate({
-      sellerEmail,
-      jobtitle,
-      minPrice,
-      maxPrice,
-      description,
-      category,
-      deadline,
-    });
-  };
-  const { mutate } = useMutation({
-    mutationKey: ["addJobs"],
-    mutationFn: (wishdata) => {
-      const post = axios.post('/', wishdata);
-      return post;
-    },
-    onSuccess: (data) => {
-      if (data.data.matchedCount > 0) {
-        console.log(data.data);
-        return toast.success("Job updated successfully");
+    const wishListData = {
+      propertyImage,
+      propertyTitle,
+      agentImage,
+      agentName,
+      propertyLocation,
+      propertyPriceRange,
+      propertyVerificationStatus,
+      propertyId:_id,
+    };
+    axiosSecure.post('/addToWishlist',wishListData)
+    .then(res=> {
+      console.log(res.data);
+      if(res.data.insertedId){
+        toast.success("Added To WishList SuccessFully")
+        navigate('/dashboard/wishlist')
+
       }
-    },
-    onError: (error) => {
-      toast.error("An error occurred while Updating the job", error);
-      // Handle the error or display an error message to the user
-    },
-  });
+    })
+
   };
   return (
     <Container>
