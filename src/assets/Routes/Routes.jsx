@@ -21,6 +21,7 @@ import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import UpdateaddedProperties from "../Pages/UpdateAddedProperties/updateaddedProperties";
 import AddProperty from "../Pages/DashBoard/AgentDashBoard/AddProperty/AddProperty";
 import MakeAnOffer from "../Pages/DashBoard/UserDashboard/MakeAnOffer/MakeAnOffer";
+import MakePayment from "../Pages/DashBoard/UserDashboard/MakePayment/MakePayment";
 
 export const routes = createBrowserRouter([
   {
@@ -92,9 +93,14 @@ export const routes = createBrowserRouter([
         element: <Wishlist></Wishlist>,
       },
       {
+        path: "makePayment",
+        element: <MakePayment></MakePayment>,
+      },
+      {
         path: "makeAnOffer/:id",
         element: <MakeAnOffer></MakeAnOffer>,
-        loader: ({ params }) =>fetch(`http://localhost:5000/api/getWish/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/getWish/${params.id}`),
       },
       {
         path: "propertyBought",

@@ -62,7 +62,7 @@ const UpdateaddedProperties = () => {
     <div>
       <Container>
         <div className="mt-40 flex gap-8">
-          <div className="cursor-pointer rounded-xl bg-white p-3 shadow-[0_0_20px_#E6E6E6] hover:shadow-[0_0_10px_#FF5B22] w-1/2 mx-auto">
+          <div className="cursor-pointer rounded-xl bg-white p-3 shadow-[0_0_20px_#E6E6E6] hover:shadow-[0_0_10px_#FF5B22] w-[640px] h-[550px] mx-auto">
             <div className="relative flex items-end overflow-hidden rounded-xl">
               <img src={propertyImage} alt="wallpaper" />
             </div>
