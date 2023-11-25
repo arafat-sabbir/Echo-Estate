@@ -43,7 +43,6 @@ const PropertyDetail = () => {
       propertyVerificationStatus,
       propertyId:_id,
       wishedEmail:user.email,
-      propertyId:id
 
     };
     axiosSecure.post('/addToWishlist',wishListData)

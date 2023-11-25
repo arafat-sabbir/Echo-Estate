@@ -18,7 +18,12 @@ const RequestedProperties = () => {
   return (
     <div>
       <div className="flex flex-col container mx-auto">
-        <div className="-m-1.5 overflow-x-auto">
+        <h3 className="text-3xl font-semibold text-center mt-10">
+          {" "}
+          <span className="font-bold text-main">{user.displayName}</span> Your
+          Property Request List
+        </h3>
+        <div className="-m-1.5 overflow-x-auto mt-10">
           <div className="p-1.5 min-w-full inline-block align-middle">
             <div className="overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">

@@ -3,13 +3,10 @@ import {
   FaBook,
   FaCalendar,
   FaCartPlus,
-  FaEnvelope,
   FaHome,
   FaList,
   FaMoneyBill,
-  FaShoppingBag,
   FaUser,
-  FaUsers,
   FaUtensils,
 } from "react-icons/fa";
 import useGetUser from "../../../Hooks/GetUserInfo/useGetUser";
