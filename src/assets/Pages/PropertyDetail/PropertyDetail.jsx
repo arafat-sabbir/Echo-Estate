@@ -4,6 +4,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import Button from "../../../Shared/Button";
 import Review from "../../../Components/Review/Review";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
 
 const PropertyDetail = () => {
   useEffect(() => {
@@ -22,7 +24,37 @@ const PropertyDetail = () => {
     propertyLocation,
     propertyPriceRange,
     propertyVerificationStatus,
+    _id,
   } = propertyDetail;
+  const handleAddtoWishlist = (id) => {
+    mutate({
+      sellerEmail,
+      jobtitle,
+      minPrice,
+      maxPrice,
+      description,
+      category,
+      deadline,
+    });
+  };
+  const { mutate } = useMutation({
+    mutationKey: ["addJobs"],
+    mutationFn: (wishdata) => {
+      const post = axios.post('/', wishdata);
+      return post;
+    },
+    onSuccess: (data) => {
+      if (data.data.matchedCount > 0) {
+        console.log(data.data);
+        return toast.success("Job updated successfully");
+      }
+    },
+    onError: (error) => {
+      toast.error("An error occurred while Updating the job", error);
+      // Handle the error or display an error message to the user
+    },
+  });
+  };
   return (
     <Container>
       <div className="flex justify-between mt-20">
@@ -72,7 +104,13 @@ const PropertyDetail = () => {
               </div>
               <div className="flex gap-10 mt-4">
                 <div className="border-r-2 pr-8 border-r-main">
-                  <Button title={"Add To WishList"}></Button>
+                  <button
+                    onClick={() => handleAddtoWishlist(_id)}
+                    className="relative px-8 py-2  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
+                    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                  >
+                    Add To WishList
+                  </button>
                 </div>
                 <div className="">
                   <Review property={propertyDetail}></Review>

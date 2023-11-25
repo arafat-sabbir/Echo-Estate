@@ -1,5 +1,6 @@
 
 const Wishlist = () => {
+    
     return (
         <div>
             Wish list

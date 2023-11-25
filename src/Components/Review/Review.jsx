@@ -2,11 +2,12 @@ import toast from "react-hot-toast";
 import Button from "../../Shared/Button";
 import useGetUser from "../../Hooks/GetUserInfo/useGetUser";
 import useAxiosSecure from "../../Hooks/AxiosSecure/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 const Review = ({ property }) => {
   const { userinfo } = useGetUser();
   const axiosSecure = useAxiosSecure();
-  console.log(userinfo);
+  const navigate = useNavigate()
   const handleCancel = (e) => {
     e.preventDefault();
     document.getElementById("my_modal_5").close();
@@ -15,11 +16,12 @@ const Review = ({ property }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Your submit logic here
+    const date = new Date().toDateString();
+    console.log(date);
     document.getElementById("my_modal_5").close();
     const reviewdetail = e.target.review.value;
     if (!reviewdetail) {
-     return toast.error("Review Can't Be Empty");
+      return toast.error("Review Can't Be Empty");
     }
     if (userinfo.role === "user") {
       const review = {
@@ -27,14 +29,19 @@ const Review = ({ property }) => {
         reviewerName: userinfo.name,
         reviewerEmail: userinfo.email,
         reviewerPhoto: userinfo.photo,
+        reviewDate: date,
+        propertyTitle: property.propertyTitle,
+        propertyId: property._id,
+        agentName:property.agentName,
       };
       axiosSecure.post("/addReview", review).then((res) => {
         if (res.data.insertedId) {
-          toast.success("SuccessFully Reviewed The Properties");
+          toast.success("Review Submitted");
+          navigate("/dashboard/myReview")
         }
       });
     } else {
-    return  toast.error(`${userinfo.role} "Cant Review Properties"`);
+      return toast.error(`${userinfo.role} "Cant Review Properties"`);
     }
   };
 
