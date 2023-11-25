@@ -17,7 +17,6 @@ const Review = ({ property }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const date = new Date().toDateString();
-    console.log(date);
     document.getElementById("my_modal_5").close();
     const reviewdetail = e.target.review.value;
     if (!reviewdetail) {

@@ -23,7 +23,10 @@ const DashBoard = () => {
   return (
     <div className="flex">
       <div className="h-screen w-64 bg-[#F2FFE9] rounded-2xl ">
-        <ul className="menu p-4 space-y-2 uppercase mt-6">
+        <img src={userinfo.photo} className="w-20 h-20 rounded-full p-4 mx-auto border border-dashed border-main  mt-6" alt="" />
+        <h3 className="text-center text-xl font-semibold mt-1">Hello <span className="text-main font-bold">{userinfo.name}</span></h3>
+        <div className="divider divider-error px-4 -mb-1"></div>
+        <ul className="menu p-4 space-y-2 uppercase ">
           {role === "admin" ? (
             <>
               {/* admin sidebar */}

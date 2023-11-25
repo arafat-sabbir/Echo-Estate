@@ -28,7 +28,8 @@ const SignUp = () => {
               email: data.email,
               name: data.name,
               photo:data.photoUrl,
-              role:'user'
+              role:'user',
+              creationDate:new Date().toDateString()
             };
             axiosPublic.post("/users", userdata).then((res) => {
               if (res.data.insertedId) {

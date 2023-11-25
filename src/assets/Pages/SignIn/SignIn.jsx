@@ -6,7 +6,7 @@ import GoogleSignIn from "../../../Auth/SocialLogin/GoogleSignIn/googleSignIn";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -18,10 +18,14 @@ const SignIn = () => {
     signInUser(data.email, data.password)
       .then((res) => {
         toast.success("Sign In SuccessFull", { id: toastid });
-        navigate(location.state?location.state:'/')
+        navigate(location.state ? location.state : "/");
         console.log(res);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+      if(error.message){
+        toast.error("Invalid Email And Password",{id:toastid})
+      }
+      });
   };
   return (
     <div
@@ -63,9 +67,6 @@ const SignIn = () => {
                   className="input input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
                   {...register("password", {
                     required: true,
-                    minLength: 6,
-                    maxLength: 20,
-                    pattern: /^(?=.*[A-Z])(?=.*[\W_]).{6,}$/,
                   })}
                 />
                 <label className="label">
@@ -74,20 +75,9 @@ const SignIn = () => {
                   </a>
                 </label>
                 <div>
-                  {errors.password?.type === "minLength" && (
-                    <p className="text-red-500" role="alert">
-                      Password Should Atleast 6 Character
-                    </p>
-                  )}
                   {errors.password?.type === "required" && (
                     <p className="text-red-500" role="alert">
                       Password Is required
-                    </p>
-                  )}
-                  {errors.password?.type === "pattern" && (
-                    <p className="text-red-500" role="alert">
-                      Password Should Contain atleast one Uppercase And One
-                      Special Character
                     </p>
                   )}
                 </div>

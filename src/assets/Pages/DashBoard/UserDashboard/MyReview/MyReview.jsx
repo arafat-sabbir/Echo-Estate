@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
-import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import ReviewCard from "./ReviewCard";
@@ -17,8 +16,6 @@ const MyReview = () => {
       return res.data;
     },
   });
-  const { reviewerPhoto, propertyTitle, agentName } = myReview;
-
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",

@@ -1,5 +1,5 @@
 import { FaLocationDot } from "react-icons/fa6";
-import { MdDelete, MdOutlinePendingActions, MdUpdate } from "react-icons/md";
+import { MdDelete, MdOutlinePendingActions } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const WishlistCard = ({ handleDelete, item }) => {

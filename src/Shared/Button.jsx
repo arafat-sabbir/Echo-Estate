@@ -1,5 +1,3 @@
-import React from "react";
-
 const Button = ({title}) => {
   return (
     <button className="relative px-8 py-2  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
