@@ -93,7 +93,7 @@ export const routes = createBrowserRouter([
         element: <Wishlist></Wishlist>,
       },
       {
-        path: "makePayment",
+        path: "makePayment/:id",
         element: <MakePayment></MakePayment>,
       },
       {

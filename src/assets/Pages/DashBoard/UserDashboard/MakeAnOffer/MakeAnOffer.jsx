@@ -19,11 +19,12 @@ const MakeAnOffer = () => {
     agentName,
     propertyImage,
     propertyLocation,
-    propertyTitle,
-    propertyPriceRange,
+    propertyTitle, 
+propertyPriceRange,
     agentEmail,
     propertyId,
   } = wish;
+  console.log(propertyPriceRange);
   const axiosSecure = useAxiosSecure();
   const {
     register,
