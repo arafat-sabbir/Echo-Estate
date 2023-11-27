@@ -30,7 +30,8 @@ const AddProperty = () => {
       propertyImage: res.data.data.display_url,
       propertyTitle: item.propertyTitle,
       propertyLocation: item.propertyLocation,
-      propertyPriceRange: item.propertyPriceRange,
+      minPrice:item.minPrice,
+      maxPrice:item.maxPrice,
       propertyVerificationStatus: "pending",
       agentName: userinfo.name,
       agentEmail: userinfo.email,
@@ -46,7 +47,7 @@ const AddProperty = () => {
   };
   return (
     <Container>
-      <div className="shadow-[0_0_20px_#E6E6E6] rounded-xl mt-36">
+      <div className="shadow-[0_0_20px_#E6E6E6] rounded-xl mt-24">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="form-control">
             <label className="label">
@@ -91,17 +92,32 @@ const AddProperty = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Price Range</span>
+              <span className="label-text">Min Price</span>
             </label>
             <input
               type="text"
               name="location"
-              placeholder="Price Range"
+              placeholder="min Price"
               className="input input-bordered bg-white border-dashed border-main focus:border-main"
-              {...register("propertyPriceRange", { required: true })}
+              {...register("minPrice", { required: true })}
             />
-            {errors.propertyPriceRange && (
-              <p className="text-red-500 mt-4">Please Add a PriceRange</p>
+            {errors.minPrice && (
+              <p className="text-red-500 mt-4">Please Add a Min Price</p>
+            )}
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Max Price</span>
+            </label>
+            <input
+              type="text"
+              name="location"
+              placeholder="max Price"
+              className="input input-bordered bg-white border-dashed border-main focus:border-main"
+              {...register("maxPrice", { required: true })}
+            />
+            {errors.maxPrice && (
+              <p className="text-red-500 mt-4">Please Add a Max Price</p>
             )}
           </div>
           <div className="form-control">

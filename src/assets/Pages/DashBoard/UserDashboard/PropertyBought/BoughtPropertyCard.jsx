@@ -10,7 +10,8 @@ const BoughtPropertyCard = ({ item }) => {
     offerredPriceRange,
     offerStatus,
     agentName,
-    _id
+    _id,
+    transactionId,
   } = item;
   return (
     <div>
@@ -22,11 +23,11 @@ const BoughtPropertyCard = ({ item }) => {
 
           <div className="mt-1 p-2">
             <div className="flex justify-between">
-            <h2 className="text-slate-700 text-xl font-semibold mb-2">
-              {propertyTitle}
-            </h2>
-            <p className="font-semibold">
-                Status :{" "}
+              <h2 className="text-slate-700 text-lg font-semibold mb-2">
+                {propertyTitle}
+              </h2>
+              <p className="font-semibold">
+                Status :
                 <span className="uppercase text-main">{offerStatus}</span>
               </p>
             </div>
@@ -41,34 +42,32 @@ const BoughtPropertyCard = ({ item }) => {
                 <FaLocationDot className="text-xl text-black"></FaLocationDot>
                 {propertyLocation}
               </p>
-              
             </div>
 
-            <div className="mt-3 flex items-end justify-between">
+            <div className="mt-3 flex items-center justify-between">
               <p className="font-semibold">
-                {" "}
                 Agent : <span className="text-main">{agentName}</span>
               </p>
-              <div className=" flex justify-end">
-              {offerStatus === "accepted" ? (
-                <Link to={`/dashboard/makePayment/${_id}`}>
-                  <button
-                    className="relative px-1 text-sm py-1 flex items-center  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main
+              <div className=" flex justify-end items-center">
+                {offerStatus === "accepted" && (
+                  <Link to={`/dashboard/makePayment/${_id}`}>
+                    <button
+                      className="relative px-1 text-sm py-1 flex items-center  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main
                   before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
-                  >
-                    {" "}
-                    <span className="mr-1  text-xl">
-                      <AiOutlineDollar />
-                    </span>{" "}
-                    Pay Now
-                  </button>
-                </Link>
-              ) : (
-                ""
-              )}
+                    >
+                      {" "}
+                      <span className="mr-1  text-xl">
+                        <AiOutlineDollar />
+                      </span>{" "}
+                      Pay Now
+                    </button>
+                  </Link>
+                )}
+                {
+                  offerStatus==="bought"&&<p className="text-xs font-semibold">Tid : <span className="text-main">{transactionId}</span></p>
+                }
+              </div>
             </div>
-            </div>
-            
           </div>
         </div>
       </div>

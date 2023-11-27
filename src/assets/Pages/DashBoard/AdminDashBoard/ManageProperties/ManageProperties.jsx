@@ -104,7 +104,7 @@ const ManageProperties = () => {
                             {item.agentEmail}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            {item.propertyPriceRange}
+                            ${item.minPrice}-${item.maxPrice}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                             {item.propertyVerificationStatus === "verified" ? (

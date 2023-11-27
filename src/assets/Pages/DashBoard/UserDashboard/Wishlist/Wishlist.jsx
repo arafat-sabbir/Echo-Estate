@@ -5,11 +5,12 @@ import Container from "../../../../../Utils/Container/Container";
 import WishlistCard from "./WishlistCard";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const Wishlist = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: wishlist = [],refetch } = useQuery({
+  const { data: wishlist = [],refetch,isLoading,isError } = useQuery({
     queryKey: ["wishlist"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/getWishlist?email=${user.email}`);
@@ -37,6 +38,9 @@ const Wishlist = () => {
       }
     });
   };
+  if(isLoading){
+    return <Loading></Loading>
+  }
 
   return (
     <div>

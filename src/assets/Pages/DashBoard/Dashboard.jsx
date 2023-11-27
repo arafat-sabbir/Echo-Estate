@@ -43,6 +43,12 @@ const DashBoard = () => {
           Manage Reviews
         </NavLink>
       </li>
+      <li>
+        <NavLink to={"/dashboard/adverTiseProperty"}>
+          <FaBook />
+          AdverTise Property
+        </NavLink>
+      </li>
     </>
   ) : role === "user" ? (
     // user navbar

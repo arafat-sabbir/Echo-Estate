@@ -4,11 +4,12 @@ import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import BoughtPropertyCard from "./BoughtPropertyCard";
 import { AiOutlineDollar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const PropertyBought = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: boughtProperty = [] } = useQuery({
+  const { data: boughtProperty = [],isLoading,isError } = useQuery({
     queryKey: ["boughtProperty"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -17,7 +18,9 @@ const PropertyBought = () => {
       return res.data;
     },
   });
-
+if(isLoading){
+return <Loading></Loading>
+}
   return (
     <div>
       <h3 className="text-3xl font-semibold text-center mt-10">

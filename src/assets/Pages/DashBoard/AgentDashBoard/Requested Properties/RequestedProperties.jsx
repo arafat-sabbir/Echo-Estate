@@ -2,11 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import toast from "react-hot-toast";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const RequestedProperties = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: requestedProperties = [], refetch } = useQuery({
+  const {
+    data: requestedProperties = [],
+    refetch,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["requestedProperties"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -17,7 +23,9 @@ const RequestedProperties = () => {
   });
   const handleVerifyProperty = (item) => {
     axiosSecure
-      .patch(`/updateOfferStatus/${item._id}?status=accepted&&propertyId=${item.propertyId}`)
+      .patch(
+        `/updateOffer/${item._id}?status=accepted&&propertyId=${item.propertyId}`
+      )
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
@@ -29,7 +37,7 @@ const RequestedProperties = () => {
 
   const handleRejectProperty = (id) => {
     axiosSecure
-      .patch(`/updateOfferStatus/${id}?status=rejected`)
+      .patch(`/updateOffer/${id}?]status=rejected`)
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
@@ -38,6 +46,9 @@ const RequestedProperties = () => {
         }
       });
   };
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <div className="flex flex-col container mx-auto">

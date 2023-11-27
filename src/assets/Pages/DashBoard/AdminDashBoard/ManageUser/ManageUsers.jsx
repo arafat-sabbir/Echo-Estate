@@ -3,10 +3,16 @@ import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { IoWarningOutline } from "react-icons/io5";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery({
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/getallUsers");
@@ -55,7 +61,7 @@ const ManageUsers = () => {
       }
     });
   };
-  const handleMakeFraud= (user) => {
+  const handleMakeFraud = (user) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You Want to Make The User Fraud!",
@@ -67,16 +73,18 @@ const ManageUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const toastid = toast.loading("Making User Fraud");
-        axiosSecure.patch(`/makeFraud/${user._id}?role=fraud&&email=${user.email}`).then((res) => {
-          if(res.data.modifiedCount >0){
-            toast.success("Modified User SuccessFully",{id:toastid})
-            refetch()
-          }
-        });
+        axiosSecure
+          .patch(`/makeFraud/${user._id}?role=fraud&&email=${user.email}`)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              toast.success("Modified User SuccessFully", { id: toastid });
+              refetch();
+            }
+          });
       }
     });
   };
-  const handleDeleteUser= (user) => {
+  const handleDeleteUser = (user) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You Want To Delete The User!",
@@ -97,6 +105,9 @@ const ManageUsers = () => {
       }
     });
   };
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="mt-10">
       <h3 className="text-3xl font-semibold text-center">
@@ -169,35 +180,71 @@ const ManageUsers = () => {
                               <h3 className="uppercase">{item.role}</h3>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                              {
-                                item.role!=='admin'?item.role!=="fraud"?<button  className="flex shadow-2xl justify-center items-center gap-2 w-24 h-8 cursor-pointer rounded-2xl  text-white font-semibold bg-gradient-to-r from-[#072730] via-[#0e3c49da] to-[#0a3a47da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]" onClick={()=> handleMakeAdmin(item)} >
-                                Make Admin
-                              </button>:<p className="flex items-center text-red-500 font-bold text-[15px]"><span className="text-red-500 text-xl mr-1"><IoWarningOutline/></span>Fraud</p>:""
-                              }
+                              {item.role !== "admin" ? (
+                                item.role !== "fraud" ? (
+                                  <button
+                                    className="flex shadow-2xl justify-center items-center gap-2 w-24 h-8 cursor-pointer rounded-2xl  text-white font-semibold bg-gradient-to-r from-[#072730] via-[#0e3c49da] to-[#0a3a47da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]"
+                                    onClick={() => handleMakeAdmin(item)}
+                                  >
+                                    Make Admin
+                                  </button>
+                                ) : (
+                                  <p className="flex items-center text-red-500 font-bold text-[15px]">
+                                    <span className="text-red-500 text-xl mr-1">
+                                      <IoWarningOutline />
+                                    </span>
+                                    Fraud
+                                  </p>
+                                )
+                              ) : (
+                                ""
+                              )}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                              {
-                                item.role!=="agent"?item.role!=='fraud'?<button className="flex shadow-2xl justify-center items-center gap-2 w-24 h-8 cursor-pointer rounded-2xl  text-white font-semibold bg-gradient-to-r from-[#072730] via-[#0e3c49da] to-[#0a3a47da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]" onClick={()=> handleMakeAgent(item)} >
-                                Make Agent
-                              </button>:<p className="flex items-center text-red-500 font-bold text-[15px]"><span className="text-red-500 text-xl mr-1"><IoWarningOutline/></span>Fraud</p>:''
-                              }
+                              {item.role !== "agent" ? (
+                                item.role !== "fraud" ? (
+                                  <button
+                                    className="flex shadow-2xl justify-center items-center gap-2 w-24 h-8 cursor-pointer rounded-2xl  text-white font-semibold bg-gradient-to-r from-[#072730] via-[#0e3c49da] to-[#0a3a47da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]"
+                                    onClick={() => handleMakeAgent(item)}
+                                  >
+                                    Make Agent
+                                  </button>
+                                ) : (
+                                  <p className="flex items-center text-red-500 font-bold text-[15px]">
+                                    <span className="text-red-500 text-xl mr-1">
+                                      <IoWarningOutline />
+                                    </span>
+                                    Fraud
+                                  </p>
+                                )
+                              ) : (
+                                ""
+                              )}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                             {
-                              item.role==="agent"? <button className="w-24  h-8 rounded-full cursor-pointer  shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]" onClick={()=> handleMakeFraud(item)} >
-                              Make Fraud
-                            </button>:''
-                             }
+                              {item.role === "agent" ? (
+                                <button
+                                  className="w-24  h-8 rounded-full cursor-pointer  shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
+                                  onClick={() => handleMakeFraud(item)}
+                                >
+                                  Make Fraud
+                                </button>
+                              ) : (
+                                ""
+                              )}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                             {
-                              item.role!=='admin'? <button onClick={()=> handleDeleteUser(item)}
-                              type="button"
-                              className="w-24 h-8 rounded-full cursor-pointer  shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
-                            >
-                              Delete
-                            </button>:''
-                             }
+                              {item.role !== "admin" ? (
+                                <button
+                                  onClick={() => handleDeleteUser(item)}
+                                  type="button"
+                                  className="w-24 h-8 rounded-full cursor-pointer  shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
+                                >
+                                  Delete
+                                </button>
+                              ) : (
+                                ""
+                              )}
                             </td>
                           </tr>
                         ))}

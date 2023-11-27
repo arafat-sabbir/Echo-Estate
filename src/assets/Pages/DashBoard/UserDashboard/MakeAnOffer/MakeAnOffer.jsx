@@ -20,11 +20,11 @@ const MakeAnOffer = () => {
     propertyImage,
     propertyLocation,
     propertyTitle, 
-propertyPriceRange,
+    minPrice,
+    maxPrice,
     agentEmail,
     propertyId,
   } = wish;
-  console.log(propertyPriceRange);
   const axiosSecure = useAxiosSecure();
   const {
     register,
@@ -37,7 +37,8 @@ propertyPriceRange,
       propertyTitle: propertyTitle,
       propertyLocation: propertyLocation,
       propertyImage: propertyImage,
-      propertyPriceRange: propertyPriceRange,
+      minPrice:minPrice,
+      maxPrice:maxPrice,
       offerredPriceRange: item.OfferedPrice,
       offerredDate: item.OfferedDate,
       agentName: agentName,
@@ -47,12 +48,8 @@ propertyPriceRange,
       offerStatus: "pending",
       propertyId,
     };
-    const priceRange = propertyPriceRange.split("-");
 
-    const minPrice = parseInt(priceRange[0].slice(1));
-    const maxPrice = parseInt(priceRange[1].slice(1));
     const offeredPrice = parseInt(item.OfferedPrice);
-    console.log(minPrice, maxPrice, offeredPrice);
     if (offeredPrice < minPrice || offeredPrice > maxPrice) {
       toast.error("Offered Price Should Be Within Property Price Range", {
         id: toastid,
@@ -148,7 +145,7 @@ propertyPriceRange,
             </label>
             <input
               type="text"
-              defaultValue={propertyPriceRange}
+              defaultValue={`$${minPrice}-$${maxPrice}`}
               name="location"
               disabled={true}
               className="input input-bordered bg-white border-dashed border-main focus:border-main"

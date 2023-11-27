@@ -22,7 +22,8 @@ const UpdateaddedProperties = () => {
     propertyImage,
     propertyLocation,
     propertyTitle,
-    propertyPriceRange,
+    minPrice,
+    maxPrice,
     propertyVerificationStatus,
     _id,
     agentEmail,
@@ -48,7 +49,8 @@ const UpdateaddedProperties = () => {
       propertyImage: res.data.data.display_url,
       propertyTitle: item.propertyTitle,
       propertyLocation: item.propertyLocation,
-      propertyPriceRange: item.propertyPriceRange,
+      minPrice:item.minPrice,
+      maxPrice:item.maxPrice,
     };
     axiosSecure.patch(`/updateProperty/${_id}`, updateData).then((res) => {
       console.log(res.data);
@@ -79,7 +81,7 @@ const UpdateaddedProperties = () => {
               <div className="mt-3 flex items-end justify-between">
                 <p>
                   <span className="text-lg font-bold text-orange-500">
-                    {propertyPriceRange}
+                    ${minPrice}-${maxPrice}
                   </span>
                   <span className="text-sm text-slate-400">/Price</span>
                 </p>
@@ -133,17 +135,32 @@ const UpdateaddedProperties = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Price Range</span>
+                  <span className="label-text">Min Price</span>
                 </label>
                 <input
                   type="text"
-                  defaultValue={propertyPriceRange}
+                  defaultValue={minPrice}
                   name="location"
                   className="input input-bordered bg-white border-dashed border-main focus:border-main"
-                  {...register("propertyPriceRange", { required: true })}
+                  {...register("minPrice", { required: true })}
                 />
-                {errors.propertyPriceRange && (
-                  <p className="text-red-500 mt-4">Please Add a PriceRange</p>
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a minPrice</p>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Max Price</span>
+                </label>
+                <input
+                  type="text"
+                  defaultValue={maxPrice}
+                  name="location"
+                  className="input input-bordered bg-white border-dashed border-main focus:border-main"
+                  {...register("maxPrice", { required: true })}
+                />
+                {errors.maxPrice && (
+                  <p className="text-red-500 mt-4">Please Add a MaxPrice</p>
                 )}
               </div>
               <div className="form-control">

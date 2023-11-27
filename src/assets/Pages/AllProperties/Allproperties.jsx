@@ -21,7 +21,6 @@ const Allproperties = () => {
       return res.data;
     }
   })
-  console.log(properties);
   if(isLoading){
     return <Loading></Loading>
   }

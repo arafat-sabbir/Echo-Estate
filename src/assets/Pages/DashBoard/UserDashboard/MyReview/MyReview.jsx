@@ -5,11 +5,12 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import ReviewCard from "./ReviewCard";
 import Container from "../../../../../Utils/Container/Container";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const MyReview = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: myReview = [], refetch } = useQuery({
+  const { data: myReview = [], refetch,isLoading,isError } = useQuery({
     queryKey: ["myReview"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/getUserReview?email=${user.email}`);
@@ -38,6 +39,9 @@ const MyReview = () => {
       }
     });
   };
+  if(isLoading){
+    return <Loading></Loading>
+  }
   return (
    <div className="">
     <h3 className="text-3xl font-semibold text-center mt-20 ">Hey <span className="text-main font-bold">{user.displayName}</span> Here Are Your Review</h3>

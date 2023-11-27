@@ -9,7 +9,8 @@ const WishlistCard = ({ handleDelete, item }) => {
     propertyImage,
     propertyTitle,
     propertyLocation,
-    propertyPriceRange,
+    minPrice,
+    maxPrice,
     propertyVerificationStatus,
     _id,
   } = item;
@@ -41,9 +42,9 @@ const WishlistCard = ({ handleDelete, item }) => {
             alt=""
             className="object-cover w-full mb-4 h-60 sm:h-96 bg-gray-500 rounded-xl"
           />
-          <div className="mb-1 text-xl font-semibold flex justify-between">
+          <div className="mb-1 text-lg font-semibold flex justify-between">
             <h1>{propertyTitle}</h1>
-            <h1 className="text-sm flex justify-center items-center">
+            <h1 className="text-xs flex justify-center items-center">
               <FaLocationDot className="text-xl text-main"></FaLocationDot>
               <span className="ml-1">{propertyLocation}</span>
             </h1>
@@ -51,7 +52,7 @@ const WishlistCard = ({ handleDelete, item }) => {
           <div className="flex justify-between mt-2">
             <p className="text-md font-medium text-black">
               Price Range :{" "}
-              <span className="font-bold">{propertyPriceRange}</span>
+              <span className="font-bold">${minPrice}-${maxPrice}</span>
             </p>
             <p className="text-md font-medium flex justify-center items-center">
               Status :{" "}

@@ -87,6 +87,10 @@ export const routes = createBrowserRouter([
         path: "manageReviews",
         element: <ManageReviews></ManageReviews>,
       },
+      {
+path:'adverTiseProperty',
+
+      },
       // user routes
       {
         path: "wishlist",

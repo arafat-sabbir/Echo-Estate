@@ -146,11 +146,11 @@ const Navbar = () => {
                 <p className="font-semibold text-center mr-2 mb-2  text-main ">
                   {userinfo?.email}
                 </p>
-                <button className="pb-2"
+                <div className="pb-2 mx-auto"
                   onClick={handleSignOut}
                   >
                     <Button title={'Sign Out'}></Button>
-                </button>
+                </div>
               </ul>
             )}
           </div>

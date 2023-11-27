@@ -26,8 +26,9 @@ const PropertyDetail = () => {
     agentImage,
     agentName,
     propertyLocation,
-    propertyPriceRange,
     propertyVerificationStatus,
+    minPrice,
+    maxPrice,
     _id,
     agentEmail
   } = propertyDetail;
@@ -39,7 +40,8 @@ const PropertyDetail = () => {
       agentName,
       agentEmail,
       propertyLocation,
-      propertyPriceRange,
+      minPrice,
+      maxPrice,
       propertyVerificationStatus,
       propertyId:_id,
       wishedEmail:user.email,
@@ -80,8 +82,8 @@ const PropertyDetail = () => {
               </h3>
               <div className="text-sm text-gray-600 mt-4 m-2">
                 <h3 className="text-xl font-semibold">
-                  Price Range :{" "}
-                  <span className="text-main">{propertyPriceRange}</span>
+                  Price Range :
+                  <span className="text-main">${minPrice}-${maxPrice}</span>
                 </h3>
               </div>
               <div className="divider divider-error"></div>
