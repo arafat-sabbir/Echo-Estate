@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Container from "../../../Utils/Container/Container";
-import useProperties from "../../../Hooks/GetProperties/useProperties";
 import PropertyCard from "./PropertyCard";
 import Loading from "../../../Components/Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
@@ -14,7 +13,7 @@ const Allproperties = () => {
       behavior: "smooth",
     });
   }, []);
-  const {data:properties=[],refetch,isLoading,isError}  = useQuery({
+  const {data:properties=[],refetch,isLoading}  = useQuery({
     queryKey:["properties"],
     queryFn:async()=>{
       const res = await axiosPublic.get('/getVerifiedProperties')

@@ -11,7 +11,6 @@ const AdvertIseProperty = () => {
     data: advertise = [],
     refetch,
     isLoading,
-    isError,
   } = useQuery({
     queryKey: ["advertise"],
     queryFn: async () => {

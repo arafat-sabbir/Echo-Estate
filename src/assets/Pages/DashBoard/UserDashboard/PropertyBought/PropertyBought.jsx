@@ -9,7 +9,7 @@ import Loading from "../../../../../Components/Loading/Loading";
 const PropertyBought = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: boughtProperty = [],isLoading,isError } = useQuery({
+  const { data: boughtProperty = [],isLoading } = useQuery({
     queryKey: ["boughtProperty"],
     queryFn: async () => {
       const res = await axiosSecure.get(

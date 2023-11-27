@@ -10,7 +10,7 @@ import Loading from "../../../../../Components/Loading/Loading";
 const MyReview = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: myReview = [], refetch,isLoading,isError } = useQuery({
+  const { data: myReview = [], refetch,isLoading } = useQuery({
     queryKey: ["myReview"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/getUserReview?email=${user.email}`);

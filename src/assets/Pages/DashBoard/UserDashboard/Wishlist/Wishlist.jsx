@@ -10,7 +10,7 @@ import Loading from "../../../../../Components/Loading/Loading";
 const Wishlist = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: wishlist = [],refetch,isLoading,isError } = useQuery({
+  const { data: wishlist = [],refetch,isLoading } = useQuery({
     queryKey: ["wishlist"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/getWishlist?email=${user.email}`);

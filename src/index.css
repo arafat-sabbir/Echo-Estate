@@ -7,9 +7,10 @@
 
 
 .active{
-    background-color: #ff573b !important;
     color: white !important;
-
+    background-color: #FF5B22 !important;
+    font-weight: 600 ;
+    border-radius: 20px !important;
 }
 
 .swiper-button-next,
