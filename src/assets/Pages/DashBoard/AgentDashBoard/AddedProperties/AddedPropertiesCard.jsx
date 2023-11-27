@@ -34,7 +34,7 @@ const AddedPropertiesCard = ({ item, handleDelete }) => {
             >
               {agentName}
             </a>
-            <span className="text-xs text-black">{Math.floor(Math.random(1,24)*10)} hours Ago</span>
+            <span className="text-xs text-black">{Math.floor(Math.random(1,24)*10)} days Ago</span>
           </div>
         </div>
         <div>
@@ -43,25 +43,25 @@ const AddedPropertiesCard = ({ item, handleDelete }) => {
             alt=""
             className="object-cover w-full mb-4 h-60 sm:h-96 bg-gray-500 rounded-xl"
           />
-          <div className="mb-1 text-lg font-semibold flex justify-between">
-            <h1>{propertyTitle}</h1>
-            <h1 className="text-xs flex justify-center items-center">
+          <div className="mb-1 text-lg  font-semibold flex justify-between">
+            <h1 className="w-[300px]">{propertyTitle}</h1>
+            <h1 className="text-xs flex justify-center items-center ">
               <FaLocationDot className="text-xl text-main"></FaLocationDot>
               <span className="ml-1">{propertyLocation}</span>
             </h1>
           </div>
           <div className="flex justify-between mt-2">
             <p className="text-md font-medium text-black">
-              Price Range :{" "}
+              Price Range :
               <span className="font-bold">${minPrice}-${maxPrice}</span>
             </p>
             <p className="text-md font-medium flex justify-center items-center">
-              Status :{" "}
+              Status :
               {propertyVerificationStatus == "pending" ? (
                 <MdOutlinePendingActions className="ml-1 mr-[2px]"></MdOutlinePendingActions>
               ) : (
                 ""
-              )}{" "}
+              )}
               {propertyVerificationStatus}
             </p>
           </div>

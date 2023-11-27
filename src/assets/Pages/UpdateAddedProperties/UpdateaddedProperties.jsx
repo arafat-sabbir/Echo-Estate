@@ -6,6 +6,8 @@ import useAxiosPublic from "../../../Hooks/AxiosPublic/useAxiosPublic";
 import { FaLocationDot } from "react-icons/fa6";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { useEffect } from "react";
+import axios from "axios";
+import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 
 const UpdateaddedProperties = () => {
   useEffect(() => {
@@ -29,7 +31,6 @@ const UpdateaddedProperties = () => {
     agentEmail,
   } = property;
   const imageHostingKey = import.meta.env.VITE_IMAGE_HOST_KEY;
-  const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const imageHostingAPi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
   const {
@@ -40,7 +41,7 @@ const UpdateaddedProperties = () => {
   const onSubmit = async (item) => {
     const toastid = toast.loading("Updating Property");
     const imagefile = { image: item?.photoUrl[0] };
-    const res = await axiosPublic.post(imageHostingAPi, imagefile, {
+    const res = await axios.post(imageHostingAPi, imagefile, {
       headers: {
         "content-type": "multipart/form-data",
       },
@@ -63,7 +64,10 @@ const UpdateaddedProperties = () => {
   return (
     <div>
       <Container>
-        <div className="mt-40 flex gap-8">
+       <div className="ml-8 -mt-1">
+       <SectionTitle title={'Update Property'} subtitle={"Update Your Existing Added Property"}></SectionTitle>
+       </div>
+        <div className="flex gap-8">
           <div className="cursor-pointer rounded-xl bg-white p-3 shadow-[0_0_20px_#E6E6E6] hover:shadow-[0_0_10px_#FF5B22] w-[640px] h-[550px] mx-auto">
             <div className="relative flex items-end overflow-hidden rounded-xl">
               <img src={propertyImage} alt="wallpaper" />

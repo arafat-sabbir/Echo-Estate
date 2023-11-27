@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import { IoWarningOutline } from "react-icons/io5";
+import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
 
 const SoldProperties = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,9 +16,19 @@ const SoldProperties = () => {
       return res.data;
     },
   });
-  console.log(soldProperties);
+  
+  const totalSoldamount = soldProperties?.length
+  ? soldProperties.reduce((total, item) => total + parseInt(item.offerredPriceRange), 0)
+  : 0;
+
   return (
     <div>
+      <div className="ml-16">
+        <SectionTitle
+          title={"Sold Properties"}
+          subtitle={`You've Sold a Total Amount of $${totalSoldamount}`}
+        ></SectionTitle>
+      </div>
       <div className="flex flex-col container mx-auto">
         <div className="-m-1.5 overflow-x-auto mt-10">
           <div className="p-1.5 min-w-full inline-block align-middle">
@@ -69,8 +80,12 @@ const SoldProperties = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
                         <h3 className="">{item.buyerEmail}</h3>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{item.buyerName}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">${item.offerredPriceRange}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                        {item.buyerName}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                        ${item.offerredPriceRange}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

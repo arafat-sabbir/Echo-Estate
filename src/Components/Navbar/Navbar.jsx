@@ -38,15 +38,15 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li className="hover:scale-110 duration-300 hover:text-main">
+      <li className={location.pathname=='/'?`hover:scale-110 duration-300 hover:text-main text-main font-bold`:"hover:scale-110 duration-300 hover:text-main"}>
         <NavLink to={"/"}>Home</NavLink>
       </li>
       {user && (
-        <ul className="lg:flex drop-shadow-2xl">
-          <li className="hover:scale-110 duration-300 hover:text-main">
+        <ul className="lg:flex drop-shadow-2xl ">
+          <li className={location.pathname=='/'?`hover:scale-110 duration-300 hover:text-main text-main font-bold`:"hover:scale-110 duration-300 hover:text-main"}>
             <NavLink to={"/allProperties"}>All Properties</NavLink>
           </li>
-          <li className="hover:scale-110 duration-300 hover:text-main">
+          <li className={location.pathname=='/'?`hover:scale-110 duration-300 hover:text-main text-main font-bold`:"hover:scale-110 duration-300 hover:text-main"}>
             <NavLink to={"/dashboard/myProfile"}>DashBoard</NavLink>
           </li>
         </ul>
@@ -84,7 +84,7 @@ const Navbar = () => {
           <div className="hidden lg:flex  font-bold items-center">
           <Link
             to={"/"}
-              className="!flex font-bold items-center hover:scale-110 duration-300"
+              className={location.pathname=='/'?`!flex font-black text-main  items-center hover:scale-110 duration-300`:"!flex font-bold items-center hover:scale-110 duration-300"}
             >
               <img
                 className="w-22 h-12"

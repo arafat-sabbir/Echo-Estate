@@ -23,18 +23,18 @@ const ReviewCard = ({ item, handleDelete }) => {
       </p>
 
       <div className="flex justify-between items-center mt-6 mb-3 absolute bottom-2 right-0 left-0 px-10 ">
-        <button
-          onClick={() => handleDelete(item._id)}
-          className="flex justify-center items-center gap-2 w-12 h-12 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
-        >
-          <MdDelete></MdDelete>
-        </button>
         <p
           className="text-lg font-medium  dark:text-blue-300"
           tabIndex="0"
         >
          Agent :  <span className="text-main">{item.agentName}</span>
         </p>
+        <button
+          onClick={() => handleDelete(item._id)}
+          className="flex justify-center items-center gap-2 w-12 h-12 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
+        >
+          <MdDelete></MdDelete>
+        </button>
       </div>
     </div>
   );

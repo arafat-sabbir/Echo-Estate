@@ -5,6 +5,7 @@ import Container from "../../../../../Utils/Container/Container";
 import AddedPropertiesCard from "./AddedPropertiesCard";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import toast from "react-hot-toast";
+import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
 
 const AddedProperties = () => {
   const { Properties, refetch, isLoading, isError } = useAddedProperty();
@@ -36,11 +37,10 @@ const AddedProperties = () => {
   }
   return (
     <Container>
-      <div>
-        <h3 className="text-center text-3xl font-semibold my-20 ">
-          Your Added Properties
-        </h3>
-
+    <div className="mt-10">
+    <SectionTitle title={"Added Property"} subtitle={"See All The Property You've Added"}></SectionTitle>
+    </div>
+      <div className="mb-10">
         <div className="grid grid-cols-1 justify-items-center lg:grid-cols-3 gap-10">
         {Properties?.map((item) => (
           <AddedPropertiesCard item={item} key={item._id} handleDelete={handleDelete} handleupdate={handleupdate}></AddedPropertiesCard>

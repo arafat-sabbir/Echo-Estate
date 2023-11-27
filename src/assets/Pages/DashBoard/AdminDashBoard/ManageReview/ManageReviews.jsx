@@ -4,21 +4,11 @@ import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Loading from "../../../../../Components/Loading/Loading";
+import useReview from "../../../../../Hooks/UseReview/useReview";
 
 const ManageReviews = () => {
   const axiosSecure = useAxiosSecure();
-  const {
-    data: reviews = [],
-    refetch,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["reviews"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/getallReviews");
-      return res.data;
-    },
-  });
+  const {reviews,refetch,isLoading }  = useReview()
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",

@@ -4,15 +4,24 @@ import { FaCheck } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import toast from "react-hot-toast";
 import Loading from "../../../../../Components/Loading/Loading";
+import useAdvertise from "../../../../../Hooks/useAdvertise/useAdvertise";
+import useProperties from "../../../../../Hooks/GetProperties/useProperties";
 
 const AdvertIseProperty = () => {
   const axiosSecure = useAxiosSecure();
+  const {
+    advertise: adveritsedProperty,
+    isLoading: loading,
+    isError,
+    refetch: retry,
+  } = useAdvertise();
+  const { properties } = useProperties();
   const {
     data: advertise = [],
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["advertise"],
+    queryKey: ["advertise", properties],
     queryFn: async () => {
       const res = await axiosSecure.get("/getVerifiedProperty");
       return res.data;
@@ -20,13 +29,16 @@ const AdvertIseProperty = () => {
   });
 
   const handleAdvertiseProperty = (id) => {
+    if (adveritsedProperty?.length > 5) {
+      return toast.error("Can't advertise more then 6 Property");
+    }
     axiosSecure
       .patch(`/updateAdvertise/${id}?advertiseStatus=advertise`)
       .then((res) => {
-        console.log(res.data);
         if (res.data.modifiedCount > 0) {
           refetch();
           toast.success("Property Advertised Successfully");
+          retry();
         }
       });
   };
@@ -39,12 +51,14 @@ const AdvertIseProperty = () => {
         if (res.data.modifiedCount > 0) {
           refetch();
           toast.success("Property DisAdvertised Successfully");
+          retry();
         }
       });
   };
   if (isLoading) {
     return <Loading></Loading>;
   }
+  console.log(adveritsedProperty.length);
   return (
     <div>
       <h3 className="text-3xl font-semibold text-center mt-10">
