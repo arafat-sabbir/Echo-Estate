@@ -1,13 +1,13 @@
 import {  useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../UseAuth/useAuth";
 import { FcGoogle } from "react-icons/fc";
-import useAxiosPublic from "../../../Hooks/AxiosPublic/useAxiosPublic";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 
 const GoogleSignIn = () => {
   const { signWithGoogle } = useAuth();
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic()
+  const axiosSecure = useAxiosSecure()
   const location = useLocation();
   const handleGoogleLogin = () => {
     signWithGoogle()
@@ -20,7 +20,7 @@ const GoogleSignIn = () => {
             creationDate:new Date().toDateString()
         }
         console.log(res.user.email,res.user.displayName);
-        axiosPublic.post(`/users?email=${res.user.email}`,userInfo)
+        axiosSecure.post(`/users?email=${res.user.email}`,userInfo)
         .then(res=> console.log(res.data))
         navigate(location.state?location.state:'/')
         toast.success("SuccessFull Sign In")

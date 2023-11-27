@@ -3,11 +3,12 @@ import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import { IoWarningOutline } from "react-icons/io5";
 import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const SoldProperties = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: soldProperties = [], refetch } = useQuery({
+  const { data: soldProperties = [], refetch,isLoading } = useQuery({
     queryKey: ["soldProperties"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -20,7 +21,9 @@ const SoldProperties = () => {
   const totalSoldamount = soldProperties?.length
   ? soldProperties.reduce((total, item) => total + parseInt(item.offerredPriceRange), 0)
   : 0;
-
+if(isLoading){
+  return <Loading></Loading>
+}
   return (
     <div>
       <div className="ml-16">

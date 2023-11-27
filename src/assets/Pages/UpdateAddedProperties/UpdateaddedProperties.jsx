@@ -19,14 +19,12 @@ const UpdateaddedProperties = () => {
   const property = useLoaderData();
   const navigate = useNavigate();
   const {
-    agentImage,
     agentName,
     propertyImage,
     propertyLocation,
     propertyTitle,
     minPrice,
     maxPrice,
-    propertyVerificationStatus,
     _id,
     agentEmail,
   } = property;

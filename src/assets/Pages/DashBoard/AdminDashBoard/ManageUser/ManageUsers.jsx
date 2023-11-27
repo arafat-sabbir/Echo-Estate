@@ -4,9 +4,11 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { IoWarningOutline } from "react-icons/io5";
 import Loading from "../../../../../Components/Loading/Loading";
+import useGetUser from "../../../../../Hooks/GetUserInfo/useGetUser";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
+  const { userinfo } = useGetUser();
   const {
     data: users = [],
     refetch,
@@ -85,6 +87,9 @@ const ManageUsers = () => {
     });
   };
   const handleDeleteUser = (user) => {
+    if (user.email === userinfo.email) {
+      return toast.error("Your can't Delete Your own Account");
+    }
     Swal.fire({
       title: "Are you sure?",
       text: "You Want To Delete The User!",
@@ -234,17 +239,13 @@ const ManageUsers = () => {
                               )}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                              {item.role !== "admin" ? (
-                                <button
-                                  onClick={() => handleDeleteUser(item)}
-                                  type="button"
-                                  className="w-24 h-8 rounded-full cursor-pointer  shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
-                                >
-                                  Delete
-                                </button>
-                              ) : (
-                                ""
-                              )}
+                              <button
+                                onClick={() => handleDeleteUser(item)}
+                                type="button"
+                                className="w-24 h-8 rounded-full cursor-pointer  shadow-2xl text-white font-semibold bg-gradient-to-r from-[#fb7185] via-[#e11d48] to-[#be123c] hover:shadow-xl hover:shadow-red-500 hover:scale-105 duration-300 hover:from-[#be123c] hover:to-[#fb7185]"
+                              >
+                                Delete
+                              </button>
                             </td>
                           </tr>
                         ))}

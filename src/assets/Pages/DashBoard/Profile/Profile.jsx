@@ -1,8 +1,12 @@
+import Loading from "../../../../Components/Loading/Loading";
 import useGetUser from "../../../../Hooks/GetUserInfo/useGetUser";
 
 const Profile = () => {
-  const { userinfo } = useGetUser();
+  const { userinfo,refetch,isLoading } = useGetUser();
   const role = userinfo.role;
+  if(isLoading){
+    return <Loading></Loading>
+  }
   return (
     <div className="min-w-[calc(100vw-530px)] mx-auto min-h-[100vh]  flex justify-center items-center">
       <div className="">

@@ -6,6 +6,7 @@ import AddedPropertiesCard from "./AddedPropertiesCard";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import toast from "react-hot-toast";
 import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const AddedProperties = () => {
   const { Properties, refetch, isLoading, isError } = useAddedProperty();
@@ -34,6 +35,9 @@ const AddedProperties = () => {
   };
   const handleupdate =(id)=>{
     console.log(id);
+  }
+  if(isLoading){
+    return <Loading></Loading>
   }
   return (
     <Container>

@@ -3,10 +3,10 @@ import Container from "../../../Utils/Container/Container";
 import PropertyCard from "./PropertyCard";
 import Loading from "../../../Components/Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/AxiosPublic/useAxiosPublic";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 
 const Allproperties = () => {
-  const axiosPublic = useAxiosPublic()
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -16,7 +16,7 @@ const Allproperties = () => {
   const {data:properties=[],refetch,isLoading}  = useQuery({
     queryKey:["properties"],
     queryFn:async()=>{
-      const res = await axiosPublic.get('/getVerifiedProperties')
+      const res = await axiosSecure.get('/getVerifiedProperties')
       return res.data;
     }
   })

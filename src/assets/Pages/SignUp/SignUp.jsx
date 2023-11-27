@@ -1,14 +1,14 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../../Hooks/AxiosPublic/useAxiosPublic";
 import useAuth from "../../../Auth/UseAuth/useAuth";
 import GoogleSignIn from "../../../Auth/SocialLogin/GoogleSignIn/googleSignIn";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -31,7 +31,7 @@ const SignUp = () => {
               role:'user',
               creationDate:new Date().toDateString()
             };
-            axiosPublic.post("/users", userdata).then((res) => {
+            axiosSecure.post("/users", userdata).then((res) => {
               if (res.data.insertedId) {
                 toast.success("Sign Up SuccessFully", { id: toastid });
                 reset();

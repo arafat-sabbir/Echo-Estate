@@ -1,40 +1,41 @@
-import useProperties from '../../../../../Hooks/GetProperties/useProperties';
-import useAuth from '../../../../../Auth/UseAuth/useAuth';
+import useProperties from "../../../../../Hooks/GetProperties/useProperties";
+import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
-import useAxiosSecure from '../../../../../Hooks/AxiosSecure/useAxiosSecure';
-import toast from 'react-hot-toast';
+import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
+import toast from "react-hot-toast";
+import Loading from "../../../../../Components/Loading/Loading";
 
 const ManageProperties = () => {
-  const { properties, refetch } = useProperties();
+  const { properties, refetch, isLoading } = useProperties();
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
-
   const handleVerifyProperty = (id) => {
-    axiosSecure.patch(`/updateStatus/${id}?status=verified`)
-      .then(res => {
-        console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          toast.success("Property Verified Successfully");
-        }
-      });
-  }
+    axiosSecure.patch(`/updateStatus/${id}?status=verified`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Property Verified Successfully");
+      }
+    });
+  };
 
   const handleRejectProperty = (id) => {
-    axiosSecure.patch(`/updateStatus/${id}?status=rejected`)
-      .then(res => {
-        console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          toast.success("Property Rejected Successfully");
-        }
-      });
+    axiosSecure.patch(`/updateStatus/${id}?status=rejected`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Property Rejected Successfully");
+      }
+    });
+  };
+  if (isLoading) {
+    return <Loading></Loading>;
   }
-
   return (
     <div>
-      <h3 className='text-3xl font-semibold text-center mt-10'>Total Properties {properties.length}</h3>
+      <h3 className="text-3xl font-semibold text-center mt-10">
+        Total Properties {properties.length}
+      </h3>
       <div>
         <div>
           <div className="flex flex-col container mx-auto">
@@ -108,9 +109,14 @@ const ManageProperties = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                             {item.propertyVerificationStatus === "verified" ? (
-                              <p className='uppercase'>{item.propertyVerificationStatus}</p>
-                            ) : item.propertyVerificationStatus === "rejected" ? (
-                              <p className='uppercase'>{item.propertyVerificationStatus}</p>
+                              <p className="uppercase">
+                                {item.propertyVerificationStatus}
+                              </p>
+                            ) : item.propertyVerificationStatus ===
+                              "rejected" ? (
+                              <p className="uppercase">
+                                {item.propertyVerificationStatus}
+                              </p>
                             ) : (
                               <button
                                 onClick={() => handleVerifyProperty(item._id)}
@@ -123,9 +129,14 @@ const ManageProperties = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                             {item.propertyVerificationStatus === "rejected" ? (
-                              <p className='uppercase'>{item.propertyVerificationStatus}</p>
-                            ) : item.propertyVerificationStatus === "verified" ? (
-                              <p className='uppercase'>{item.propertyVerificationStatus}</p>
+                              <p className="uppercase">
+                                {item.propertyVerificationStatus}
+                              </p>
+                            ) : item.propertyVerificationStatus ===
+                              "verified" ? (
+                              <p className="uppercase">
+                                {item.propertyVerificationStatus}
+                              </p>
                             ) : (
                               <button
                                 onClick={() => handleRejectProperty(item._id)}

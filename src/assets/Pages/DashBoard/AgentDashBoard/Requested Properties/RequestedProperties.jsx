@@ -139,7 +139,7 @@ const RequestedProperties = () => {
                           <p className="uppercase">{item.offerStatus}</p>
                         ) : item.offerStatus === "rejected" ? (
                           <p className="uppercase">{item.offerStatus}</p>
-                        ) : (
+                        ) :item.offerStatus==='bought'?(<p className="uppercase">{item.offerStatus}</p>): (
                           <button
                             onClick={() => handleVerifyProperty(item)}
                             type="button"
@@ -154,7 +154,7 @@ const RequestedProperties = () => {
                           <p className="uppercase">{item.offerStatus}</p>
                         ) : item.offerStatus === "rejected" ? (
                           <p className="uppercase">{item.offerStatus}</p>
-                        ) : (
+                        ) :item.offerStatus==='bought'?(<p className="uppercase">{item.offerStatus}</p>): (
                           <button
                             onClick={() => handleRejectProperty(item._id)}
                             type="button"
