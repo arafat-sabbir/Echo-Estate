@@ -22,6 +22,7 @@ import UpdateaddedProperties from "../Pages/UpdateAddedProperties/updateaddedPro
 import AddProperty from "../Pages/DashBoard/AgentDashBoard/AddProperty/AddProperty";
 import MakeAnOffer from "../Pages/DashBoard/UserDashboard/MakeAnOffer/MakeAnOffer";
 import MakePayment from "../Pages/DashBoard/UserDashboard/MakePayment/MakePayment";
+import AdvertIseProperty from "../Pages/DashBoard/AdminDashBoard/AdvertiseProperty/AdvertIseProperty";
 
 export const routes = createBrowserRouter([
   {
@@ -88,8 +89,8 @@ export const routes = createBrowserRouter([
         element: <ManageReviews></ManageReviews>,
       },
       {
-path:'adverTiseProperty',
-
+        path: "adverTiseProperty",
+        element: <AdvertIseProperty></AdvertIseProperty>,
       },
       // user routes
       {
