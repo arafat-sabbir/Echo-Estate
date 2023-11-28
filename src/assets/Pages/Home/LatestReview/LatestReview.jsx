@@ -19,6 +19,7 @@ const LatestReview = () => {
           delay: 3500,
           disableOnInteraction: false,
         }}
+        loop={true}
         spaceBetween={30}
         slidesPerView={"auto"}
         pagination={{

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../Auth/UseAuth/useAuth";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://echo-state-server.vercel.app/api",
   withCredentials: true,
 });
 
