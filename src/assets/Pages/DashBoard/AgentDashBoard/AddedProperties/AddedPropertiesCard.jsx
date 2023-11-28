@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdDelete, MdOutlinePendingActions } from "react-icons/md";
 import { MdUpdate } from "react-icons/md";

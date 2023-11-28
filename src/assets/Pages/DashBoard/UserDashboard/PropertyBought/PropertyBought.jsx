@@ -22,9 +22,8 @@ if(isLoading){
 return <Loading></Loading>
 }
   return (
-    <div>
-      <h3 className="text-3xl font-semibold text-center mt-10">
-        {" "}
+    <div className="p-4">
+      <h3 className="lg:text-3xl text-xl font-semibold text-center mt-10">
         <span className="text-main font-bold">{user.displayName}</span> Your
         Bought Property
       </h3>

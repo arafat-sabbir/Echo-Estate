@@ -5,6 +5,7 @@ import { FaCheck } from "react-icons/fa6";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import toast from "react-hot-toast";
 import Loading from "../../../../../Components/Loading/Loading";
+import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
 
 const ManageProperties = () => {
   const { properties, refetch, isLoading } = useProperties();
@@ -33,9 +34,9 @@ const ManageProperties = () => {
   }
   return (
     <div>
-      <h3 className="text-3xl font-semibold text-center mt-10">
-        Total Properties {properties.length}
-      </h3>
+     <div className="ml-16">
+      <SectionTitle title={"Manage Properties"} subtitle={"Manage Property Added By Agent"}> </SectionTitle>
+     </div>
       <div>
         <div>
           <div className="flex flex-col container mx-auto">

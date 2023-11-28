@@ -23,7 +23,7 @@ const GoogleSignIn = () => {
         axiosSecure.post(`/users?email=${res.user.email}`,userInfo)
         .then(res=> console.log(res.data))
         navigate(location.state?location.state:'/')
-        toast.success("SuccessFull Sign In")
+        toast.success("Sign In SuccessFully")
         navigate(location.state ? location.state : "/");
         console.log(res.user);
       })

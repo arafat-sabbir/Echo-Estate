@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Loading from "../../../../../Components/Loading/Loading";
 import useReview from "../../../../../Hooks/UseReview/useReview";
+import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
 
 const ManageReviews = () => {
   const axiosSecure = useAxiosSecure();
@@ -36,10 +37,10 @@ const ManageReviews = () => {
   }
   return (
     <div className="container mx-auto">
-      <h3 className="text-3xl font-semibold text-center mt-10">
-        Total Review {reviews.length}
-      </h3>
-      <div className="grid grid-cols-1 justify-center justify-items-center  lg:grid-cols-3 w-[90vw] lg:w-auto mx-auto">
+      <div className="ml-10">
+      <SectionTitle title={"User Review"} subtitle={"Manage ALl The Review Made By User"}></SectionTitle>
+      </div>
+      <div className="grid grid-cols-1 justify-center ml-5 md:ml-0 justify-items-center  lg:grid-cols-3 w-[90vw] lg:w-auto mx-auto">
         {reviews.map((item) => (
           <div
             key={item._id}

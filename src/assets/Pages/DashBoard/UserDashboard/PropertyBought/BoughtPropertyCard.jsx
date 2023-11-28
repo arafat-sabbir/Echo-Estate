@@ -16,7 +16,7 @@ const BoughtPropertyCard = ({ item }) => {
   return (
     <div>
       <div>
-        <div className="cursor-pointer rounded-xl bg-white p-3 shadow-[0_0_20px_#E6E6E6] duration-300 hover:shadow-[0_0_10px_#FF5B22] w-[480px] mx-auto">
+        <div className="cursor-pointer rounded-xl bg-white p-3 shadow-[0_0_20px_#E6E6E6] duration-300 hover:shadow-[0_0_10px_#FF5B22] lg:w-[480px] mx-auto">
           <div className="relative flex items-end overflow-hidden rounded-xl w-full object-fill">
             <img src={propertyImage} alt="wallpaper" />
           </div>

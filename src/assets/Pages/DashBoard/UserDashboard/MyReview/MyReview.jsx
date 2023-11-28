@@ -43,10 +43,10 @@ const MyReview = () => {
     return <Loading></Loading>
   }
   return (
-   <div className="">
+   <div className="p-4">
     <h3 className="text-3xl font-semibold text-center mt-20 ">Hey <span className="text-main font-bold">{user.displayName}</span> Here Are Your Review</h3>
      <Container>
-      <div className="grid grid-cols-3 mt-10 items-stretch">
+      <div className="grid lg:grid-cols-3  mt-10 items-stretch">
         {myReview.map((item) => (
           <ReviewCard
             item={item}

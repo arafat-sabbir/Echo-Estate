@@ -43,9 +43,9 @@ const Wishlist = () => {
   }
 
   return (
-    <div>
+    <div className="p-4">
        <Container>
-       <div className="text-3xl font-semibold text-center mt-10"> <span className="text-main font-bold">{user.displayName}</span> Here is Your Wishlist</div>
+       <div className="lg:text-3xl text-xl font-semibold text-center mt-10"> <span className="text-main font-bold">{user.displayName}</span> Here is Your Wishlist</div>
        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {
             wishlist.map(item => <WishlistCard item={item} key={item._id} handleDelete={handleDelete}></WishlistCard>)

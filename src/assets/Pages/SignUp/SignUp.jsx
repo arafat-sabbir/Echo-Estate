@@ -56,13 +56,10 @@ const SignUp = () => {
       }}
     >
       <div className="flex h-screen gap-10 container mx-auto  justify-center items-center">
-        <div className="w-1/2">
-          <img alt="" />
-        </div>
-        <div className="w-1/2">
-          <div className="card  w-3/4  mx-auto ">
+        <div className="lg:w-1/2 w-[90vw]">
+          <div className="card  lg:w-3/4  mx-auto ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="form-control">
+            <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>

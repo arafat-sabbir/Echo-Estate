@@ -55,7 +55,7 @@ const Navbar = () => {
   );
   return (
     <div className="">
-      <div className={location.pathname=='/'?`navbar  justify-center  py-6  container mx-auto lg:fixed z-50`:'navbar  justify-center  py-6  container mx-auto z-50 '}>
+      <div className={location.pathname=='/'?`navbar  justify-center  py-6 relative container mx-auto  z-50`:'navbar  justify-center  py-6  container mx-auto z-50 '}>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -135,14 +135,16 @@ const DashBoard = () => {
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
-          <div className="flex">
-          <label htmlFor="my-drawer" className="drawer-button z-50">
+         <div className="flex justify-center">
+         <div className="flex">
+          <label htmlFor="my-drawer" className="drawer-button z-50 absolute">
             <p className="pt-4 pl-4 text-2xl"><FaListUl></FaListUl></p>
           </label>
           <div className="flex lg:hidden">
             <Outlet></Outlet>
           </div>
           </div>
+         </div>
         </div>
         <div className="drawer-side">
           <label

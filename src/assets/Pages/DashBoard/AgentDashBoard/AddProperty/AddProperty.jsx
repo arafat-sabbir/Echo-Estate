@@ -28,8 +28,8 @@ const AddProperty = () => {
       propertyImage: res.data.data.display_url,
       propertyTitle: item.propertyTitle,
       propertyLocation: item.propertyLocation,
-      minPrice:item.minPrice,
-      maxPrice:item.maxPrice,
+      minPrice: item.minPrice,
+      maxPrice: item.maxPrice,
       propertyVerificationStatus: "pending",
       agentName: userinfo.name,
       agentEmail: userinfo.email,
@@ -45,8 +45,11 @@ const AddProperty = () => {
   };
   return (
     <Container>
-      <div className="shadow-[0_0_20px_#E6E6E6] rounded-xl mt-24">
-        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+      <div className="  rounded-xl mt-24 ">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="card-body lg:w-1/2 mx-auto shadow-[0_0_20px_#E6E6E6] rounded-xl"
+        >
           <div className="form-control">
             <label className="label">
               <span className="label-text">Photo</span>

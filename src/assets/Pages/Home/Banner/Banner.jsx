@@ -11,7 +11,7 @@ import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
 
 const Banner = () => {
   return (
-    <div>
+    <div className="-mt-28">
       <Swiper
         spaceBetween={90}
         effect={"fade"}
@@ -37,20 +37,17 @@ const Banner = () => {
           >
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
-              <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+              <div className="max-w-3xl">
+                <h1 className="mb-2 text-xl font-semibold">Discover Your Dream Home</h1>
+                <p className="mb-5 text-5xl font-bold">
+                Find the Perfect Property for Your Lifestyle
                 </p>
-                <button className="btn btn-primary">Get Started</button>
               </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-           <div
+          <div
             className="hero min-h-screen"
             style={{
               backgroundImage:
@@ -59,20 +56,17 @@ const Banner = () => {
           >
             <div className="hero-overlay bg-opacity-50"></div>
             <div className="hero-content text-center text-neutral-content">
-              <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+              <div className="max-w-3xl">
+                <h1 className="mb-2 text-xl font-semibold">Unlock Your Homeownership Journey</h1>
+                <p className="mb-5 text-5xl font-bold">
+                Explore Homes Tailored to Your Needs
                 </p>
-                <button className="btn btn-primary">Get Started</button>
               </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-           <div
+          <div
             className="hero min-h-screen"
             style={{
               backgroundImage:
@@ -81,20 +75,17 @@ const Banner = () => {
           >
             <div className="hero-overlay bg-opacity-50"></div>
             <div className="hero-content text-center text-neutral-content">
-              <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+              <div className="max-w-3xl">
+                <h1 className="mb-2 text-xl font-semibold ">Invest in Your Future with Us</h1>
+                <p className="mb-5 text-5xl font-bold">
+                Explore Real Estate Opportunities Today
                 </p>
-                <button className="btn btn-primary">Get Started</button>
               </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-           <div
+          <div
             className="hero min-h-screen"
             style={{
               backgroundImage:
@@ -103,14 +94,13 @@ const Banner = () => {
           >
             <div className="hero-overlay bg-opacity-50"></div>
             <div className="hero-content text-center text-neutral-content">
-              <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+              <div className="max-w-3xl">
+                <h1 className="mb-2 text-xl font-semibold">
+                Elevate Your Living Experience
+                </h1>
+                <p className="mb-5  text-5xl font-bold">
+                Discover Exceptional Properties in Prime Locations
                 </p>
-                <button className="btn btn-primary">Get Started</button>
               </div>
             </div>
           </div>

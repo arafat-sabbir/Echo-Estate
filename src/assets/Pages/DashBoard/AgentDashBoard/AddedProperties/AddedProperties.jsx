@@ -40,7 +40,8 @@ const AddedProperties = () => {
     return <Loading></Loading>
   }
   return (
-    <Container>
+   <div className="p-4">
+     <Container>
     <div className="mt-10">
     <SectionTitle title={"Added Property"} subtitle={"See All The Property You've Added"}></SectionTitle>
     </div>
@@ -52,6 +53,7 @@ const AddedProperties = () => {
         </div>
       </div>
     </Container>
+   </div>
   );
 };
 

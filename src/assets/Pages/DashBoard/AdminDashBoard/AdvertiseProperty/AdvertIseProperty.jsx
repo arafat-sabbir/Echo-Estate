@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import { FaCheck } from "react-icons/fa6";
@@ -6,11 +7,12 @@ import toast from "react-hot-toast";
 import Loading from "../../../../../Components/Loading/Loading";
 import useAdvertise from "../../../../../Hooks/useAdvertise/useAdvertise";
 import useProperties from "../../../../../Hooks/GetProperties/useProperties";
+import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
 
-const AdvertIseProperty = () => {
+const AdvertiseProperty = () => {
   const axiosSecure = useAxiosSecure();
   const {
-    advertise: adveritsedProperty,
+    advertise: advertisedProperty,
     isLoading: loading,
     isError,
     refetch: retry,
@@ -19,7 +21,7 @@ const AdvertIseProperty = () => {
   const {
     data: advertise = [],
     refetch,
-    isLoading,
+    isLoading: isQueryLoading,
   } = useQuery({
     queryKey: ["advertise", properties],
     queryFn: async () => {
@@ -29,154 +31,115 @@ const AdvertIseProperty = () => {
   });
 
   const handleAdvertiseProperty = (id) => {
-    if (adveritsedProperty?.length > 5) {
-      return toast.error("Can't advertise more then 6 Property");
+    if (advertisedProperty?.length > 5) {
+      return toast.error("Can't advertise more than 6 properties");
     }
-    axiosSecure
-      .patch(`/updateAdvertise/${id}?advertiseStatus=advertise`)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          toast.success("Property Advertised Successfully");
-          retry();
-        }
-      });
+    axiosSecure.patch(`/updateAdvertise/${id}?advertiseStatus=advertise`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Property Advertised Successfully");
+        retry();
+      }
+    });
   };
 
-  const handledisAdvertiseProperty = (id) => {
-    axiosSecure
-      .patch(`/updateAdvertise/${id}?advertiseStatus=disadvertise`)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          toast.success("Property DisAdvertised Successfully");
-          retry();
-        }
-      });
+  const handleDisadvertiseProperty = (id) => {
+    axiosSecure.patch(`/updateAdvertise/${id}?advertiseStatus=disadvertise`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Property Disadvertised Successfully");
+        retry();
+      }
+    });
   };
-  if (isLoading) {
-    return <Loading></Loading>;
+
+  if (loading || isQueryLoading) {
+    return <Loading />;
   }
-  console.log(adveritsedProperty.length);
+
   return (
-    <div>
-      <h3 className="text-3xl font-semibold text-center mt-10">
-        Advertise Properties {advertise.length}
-      </h3>
-      <div>
-        <div>
-          <div className="flex flex-col container mx-auto">
-            <div className="-m-1.5 overflow-x-auto mt-10">
-              <div className="p-1.5 min-w-full inline-block align-middle">
-                <div className="overflow-hidden">
-                  <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead>
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Property Title
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Property Location
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Agent Name
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Agent Email
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Price Range
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Verify
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Reject
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                      {advertise?.map((item) => (
-                        <tr key={item._id}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                            {item.propertyTitle}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            {item.propertyLocation}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            {item.agentName}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            {item.agentEmail}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            ${item.minPrice}-${item.maxPrice}
-                          </td>
-                          <td className=" py-4 whitespace-nowrap text-end text-sm font-medium">
-                            {item.advertiseStatus !== "advertise" && (
-                              <button
-                                onClick={() =>
-                                  handleAdvertiseProperty(item._id)
-                                }
-                                type="button"
-                                className="px-3 py-3 flex z-50  items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-[#17645a] hover:shadow-xl hover:shadow-[#072730da] hover:scale-110 duration-300"
-                              >
-                                <FaCheck />
-                                Advertise
-                              </button>
-                            )}
-                          </td>
-                          <td className=" py-4 whitespace-nowrap text-end text-sm font-medium ">
-                            {item.advertiseStatus !== "disadvertise" && (
-                              <button
-                                onClick={() =>
-                                  handledisAdvertiseProperty(item._id)
-                                }
-                                type="button"
-                                className="px-3 py-3 z-50 flex  items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-red-500 hover:shadow-xl hover:shadow-red-500 hover:scale-110 duration-300"
-                              >
-                                <span>
-                                  <MdOutlineCancel />
-                                </span>
-                                disAdverTise
-                              </button>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="container mx-auto">
+      <SectionTitle title={"AdverTise Property"} subtitle={"Advertise Propery To Home Page"}></SectionTitle>
+      <div className="mt-4">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead>
+              <tr>
+                <th className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                  Property Title
+                </th>
+                <th className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                  Property Location
+                </th>
+                <th className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                  Agent Name
+                </th>
+                <th className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                  Agent Email
+                </th>
+                <th className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                  Price Range
+                </th>
+                <th className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                  Verify
+                </th>
+                <th className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                  Reject
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              {advertise?.map((item) => (
+                <tr key={item._id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                    {item.propertyTitle}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                    {item.propertyLocation}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                    {item.agentName}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                    {item.agentEmail}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                    ${item.minPrice}-${item.maxPrice}
+                  </td>
+                  <td className="py-4 whitespace-nowrap text-end text-sm font-medium">
+                    {item.advertiseStatus !== "advertise" && (
+                      <button
+                        onClick={() => handleAdvertiseProperty(item._id)}
+                        type="button"
+                        className="px-3 py-3 flex z-50 items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-[#17645a] hover:shadow-xl hover:shadow-[#072730da] hover:scale-110 duration-300"
+                      >
+                        <FaCheck />
+                        Advertise
+                      </button>
+                    )}
+                  </td>
+                  <td className="py-4 whitespace-nowrap text-end text-sm font-medium">
+                    {item.advertiseStatus !== "disadvertise" && (
+                      <button
+                        onClick={() => handleDisadvertiseProperty(item._id)}
+                        type="button"
+                        className="px-3 py-3 z-50 flex items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-red-500 hover:shadow-xl hover:shadow-red-500 hover:scale-110 duration-300"
+                      >
+                        <span>
+                          <MdOutlineCancel />
+                        </span>
+                        Disadvertise
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   );
 };
 
-export default AdvertIseProperty;
+export default AdvertiseProperty;

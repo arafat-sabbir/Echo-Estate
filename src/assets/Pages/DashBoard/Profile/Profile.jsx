@@ -8,7 +8,7 @@ const Profile = () => {
     return <Loading></Loading>
   }
   return (
-    <div className="min-w-[calc(100vw-530px)] mx-auto min-h-[100vh]  flex justify-center items-center">
+    <div className="min-w-[calc(100vw-530px)] mx-auto min-h-[100vh] p-4  flex justify-center items-center">
       <div className="">
         <img
           className="w-60 h-60 rounded-xl mx-auto border-dashed border-main border"
