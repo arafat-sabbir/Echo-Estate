@@ -69,17 +69,17 @@ const PropertyDetail = () => {
   };
   return (
     <Container>
-      <div className="flex justify-between mt-28 container mx-auto">
-        <div className=" w-full m-4 shadow-sm flex flex-col md:flex-row justify-center">
-          <div className="flex flex-col md:flex-row items-center gap-10">
-            <div className=" w-full">
+      <div className="flex lg:flex-row flex-col justify-between mt-28 container mx-auto">
+        <div className=" w-full lg:m-4 shadow-sm flex flex-col lg:flex-row justify-center">
+          <div className="flex flex-col lg:flex-row items-center lg:gap-10">
+            <div className=" lg:w-full">
               <img
                 src={propertyImage}
                 alt=""
-                className="rounded-xl h-96 w-[700px]"
+                className="rounded-xl lg:h-96 lg:w-[700px] w-[90vw] mx-auto"
               />
             </div>
-            <div className="md:w-2/3 m-4 ">
+            <div className="md:w-2/3 lg:m-4 mt-4 lg:mt-auto w-[90vw] mx-auto">
               <div className="flex text-gray-500 text-sm m-2">
                 <div className="text-sm flex items-center">
                   <FaLocationDot className="text-xl text-main"></FaLocationDot>
@@ -102,7 +102,7 @@ const PropertyDetail = () => {
                   </span>
                 </h3>
               </div>
-              <div className="divider divider-error"></div>
+              <div className="divider divider-error lg:w-auto w-11/12"></div>
               <div className="flex cursor-pointer ">
                 <div className="m-2">
                   <img
@@ -142,12 +142,12 @@ const PropertyDetail = () => {
         (isLoading ? (
           <Loading></Loading>
         ) : (
-          <div className="lg:ml-[185px]">
+          <div className="lg:ml-[185px] p-4">
             <SectionTitle
               title={"Client Review"}
               subtitle={"See What Client Say About This Property"}
             ></SectionTitle>
-            <div className="grid grid-cols-3 gap-6 mb-10">
+            <div className="grid lg:grid-cols-3 justify-items-center p-4  gap-6 mb-10">
               {propertyReview.map((item) => (
                 <div
                   key={item._id}

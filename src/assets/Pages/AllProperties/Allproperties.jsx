@@ -89,7 +89,7 @@ const Allproperties = () => {
             <div className="w-full">
               <input
                 onChange={handleSearch}
-                className="input   font-semibold input-bordered border-main  rounded-full focus:border-main join-item"
+                className="input md:w-full  font-semibold input-bordered border-main  rounded-full focus:border-main join-item"
                 placeholder="Search by Title"
               />
             </div>
@@ -123,7 +123,7 @@ const Allproperties = () => {
       </div>
       {isLoading && <Loading></Loading>}
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 my-10 mt-12">
+        <div className="grid grid-cols-1 justify-items-center lg:grid-cols-3 xl:grid-cols-3 gap-8 my-10 mt-12">
           {properties?.map((property) => (
             <PropertyCard property={property} key={property._id}></PropertyCard>
           ))}

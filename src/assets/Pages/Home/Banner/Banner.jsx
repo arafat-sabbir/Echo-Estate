@@ -36,7 +36,7 @@ const Banner = () => {
             }}
           >
             <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content text-center text-neutral-content">
+            <div className="hero-content text-center text-white">
               <div className="max-w-3xl">
                 <h1 className="mb-2 text-xl font-semibold">Discover Your Dream Home</h1>
                 <p className="mb-5 text-5xl font-bold">
