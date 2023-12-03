@@ -59,10 +59,13 @@ const AdvertiseProperty = () => {
 
   return (
     <div className="container mx-auto">
-      <SectionTitle title={"AdverTise Property"} subtitle={"Advertise Propery To Home Page"}></SectionTitle>
+     <div className="hidden lg:block">
+     <SectionTitle title={"AdverTise Property"} subtitle={"Advertise Propery To Home Page"}></SectionTitle>
+
+     </div>
       <div className="mt-4">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <table className=" divide-y divide-gray-200 dark:divide-gray-700">
             <thead>
               <tr>
                 <th className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">

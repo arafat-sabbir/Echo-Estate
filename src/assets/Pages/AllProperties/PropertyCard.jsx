@@ -7,7 +7,7 @@ const PropertyCard = ({ property }) => {
     const {agentImage,agentName,propertyImage,propertyLocation,propertyTitle,minPrice,maxPrice,propertyVerificationStatus,_id}  = property;
   return (
     <div>
-      <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main  text-black">
+      <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main lg:w-[480px] w-[400px] text-black">
         <div className="flex space-x-4">
           <img
             alt=""
@@ -40,7 +40,7 @@ const PropertyCard = ({ property }) => {
           </div>
          <div className="flex justify-between mt-2">
          <p className="text-md font-medium text-black">Price Range : <span className="font-bold">${minPrice}-${maxPrice}</span></p>
-         <p className="text-md font-medium flex justify-center items-center">Status : {propertyVerificationStatus=="pending"?<MdOutlinePendingActions className="ml-1 mr-[2px]"></MdOutlinePendingActions>:""} <span className="uppercase">{propertyVerificationStatus}</span> </p>
+         <p className="text-xs font-medium flex justify-center items-center">Status : {propertyVerificationStatus=="pending"?<MdOutlinePendingActions className="ml-1 mr-[2px]"></MdOutlinePendingActions>:""} <span className="uppercase">{propertyVerificationStatus}</span> </p>
          </div>
         </div>
         <Link to={`/propertyDetail/${_id}`} className="flex justify-end">

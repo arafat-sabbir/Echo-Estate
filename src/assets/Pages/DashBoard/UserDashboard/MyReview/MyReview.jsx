@@ -44,8 +44,22 @@ const MyReview = () => {
   }
   return (
    <div className="p-4">
-    <h3 className="text-3xl font-semibold text-center mt-20 ">Hey <span className="text-main font-bold">{user.displayName}</span> Here Are Your Review</h3>
-     <Container>
+   {
+    myReview.length!==0&& <h3 className="text-3xl font-semibold text-center mt-20 ">Hey <span className="text-main font-bold">{user.displayName}</span> Here Are Your Review</h3>
+   }
+    {
+      myReview.length===0 ? 
+        <div className="flex flex-col justify-items-center  h-[100vh] justify-center items-center w-[80vw]">
+          <img
+            className="mx-auto"
+            src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
+            alt=""
+          />
+          <h3 className="text-3xl font-semibold text-center text-main">
+           You've done No Review Yet
+          </h3>
+        </div>
+      :  <Container>
       <div className="grid lg:grid-cols-3  mt-10 items-stretch">
         {myReview.map((item) => (
           <ReviewCard
@@ -56,6 +70,7 @@ const MyReview = () => {
         ))}
       </div>
     </Container>
+    }
    </div>
   );
 };

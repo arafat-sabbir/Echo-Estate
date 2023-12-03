@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import useGetUser from "../../../Hooks/GetUserInfo/useGetUser";
 import Loading from "../../../Components/Loading/Loading";
+import { GoCodeReview } from "react-icons/go";
 
 const PropertyDetail = () => {
   const axiosSecure = useAxiosSecure();
@@ -70,7 +71,7 @@ const PropertyDetail = () => {
   return (
     <Container>
       <div className="flex lg:flex-row flex-col justify-between mt-28 container mx-auto">
-        <div className=" w-full lg:m-4 shadow-sm flex flex-col lg:flex-row justify-center">
+        <div className=" w-full lg:m-4  flex flex-col lg:flex-row justify-center pb-4">
           <div className="flex flex-col lg:flex-row items-center lg:gap-10">
             <div className=" lg:w-full">
               <img
@@ -138,7 +139,7 @@ const PropertyDetail = () => {
           </div>
         </div>
       </div>
-      {propertyReview.length > 0 &&
+      {propertyReview.length > 0 ?
         (isLoading ? (
           <Loading></Loading>
         ) : (
@@ -185,7 +186,14 @@ const PropertyDetail = () => {
               ))}
             </div>
           </div>
-        ))}
+        )): <div className="lg:ml-[185px] p-4 h-[40vh] flex flex-col justify-center">
+        <SectionTitle
+          title={"Client Review"}
+          subtitle={"See What Client Say About This Property"}
+        ></SectionTitle>
+        <p> <GoCodeReview className="text-5xl mx-auto text-main"></GoCodeReview> </p>
+        <h3 className="text-center text-3xl font-semibold">No One Reviewed This Property</h3>
+      </div>}
     </Container>
   );
 };

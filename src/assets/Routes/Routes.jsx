@@ -23,6 +23,8 @@ import AddProperty from "../Pages/DashBoard/AgentDashBoard/AddProperty/AddProper
 import MakeAnOffer from "../Pages/DashBoard/UserDashboard/MakeAnOffer/MakeAnOffer";
 import MakePayment from "../Pages/DashBoard/UserDashboard/MakePayment/MakePayment";
 import AdvertIseProperty from "../Pages/DashBoard/AdminDashBoard/AdvertiseProperty/AdvertIseProperty";
+import CheckAdmin from "../../Auth/CheakAdmin/CheckAdmin";
+import CheckAgent from "../../Auth/CheakAgent/CheckAgent";
 
 export const routes = createBrowserRouter([
   {
@@ -50,7 +52,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://echo-state-server.vercel.app/api/detailProperty/${params.id}`),
+          fetch(
+            `https://echo-state-server.vercel.app/api/detailProperty/${params.id}`
+          ),
       },
     ],
   },
@@ -78,19 +82,35 @@ export const routes = createBrowserRouter([
       // admin routes
       {
         path: "manageProperties",
-        element: <ManageProperties></ManageProperties>,
+        element: (
+          <CheckAdmin>
+            <ManageProperties></ManageProperties>
+          </CheckAdmin>
+        ),
       },
       {
         path: "manageUsers",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <CheckAdmin>
+            <ManageUsers></ManageUsers>
+          </CheckAdmin>
+        ),
       },
       {
         path: "manageReviews",
-        element: <ManageReviews></ManageReviews>,
+        element: (
+          <CheckAdmin>
+            <ManageReviews></ManageReviews>
+          </CheckAdmin>
+        ),
       },
       {
         path: "adverTiseProperty",
-        element: <AdvertIseProperty></AdvertIseProperty>,
+        element: (
+          <CheckAdmin>
+            <AdvertIseProperty></AdvertIseProperty>
+          </CheckAdmin>
+        ),
       },
       // user routes
       {
@@ -105,7 +125,9 @@ export const routes = createBrowserRouter([
         path: "makeAnOffer/:id",
         element: <MakeAnOffer></MakeAnOffer>,
         loader: ({ params }) =>
-          fetch(`https://echo-state-server.vercel.app/api/getWish/${params.id}`),
+          fetch(
+            `https://echo-state-server.vercel.app/api/getWish/${params.id}`
+          ),
       },
       {
         path: "propertyBought",
@@ -118,25 +140,47 @@ export const routes = createBrowserRouter([
       // agent routes
       {
         path: "addedProperties",
-        element: <AddedProperties></AddedProperties>,
+        element: (
+          <CheckAgent>
+            <AddedProperties></AddedProperties>
+          </CheckAgent>
+        ),
       },
       {
         path: "addProperty",
-        element: <AddProperty></AddProperty>,
+        element: (
+          <CheckAgent>
+            <AddProperty></AddProperty>
+          </CheckAgent>
+        ),
       },
       {
         path: "updateProperty/:id",
-        element: <UpdateaddedProperties></UpdateaddedProperties>,
+        element: (
+          <CheckAgent>
+            <UpdateaddedProperties></UpdateaddedProperties>
+          </CheckAgent>
+        ),
         loader: ({ params }) =>
-          fetch(`https://echo-state-server.vercel.app/api/detailProperty/${params.id}`),
+          fetch(
+            `https://echo-state-server.vercel.app/api/detailProperty/${params.id}`
+          ),
       },
       {
         path: "soldProperties",
-        element: <SoldProperties></SoldProperties>,
+        element: (
+          <CheckAgent>
+            <SoldProperties></SoldProperties>
+          </CheckAgent>
+        ),
       },
       {
         path: "requestedProperties",
-        element: <RequestedProperties></RequestedProperties>,
+        element: (
+          <CheckAgent>
+            <RequestedProperties></RequestedProperties>
+          </CheckAgent>
+        ),
       },
     ],
   },

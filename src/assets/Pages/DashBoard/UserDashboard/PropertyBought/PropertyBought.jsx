@@ -23,7 +23,17 @@ return <Loading></Loading>
 }
   return (
     <div className="p-4">
-      <h3 className="lg:text-3xl text-xl font-semibold text-center mt-10">
+     {
+      boughtProperty.length===0 ? <div className="flex flex-col justify-items-center  h-[100vh] justify-center items-center w-[80vw]">
+      <img
+        className="mx-auto"
+        src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
+        alt=""
+      />
+      <h3 className="text-3xl font-semibold text-center text-main">
+       You've done No Review Yet
+      </h3>
+    </div> : <div><h3 className="lg:text-3xl text-xl font-semibold text-center mt-10">
         <span className="text-main font-bold">{user.displayName}</span> Your
         Bought Property
       </h3>
@@ -31,7 +41,8 @@ return <Loading></Loading>
         {boughtProperty?.map((item) => (
           <BoughtPropertyCard key={item._id} item={item}></BoughtPropertyCard>
         ))}
-      </div>
+      </div></div>
+     }
     </div>
   );
 };

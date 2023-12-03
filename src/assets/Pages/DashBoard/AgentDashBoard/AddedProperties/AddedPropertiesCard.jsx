@@ -17,7 +17,7 @@ const AddedPropertiesCard = ({ item, handleDelete }) => {
   } = item;
   return (
     <div>
-      <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main  text-black">
+      <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main lg:w-[480px] w-[400px] text-black">
         <div className="flex space-x-4">
           <img
             alt=""
@@ -53,7 +53,7 @@ const AddedPropertiesCard = ({ item, handleDelete }) => {
               Price Range :
               <span className="font-bold">${minPrice}-${maxPrice}</span>
             </p>
-            <p className="text-md font-medium flex justify-center items-center">
+            <p className="text-xs font-medium flex justify-center items-center">
               Status :
               {propertyVerificationStatus == "pending" ? (
                 <MdOutlinePendingActions className="ml-1 mr-[2px]"></MdOutlinePendingActions>

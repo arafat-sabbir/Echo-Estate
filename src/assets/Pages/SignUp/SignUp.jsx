@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Auth/UseAuth/useAuth";
 import GoogleSignIn from "../../../Auth/SocialLogin/GoogleSignIn/googleSignIn";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -56,6 +57,9 @@ const SignUp = () => {
       }}
     >
       <div className="flex h-screen gap-10 container mx-auto  justify-center items-center">
+      <Helmet>
+        <title>Echo Estate || Sign Up</title>
+      </Helmet>
         <div className="lg:w-1/2 w-[90vw]">
           <div className="card  lg:w-3/4  mx-auto ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">

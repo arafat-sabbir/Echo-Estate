@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Auth/UseAuth/useAuth";
 import GoogleSignIn from "../../../Auth/SocialLogin/GoogleSignIn/googleSignIn";
+import { Helmet } from "react-helmet";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -35,6 +36,9 @@ const SignIn = () => {
       }}
     >
       <div className="flex h-screen gap-10 container mx-auto  justify-center items-center">
+      <Helmet>
+        <title>Echo Estate || Sign In</title>
+      </Helmet>
         <div className="lg:w-1/2 w-[90vw]">
           <div className="card  lg:w-3/4  mx-auto ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">

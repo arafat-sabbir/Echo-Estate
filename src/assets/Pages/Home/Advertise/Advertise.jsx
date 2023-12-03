@@ -13,7 +13,7 @@ const Advertise = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const handleNotSignIN = () => {
-    navigate("/signIn");
+    navigate("/signIn", { state: location?.pathname });
   };
   if (isLoading) {
     return <Loading></Loading>;

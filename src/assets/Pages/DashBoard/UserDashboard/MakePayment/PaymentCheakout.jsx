@@ -18,10 +18,9 @@ const PaymentCheakout = ({ price, id }) => {
       setClientSecret(res.data.clientSecret);
     });
   }, [axiosSecure, price]);
-  const toastIdRef = useRef(null);
   const handleCheakoutSubmit = async (e) => {
     e.preventDefault();
-    toastIdRef.current = toast.loading("Making Payment");
+    const toastid = toast.loading("Making Payment");
     if (!stripe || !elements) {
       return;
     }
@@ -34,21 +33,7 @@ const PaymentCheakout = ({ price, id }) => {
       card,
     });
     if (error) {
-      return toast.error(
-        error.message,
-        {
-          style: {
-            border: "1px solid #FF5B22",
-            padding: "16px",
-            color: "#000000",
-          },
-          iconTheme: {
-            primary: "#d33",
-            secondary: "#FFFAEE",
-          },
-        },
-        { id: toastIdRef.current }
-      );
+      return toast.error(error.message, { id:toastid});
     } else {
       console.log("payment Method", paymentMethod);
     }
@@ -77,7 +62,7 @@ const PaymentCheakout = ({ price, id }) => {
             secondary: "#FFFAEE",
           },
         },
-        { id: toastIdRef.current }
+        { id: toastid }
       );
     } else {
       console.log("payment intent", paymentIntent);
@@ -93,7 +78,7 @@ const PaymentCheakout = ({ price, id }) => {
       axiosSecure
         .patch(`/updateOfferStatus/${id}`, updateDoc)
         .then((res) => console.log(res.data));
-      toast.success("Payment successful", { id: toastIdRef.current });
+      toast.success("Payment successful", { id: toastid });
       navigate("/dashboard/propertyBought");
     }
   };

@@ -3,17 +3,18 @@ import Advertise from "./Advertise/Advertise";
 import LatestReview from "./LatestReview/LatestReview";
 import SeeRooms from "./SeeRooms/SeeRooms";
 import Ourpartner from "./OurPartner/Ourpartner";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
-    return (
-        <div>
-            <Banner></Banner>,
-            <Advertise></Advertise>,
-            <LatestReview></LatestReview>,
-            <SeeRooms></SeeRooms>,
-            <Ourpartner></Ourpartner>
-        </div>
-    );
+  return (
+    <div>
+      <Helmet>
+        <title>Echo Estate || Home</title>
+      </Helmet>
+      <Banner></Banner>,<Advertise></Advertise>,<LatestReview></LatestReview>,
+      <SeeRooms></SeeRooms>,<Ourpartner></Ourpartner>
+    </div>
+  );
 };
 
 export default Home;
