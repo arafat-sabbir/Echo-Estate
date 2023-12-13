@@ -4,8 +4,15 @@ import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaLocationDot } from "react-icons/fa6";
 import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
+import { useEffect } from "react";
 
 const AgentProfile = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const agentDetail = useLoaderData();
   const axiosSecure = useAxiosSecure();
   const { email } = useParams();
@@ -102,12 +109,15 @@ const AgentProfile = () => {
           <div></div>
         </div>
       </div>
-     <div className="flex justify-center lg:justify-normal">
-     <SectionTitle title={"View Property"} subtitle={"Added By This Agent"}></SectionTitle>
-     </div>
+      <div className="flex justify-center lg:justify-normal">
+        <SectionTitle
+          title={"View Property"}
+          subtitle={"Added By This Agent"}
+        ></SectionTitle>
+      </div>
       <div className="grid grid-cols-1 justify-items-center gap-6 my-10  lg:grid-cols-3 ">
-      {
-        Properties.map(item =>  <div key={item._is}>
+        {Properties.map((item) => (
+          <div key={item._is}>
             <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main lg:w-[480px] w-[400px] text-black">
               <div className="flex space-x-4">
                 <img
@@ -123,7 +133,9 @@ const AgentProfile = () => {
                   >
                     {item.agentName}
                   </a>
-                  <span className="text-xs text-black">{Math.floor(Math.random(1,24)*10)} days Ago</span>
+                  <span className="text-xs text-black">
+                    {Math.floor(Math.random(1, 24) * 10)} days Ago
+                  </span>
                 </div>
               </div>
               <div>
@@ -142,15 +154,15 @@ const AgentProfile = () => {
                 <div className="flex justify-between mt-2">
                   <p className="text-md font-medium text-black">
                     Price Range :
-                    <span className="font-bold">${item.minPrice}-${item.maxPrice}</span>
+                    <span className="font-bold">
+                      ${item.minPrice}-${item.maxPrice}
+                    </span>
                   </p>
-                  
                 </div>
               </div>
-             
             </div>
-          </div>)
-      }
+          </div>
+        ))}
       </div>
     </div>
   );
