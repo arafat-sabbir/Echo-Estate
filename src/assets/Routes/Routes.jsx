@@ -26,6 +26,7 @@ import AdvertIseProperty from "../Pages/DashBoard/AdminDashBoard/AdvertiseProper
 import CheckAdmin from "../../Auth/CheakAdmin/CheckAdmin";
 import CheckAgent from "../../Auth/CheakAgent/CheckAgent";
 import AgentProfile from "../Pages/AgentProfile/AgentProfile";
+import AgentRequest from "../Pages/DashBoard/AdminDashBoard/AgentRequest/AgentRequest";
 
 export const routes = createBrowserRouter([
   {
@@ -115,6 +116,14 @@ export const routes = createBrowserRouter([
         element: (
           <CheckAdmin>
             <AdvertIseProperty></AdvertIseProperty>
+          </CheckAdmin>
+        ),
+      },
+      {
+        path: "agentRequest",
+        element: (
+          <CheckAdmin>
+            <AgentRequest></AgentRequest>
           </CheckAdmin>
         ),
       },

@@ -15,7 +15,7 @@ import { GoCodeReview,GoListUnordered, } from "react-icons/go";
 import { IoIosGitPullRequest } from "react-icons/io";
 import { MdOutlineReviews } from "react-icons/md";
 import { TbBrandWish,TbHomeDollar } from "react-icons/tb";
-import { RiAdvertisementLine,RiMoneyEuroCircleLine } from "react-icons/ri";
+import { RiAdvertisementLine,RiGitPullRequestFill,RiMoneyEuroCircleLine } from "react-icons/ri";
 import { HiOutlineFolderAdd } from "react-icons/hi";
 import { MdOutlineHolidayVillage } from "react-icons/md";
 import useGetUser from "../../../Hooks/GetUserInfo/useGetUser";
@@ -70,6 +70,12 @@ const DashBoard = () => {
             <NavLink to={"/dashboard/adverTiseProperty"}>
               <RiAdvertisementLine />
               AdverTise Property
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/agentRequest"}>
+              <RiGitPullRequestFill />
+              Agent Request
             </NavLink>
           </li>
         </>
