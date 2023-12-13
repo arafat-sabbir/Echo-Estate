@@ -4,16 +4,18 @@ import Button from "../../../Shared/Button";
 import { Link } from "react-router-dom";
 
 const PropertyCard = ({ property }) => {
-    const {agentImage,agentName,propertyImage,propertyLocation,propertyTitle,minPrice,maxPrice,propertyVerificationStatus,_id}  = property;
+    const {agentImage,agentName,agentEmail,propertyImage,propertyLocation,propertyTitle,minPrice,maxPrice,propertyVerificationStatus,_id}  = property;
   return (
     <div>
       <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main lg:w-[480px] w-[400px] text-black">
         <div className="flex space-x-4">
-          <img
+         <Link to={`/agentProfile/${agentEmail}`}>
+         <img
             alt=""
             src={agentImage}
             className="object-cover w-12 h-12 rounded-full shadow bg-gray-500 "
           />
+         </Link>
           <div className="flex flex-col space-y-1">
             <a
               rel="noopener noreferrer"

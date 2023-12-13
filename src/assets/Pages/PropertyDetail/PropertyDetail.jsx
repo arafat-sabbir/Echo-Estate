@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Container from "../../../Utils/Container/Container";
 import { FaLocationDot } from "react-icons/fa6";
 import Review from "../../../Components/Review/Review";
@@ -106,11 +106,13 @@ const PropertyDetail = () => {
               <div className="divider divider-error lg:w-auto w-11/12"></div>
               <div className="flex cursor-pointer ">
                 <div className="m-2">
-                  <img
+                 <Link to={`/agentProfile/${agentEmail}`}>
+                 <img
                     src={agentImage}
                     alt=""
                     className=" rounded-full w-12 h-12"
                   />
+                 </Link>
                 </div>
                 <div className="grid m-1">
                   <div className="font-bold text-sm hover:text-gray-600 mt-2">

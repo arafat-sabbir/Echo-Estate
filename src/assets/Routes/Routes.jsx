@@ -25,6 +25,7 @@ import MakePayment from "../Pages/DashBoard/UserDashboard/MakePayment/MakePaymen
 import AdvertIseProperty from "../Pages/DashBoard/AdminDashBoard/AdvertiseProperty/AdvertIseProperty";
 import CheckAdmin from "../../Auth/CheakAdmin/CheckAdmin";
 import CheckAgent from "../../Auth/CheakAgent/CheckAgent";
+import AgentProfile from "../Pages/AgentProfile/AgentProfile";
 
 export const routes = createBrowserRouter([
   {
@@ -57,6 +58,11 @@ export const routes = createBrowserRouter([
           ),
       },
     ],
+  },
+  {
+    path:"/agentProfile/:email",
+    element:<AgentProfile></AgentProfile>,
+    loader:({params})=>fetch(`https://echo-state-server.vercel.app/api/getAgentData/${params.email}`)
   },
   {
     path: "/signIn",

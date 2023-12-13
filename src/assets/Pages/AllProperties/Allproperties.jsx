@@ -78,7 +78,6 @@ const Allproperties = () => {
       setMaxPrice(1000000);
     }
   };
-  console.log(properties.length);
   return (
     <div>
       <div className="mb-10 container mx-auto p-4">
