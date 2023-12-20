@@ -115,6 +115,7 @@ const ManageUsers = () => {
     return <Loading></Loading>;
   }
   return (
+  <>
     <div className="mt-10">
      <div className="ml-16">
      <SectionTitle
@@ -257,6 +258,7 @@ const ManageUsers = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

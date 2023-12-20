@@ -16,7 +16,7 @@ const AddedPropertiesCard = ({ item, handleDelete }) => {
     maxPrice
   } = item;
   return (
-    <div>
+    <>
       <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_5px_#FF573B] border border-dashed border-main lg:w-[480px] w-[400px] text-black">
         <div className="flex space-x-4">
           <img
@@ -87,7 +87,7 @@ const AddedPropertiesCard = ({ item, handleDelete }) => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

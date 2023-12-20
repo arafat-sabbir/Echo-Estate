@@ -33,7 +33,7 @@ const ManageProperties = () => {
     return <Loading></Loading>;
   }
   return (
-    <div>
+    <>
      <div className="ml-16">
       <SectionTitle title={"Manage Properties"} subtitle={"Manage Property Added By Agent"}> </SectionTitle>
      </div>
@@ -158,7 +158,7 @@ const ManageProperties = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

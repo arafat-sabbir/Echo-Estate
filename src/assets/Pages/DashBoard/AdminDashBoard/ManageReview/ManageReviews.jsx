@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -36,6 +35,7 @@ const ManageReviews = () => {
     return <Loading></Loading>;
   }
   return (
+  <>
     <div className="container mx-auto">
       <div className="ml-10">
       <SectionTitle title={"User Review"} subtitle={"Manage ALl The Review Made By User"}></SectionTitle>
@@ -83,6 +83,7 @@ const ManageReviews = () => {
         ))}
       </div>
     </div>
+  </>
   );
 };
 

@@ -29,6 +29,7 @@ const AgentProfile = () => {
     },
   });
   return (
+   <>
     <div className="container mx-auto">
       <Navbar></Navbar>
       <div className="flex justify-center items-center my-10">
@@ -165,6 +166,7 @@ const AgentProfile = () => {
         ))}
       </div>
     </div>
+   </>
   );
 };
 

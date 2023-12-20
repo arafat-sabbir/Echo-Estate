@@ -40,6 +40,7 @@ const AddedProperties = () => {
     return <Loading></Loading>
   }
   return (
+   <>
    <div className="p-4">
      <Container>
     <div className="mt-10">
@@ -54,6 +55,7 @@ const AddedProperties = () => {
       </div>
     </Container>
    </div>
+   </>
   );
 };
 

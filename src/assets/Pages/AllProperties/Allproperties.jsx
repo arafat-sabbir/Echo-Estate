@@ -79,7 +79,7 @@ const Allproperties = () => {
     }
   };
   return (
-    <div>
+    <>
       <div className="mb-10 container mx-auto p-4">
         <Helmet>
           <title>Echo Estate || All Property</title>
@@ -132,7 +132,7 @@ const Allproperties = () => {
             <div
               className={
                 properties.length !== 0
-                  ? `grid grid-cols-1 justify-items-center lg:grid-cols-3 xl:grid-cols-3 gap-8 my-10 mt-12`
+                  ? `grid grid-cols-1 items-stretch justify-items-center lg:grid-cols-3 xl:grid-cols-3 gap-8 my-10 mt-12`
                   : ""
               }
             >
@@ -156,7 +156,7 @@ const Allproperties = () => {
           <h3 className="text-3xl font-semibold text-center text-main">No Properties AvailAble</h3>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

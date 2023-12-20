@@ -58,6 +58,7 @@ const AdvertiseProperty = () => {
   }
 
   return (
+   <>
     <div className="container mx-auto">
      <div className="hidden lg:block">
      <SectionTitle title={"AdverTise Property"} subtitle={"Advertise Propery To Home Page"}></SectionTitle>
@@ -142,6 +143,7 @@ const AdvertiseProperty = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 

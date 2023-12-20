@@ -11,7 +11,6 @@ const RequestedProperties = () => {
     data: requestedProperties = [],
     refetch,
     isLoading,
-    isError,
   } = useQuery({
     queryKey: ["requestedProperties"],
     queryFn: async () => {

@@ -45,7 +45,7 @@ const AgentRequest = () => {
     return <Loading></Loading>
   }
   return (
-    <div >
+    < >
         
         {users.length === 0 ? (
         <div className="flex flex-col justify-items-center  h-screen justify-center items-center w-[80vw]">
@@ -128,7 +128,7 @@ const AgentRequest = () => {
           </div>
         </div>
       </div></div>}
-    </div>
+    </>
   );
 };
 
