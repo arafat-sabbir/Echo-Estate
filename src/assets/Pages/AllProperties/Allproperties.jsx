@@ -132,7 +132,7 @@ const Allproperties = () => {
             <div
               className={
                 properties.length !== 0
-                  ? `grid grid-cols-1 items-stretch justify-items-center lg:grid-cols-3 xl:grid-cols-3 gap-8 my-10 mt-12`
+                  ? `grid grid-cols-1 items-stretch justify-items-center lg:grid-cols-2  2xl:grid-cols-3 gap-8 my-10 mt-12`
                   : ""
               }
             >

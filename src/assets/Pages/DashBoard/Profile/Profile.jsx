@@ -6,8 +6,10 @@ import useAxiosSecure from "../../../../Hooks/AxiosSecure/useAxiosSecure";
 
 const Profile = () => {
   const { userinfo,refetch,isLoading } = useGetUser();
+  const agentReq = userinfo.agentReq;
   const axiosSecure = useAxiosSecure()
   const handleagentReq = (id) => {
+    refetch()
     if(userinfo.agentReq){
      return toast.error("Please Wait You've Already Send A Request To The Admin")
     }
@@ -39,7 +41,7 @@ const Profile = () => {
     <div className="min-w-[calc(100vw-530px)] mx-auto min-h-[100vh] p-4  flex justify-center items-center">
       <div className="">
         <img
-          className="w-60 h-60 rounded-xl mx-auto border-dashed border-main border"
+          className="w-60 h-60 rounded-full mx-auto border-dashed border-main border"
           src={userinfo?.photo}
           alt=""
         />
@@ -58,8 +60,7 @@ const Profile = () => {
             </h3>
           )}
           {
-            role === "user"&&<button onClick={()=>handleagentReq(userinfo._id)} className="relative px-8 py-2 my-4 tracking-wider font-semibold  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
-            before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 ">Become An Agent</button>
+            role === "user"&&<button   onClick={()=>handleagentReq(userinfo._id)} className={`${agentReq?'relative px-8 py-2  my-4 tracking-wider font-semibold  bg-gray-500 text-white  isolation-auto z-10 border rounded-full border-dashed border-main before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 ':'relative px-8 py-2  my-4 tracking-wider font-semibold  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700'}  ` }>Become An Agent</button>
           }
         </div>
       </div>

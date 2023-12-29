@@ -5,11 +5,24 @@ import useAuth from "../../../Auth/UseAuth/useAuth";
 import GoogleSignIn from "../../../Auth/SocialLogin/GoogleSignIn/googleSignIn";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { Helmet } from "react-helmet";
+import { useState } from "react";
+import axios from "axios";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
+  const [photoName, setPhotoName] = useState("");
+  const [photo, setPhoto] = useState("");
+  const imageHostingKey = import.meta.env.VITE_IMAGE_HOST_KEY;
+  const imageHostingAPi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
+  const formData = new FormData();
+  formData.append("image", photo);
+  const handlePhotoUpload = (e) => {
+    e.preventDefault();
+    setPhotoName(e.target.files[0].name);
+    setPhoto(e.target.files[0]);
+  }
 
   const {
     register,
@@ -18,17 +31,23 @@ const SignUp = () => {
     reset,
   } = useForm();
   const { signUpUser, updateUserProfile } = useAuth();
-  const onSubmit = (data) => {
+  const onSubmit =async (data) => {
     const toastid = toast.loading("Sign Up Processing");
+    const hostedPhoto = await axios.post(imageHostingAPi, formData, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(hostedPhoto.data.data.display_url);
     signUpUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
-        updateUserProfile(data.name, data.photoUrl)
+        updateUserProfile(data.name,hostedPhoto.data.data.display_url)
           .then((res) => {
             const userdata = {
               email: data.email,
               name: data.name,
-              photo:data.photoUrl,
+              photo:hostedPhoto.data.data.display_url,
               role:'user',
               creationDate:new Date().toDateString()
             };
@@ -95,15 +114,20 @@ const SignUp = () => {
                 <label className="label">
                   <span className="label-text">Photo</span>
                 </label>
+                
+                <div className="relative w-full">
+                <label className="label absolute -z-1 input pt-2 opacity-100  input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main w-full ">
+                 <span className="label-text ">{photoName || 'Choose Profile Picture'}</span>
+               </label>
                 <input
-                  type="text"
-                  placeholder="photoUrl"
-                  className="input input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
-                  {...register("photoUrl")}
+                  onChange={handlePhotoUpload}
+                  accept="images/*"
+                  type="file"
+                  placeholder="upload your Photo"
+                  name="email"
+                  className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
                 />
-                {errors.email && (
-                  <p className="text-red-500 mt-4">Please Type An Email</p>
-                )}
+                </div>
               </div>
               <div className="form-control">
                 <label className="label">

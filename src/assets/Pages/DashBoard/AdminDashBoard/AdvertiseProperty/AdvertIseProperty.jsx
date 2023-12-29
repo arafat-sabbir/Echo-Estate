@@ -14,7 +14,6 @@ const AdvertiseProperty = () => {
   const {
     advertise: advertisedProperty,
     isLoading: loading,
-    isError,
     refetch: retry,
   } = useAdvertise();
   const { properties } = useProperties();

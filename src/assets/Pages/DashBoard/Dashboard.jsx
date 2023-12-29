@@ -1,21 +1,15 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import {
-  FaBook,
-  FaCalendar,
-  FaCartPlus,
-  FaHome,
-  FaList,
-  FaMoneyBill,
-  FaUser,
-  FaUtensils,
-  FaListUl,
-} from "react-icons/fa";
+import { FaHome, FaUser, FaListUl } from "react-icons/fa";
 import { FaUsersRays } from "react-icons/fa6";
-import { GoCodeReview,GoListUnordered, } from "react-icons/go";
+import { GoCodeReview, GoListUnordered } from "react-icons/go";
 import { IoIosGitPullRequest } from "react-icons/io";
 import { MdOutlineReviews } from "react-icons/md";
-import { TbBrandWish,TbHomeDollar } from "react-icons/tb";
-import { RiAdvertisementLine,RiGitPullRequestFill,RiMoneyEuroCircleLine } from "react-icons/ri";
+import { TbBrandWish, TbHomeDollar } from "react-icons/tb";
+import {
+  RiAdvertisementLine,
+  RiGitPullRequestFill,
+  RiMoneyEuroCircleLine,
+} from "react-icons/ri";
 import { HiOutlineFolderAdd } from "react-icons/hi";
 import { MdOutlineHolidayVillage } from "react-icons/md";
 import useGetUser from "../../../Hooks/GetUserInfo/useGetUser";
@@ -27,11 +21,11 @@ import { Helmet } from "react-helmet";
 const DashBoard = () => {
   const { userinfo, refetch } = useGetUser();
   const { signOutUser } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSignOut = () => {
     signOutUser()
       .then((result) => {
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -141,15 +135,19 @@ const DashBoard = () => {
         </NavLink>
       </li>
       <div className="pb-2 mx-auto" onClick={handleSignOut}>
-        <button className="relative px-24 py-2   bg-[#072730] text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
-    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700">Sign Out</button>
+        <button
+          className="relative px-24 py-2   bg-[#072730] text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
+    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+        >
+          Sign Out
+        </button>
       </div>
     </ul>
   );
 
   return (
     <div className="flex">
-       <Helmet>
+      <Helmet>
         <title>Echo Estate || DashBoard</title>
       </Helmet>
       <div className="h-screen w-72 bg-[#F2FFE9] rounded-2xl hidden lg:block">

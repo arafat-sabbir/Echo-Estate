@@ -127,8 +127,8 @@ const PropertyDetail = () => {
                 <div className="border-r-2 pr-8 border-r-main">
                   <button
                     onClick={() => handleAddtoWishlist(_id)}
-                    className="relative px-8 py-2  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
-                    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                    className="relative px-8 py-2  bg-main text-white  isolation-auto z-10 border  border-dashed border-main 
+                    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 rounded-sm  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
                   >
                     Add To WishList
                   </button>

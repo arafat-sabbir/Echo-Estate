@@ -1,11 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../Hooks/AxiosSecure/useAxiosSecure";
 import AdvertiseCard from "./AdvertiseCard";
 import Loading from "../../../../Components/Loading/Loading";
 import SectionTitle from "../../../../Utils/SectionTitle/SectionTitle";
 import useAdvertise from "../../../../Hooks/useAdvertise/useAdvertise";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../../Auth/UseAuth/useAuth";
+import 'aos/dist/aos.css';
 
 const Advertise = () => {
   const { advertise, isLoading } = useAdvertise();
@@ -18,9 +17,19 @@ const Advertise = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
+
   return (
-    <div className="container mx-auto p-4">
-      <div className="ml-8">
+    <div data-aos="fade-up"
+    data-aos-offset="200"
+    data-aos-duration="1500"
+   
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="top"
+   
+      className="container mx-auto p-4"
+    >
+      <div  className="ml-8">
         <SectionTitle
           title={"Best For You"}
           subtitle={"Checkout Out Best Collection"}

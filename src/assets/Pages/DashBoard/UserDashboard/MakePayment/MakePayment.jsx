@@ -10,12 +10,7 @@ const MakePayment = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { id } = useParams();
-  const {
-    data: PaymentData,
-    refetch,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: PaymentData, isLoading } = useQuery({
     queryKey: ["paymentData"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/getOfferData/${id}`);
@@ -32,8 +27,8 @@ const MakePayment = () => {
       <div>
         <h3 className="text-3xl font-semibold text-center mt-60">
           {" "}
-          <span className="text-main font-bold">{user.displayName}</span> Pay
-           $<span className="text-main">{price}</span> For Your Purchase
+          <span className="text-main font-bold">{user.displayName}</span> Pay $
+          <span className="text-main">{price}</span> For Your Purchase
         </h3>
         <div>
           <Elements stripe={stripePromise}>

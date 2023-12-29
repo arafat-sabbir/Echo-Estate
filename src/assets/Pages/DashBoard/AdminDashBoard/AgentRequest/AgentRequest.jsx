@@ -10,7 +10,6 @@ const AgentRequest = () => {
   const {
     data: users = [],
     isLoading,
-    isError,
     refetch,
   } = useQuery({
     queryKey: ["getuserinfo"],

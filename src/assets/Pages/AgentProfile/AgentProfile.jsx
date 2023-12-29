@@ -18,9 +18,6 @@ const AgentProfile = () => {
   const { email } = useParams();
   const {
     data: Properties = [],
-    isLoading,
-    isError,
-    refetch,
   } = useQuery({
     queryKey: ["getuserinfo"],
     queryFn: async () => {
