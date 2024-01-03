@@ -6,6 +6,7 @@ import Button from "../../Shared/Button";
 import useGetUser from "../../Hooks/GetUserInfo/useGetUser";
 
 const Navbar = () => {
+
   const {userinfo}  = useGetUser()
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
