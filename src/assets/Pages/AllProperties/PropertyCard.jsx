@@ -1,10 +1,10 @@
 import { FaLocationDot } from "react-icons/fa6";
-import { MdOutlinePendingActions } from "react-icons/md";
 import Button from "../../../Shared/Button";
 import { Link } from "react-router-dom";
+import {PropTypes} from "prop-types"
 
 const PropertyCard = ({ property }) => {
-    const {agentImage,agentName,agentEmail,propertyImage,propertyLocation,propertyTitle,minPrice,maxPrice,propertyVerificationStatus,_id}  = property;
+    const {agentImage,agentName,agentEmail,propertyImage,propertyLocation,propertyTitle,minPrice,maxPrice,_id}  = property;
   return (
     <>
       <div className="flex  lg:h-[660px] flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_10px_#BFBFBF]  lg:w-[480px] w-[400px] text-black">
@@ -54,3 +54,7 @@ const PropertyCard = ({ property }) => {
 };
 
 export default PropertyCard;
+
+PropertyCard.propTypes = {
+  property: PropTypes.obj
+}

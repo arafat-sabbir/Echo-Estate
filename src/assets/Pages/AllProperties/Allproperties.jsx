@@ -6,7 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet";
-import { GoCodeReview } from "react-icons/go";
 
 const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
@@ -22,7 +21,6 @@ const Allproperties = () => {
   }, []);
   const {
     data: properties = [],
-    refetch,
     isLoading,
   } = useQuery({
     queryKey: ["properties", searchtext, priceSort, minPrice],

@@ -40,19 +40,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "allProperties",
-        element: (
-          <PrivateRoute>
-            <Allproperties></Allproperties>
-          </PrivateRoute>
-        ),
+        element: <Allproperties></Allproperties>,
       },
       {
         path: "propertyDetail/:id",
-        element: (
-          <PrivateRoute>
-            <PropertyDetail></PropertyDetail>
-          </PrivateRoute>
-        ),
+        element: <PropertyDetail></PropertyDetail>,
         loader: ({ params }) =>
           fetch(
             `https://echo-state-server.vercel.app/api/detailProperty/${params.id}`
@@ -61,9 +53,12 @@ export const routes = createBrowserRouter([
     ],
   },
   {
-    path:"/agentProfile/:email",
-    element:<AgentProfile></AgentProfile>,
-    loader:({params})=>fetch(`https://echo-state-server.vercel.app/api/getAgentData/${params.email}`)
+    path: "/agentProfile/:email",
+    element: <AgentProfile></AgentProfile>,
+    loader: ({ params }) =>
+      fetch(
+        `https://echo-state-server.vercel.app/api/getAgentData/${params.email}`
+      ),
   },
   {
     path: "/signIn",

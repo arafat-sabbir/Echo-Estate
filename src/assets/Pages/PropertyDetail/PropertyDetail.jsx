@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Container from "../../../Utils/Container/Container";
 import { FaLocationDot } from "react-icons/fa6";
 import Review from "../../../Components/Review/Review";
@@ -10,10 +10,13 @@ import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import useGetUser from "../../../Hooks/GetUserInfo/useGetUser";
 import Loading from "../../../Components/Loading/Loading";
 import { GoCodeReview } from "react-icons/go";
+import useAuth from "../../../Auth/UseAuth/useAuth";
 
 const PropertyDetail = () => {
   const axiosSecure = useAxiosSecure();
+  const location = useLocation();
   const navigate = useNavigate();
+  const {user} = useAuth()
   const { userinfo } = useGetUser();
   useEffect(() => {
     window.scrollTo({
@@ -41,7 +44,10 @@ const PropertyDetail = () => {
       return res.data;
     },
   });
-  const handleAddtoWishlist = (id) => {
+  const handleNotSignIN = () => {
+    navigate("/signIn", { state: location?.pathname });
+  };
+  const handleAddtoWishlist = () => {
     if (userinfo.email === agentEmail) {
       return toast.error("You can't Add Your Own Product");
     } else if (userinfo.role === "agent" || userinfo.role === "admin") {
@@ -125,13 +131,21 @@ const PropertyDetail = () => {
               </div>
               <div className="flex gap-10 mt-4">
                 <div className="border-r-2 pr-8 border-r-main">
-                  <button
-                    onClick={() => handleAddtoWishlist(_id)}
-                    className="relative px-8 py-2  bg-main text-white  isolation-auto z-10 border  border-dashed border-main 
-                    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 rounded-sm  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                 {
+                  user ? <button
+                  onClick={() => handleAddtoWishlist(_id)}
+                  className="relative px-8 py-2 rounded-full  bg-[#072730] text-white  isolation-auto z-10 border  border-dashed border-main 
+                  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0  before:bg-main font-medium hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                >
+                  Add To WishList
+                </button>: <button
+                    onClick={handleNotSignIN}
+                    className="relative px-8 py-2 rounded-full  bg-[#072730] text-white  isolation-auto z-10 border  border-dashed border-main 
+                    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0  before:bg-main font-medium hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
                   >
                     Add To WishList
                   </button>
+                 }
                 </div>
                 <div className="">
                   <Review property={propertyDetail}></Review>

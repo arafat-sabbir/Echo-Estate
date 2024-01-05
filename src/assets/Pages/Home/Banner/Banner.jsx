@@ -12,10 +12,17 @@ import { Typewriter } from "react-simple-typewriter";
 import { useInView } from "framer-motion";
 
 const Banner = () => {
+  /**
+   * https://i.ibb.co/QvxP2b3/frames-for-your-heart-2d4l-AQAlb-DA-unsplash.jpg
+https://i.ibb.co/qxsnQcF/digital-marketing-agency-ntwrk-g39p1k-Djv-SY-unsplash.jpg
+https://i.ibb.co/jHgyCMv/todd-carter-J8-v-XF8bpc-unsplash.jpg
+https://i.ibb.co/ZTfGQt2/andreas-KRNVe-PAZw-Mg-unsplash.jpg
+https://i.ibb.co/wBBx9gg/webaliser-TPTXZd9m-Oo-unsplash.jpg
+   */
   const animate1 = useRef(null)
   const isInView1 = useInView(animate1)
   return (
-    <div className="-mt-28 tracking-wider leading-[60px] !font-serif">
+    <div className="-mt-28 tracking-wider leading-[60px] ">
       <Swiper
         spaceBetween={90}
         effect={"fade"}
@@ -34,14 +41,14 @@ const Banner = () => {
             opacity: isInView1 ? "1" : "0",
             transition: "all 1.8s",
             backgroundImage:
-                "url(https://i.ibb.co/fkRmdn3/pexels-max-rahubovskiy-5997993.webp)",
+                "url(https://i.ibb.co/QvxP2b3/frames-for-your-heart-2d4l-AQAlb-DA-unsplash.jpg)",
         }}
             className="hero min-h-screen "
             
           >
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-white">
-              <div className="max-w-3xl">
+              <div className="max-w-4xl">
                 <h1 className="mb-2 text-xl font-semibold">
                   <Typewriter
                     words={["Discover Your Dream Home"]}
@@ -65,12 +72,12 @@ const Banner = () => {
             className="hero min-h-screen"
             style={{
               backgroundImage:
-                "url(https://i.ibb.co/HpBmbph/frames-for-your-heart-2d4l-AQAlb-DA-unsplash.webp)",
+                "url(https://i.ibb.co/jHgyCMv/todd-carter-J8-v-XF8bpc-unsplash.jpg)",
             }}
           >
             <div className="hero-overlay bg-opacity-50"></div>
             <div className="hero-content text-center text-neutral-content">
-              <div className="max-w-3xl">
+              <div className="max-w-4xl">
                 <h1 className="mb-2 text-xl font-semibold">
                   <Typewriter
                     words={["Unlock Your Homeownership Journey"]}
@@ -99,7 +106,7 @@ const Banner = () => {
           >
             <div className="hero-overlay bg-opacity-50"></div>
             <div className="hero-content text-center text-neutral-content">
-              <div className="max-w-3xl">
+              <div className="max-w-4xl">
               <h1 className="mb-2 text-xl font-semibold"><Typewriter
             words={['Invest in Your Future with Us']}
             loop={false}
@@ -121,12 +128,12 @@ const Banner = () => {
             className="hero min-h-screen"
             style={{
               backgroundImage:
-                "url(https://i.ibb.co/4dq6wnS/film-screen-with-bean-bag-chairs-rooftop-1.webp)",
+                "url(https://i.ibb.co/ZTfGQt2/andreas-KRNVe-PAZw-Mg-unsplash.jpg)",
             }}
           >
             <div className="hero-overlay bg-opacity-50"></div>
             <div className="hero-content text-center text-neutral-content">
-              <div className="max-w-3xl">
+              <div className="max-w-4xl">
               <h1 className="mb-2 text-xl font-semibold"><Typewriter
             words={['Elevate Your Living Experience']}
             loop={false}

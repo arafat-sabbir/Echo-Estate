@@ -1,6 +1,4 @@
-import { useState } from "react";
 import toast from "react-hot-toast";
-import { IoWarningOutline } from "react-icons/io5";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -33,100 +31,109 @@ const AgentRequest = () => {
         const swal = toast.loading("Making User Agent");
         axiosSecure.patch(`/changeRole/${user._id}?role=agent`).then((res) => {
           if (res.data.modifiedCount > 0) {
-              refetch();
+            refetch();
             toast.success(`${user.name} is a Agent Now`, { id: swal });
           }
         });
       }
     });
   };
-  if(isLoading){
-    return <Loading></Loading>
+  if (isLoading) {
+    return <Loading></Loading>;
   }
   return (
-    < >
-        
-        {users.length === 0 ? (
+    <>
+      {users.length === 0 ? (
         <div className="flex flex-col justify-items-center  h-screen justify-center items-center w-[80vw]">
           <img
             className="mx-auto"
             src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
             alt=""
           />
-          <h3 className="text-3xl font-semibold text-center text-main">No Agent Request</h3>
-        </div> ) :<div><div className="container mx-auto">
-       <SectionTitle title={'Make Agent'} subtitle={"Mange All The Agent Request Made By User"}></SectionTitle>
-       </div>
-      <div className="flex flex-col container mx-auto">
-        <div className="-m-1.5 overflow-x-auto mt-10">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className="overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead>
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                    >
-                      User Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                    >
-                      User Email
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                    >
-                      User Role
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                    >
-                      Requested Role
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                    >
-                      Make Agent
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {users?.map((item) => (
-                    <tr key={item._id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                        {item.name}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        {item.email}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        <h3 className="uppercase">{item.role}</h3>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        <h3 className="uppercase">AGENT</h3>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        <button
-                          className="flex shadow-2xl justify-center items-center gap-2 w-24 h-8 cursor-pointer rounded-2xl  text-white font-semibold bg-gradient-to-r from-[#072730] via-[#0e3c49da] to-[#0a3a47da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]"
-                          onClick={() => handleMakeAgent(item)}
+          <h3 className="text-3xl font-semibold text-center text-main">
+            No Agent Request
+          </h3>
+        </div>
+      ) : (
+        <div>
+          <div className="container mx-auto">
+            <SectionTitle
+              title={"Make Agent"}
+              subtitle={"Mange All The Agent Request Made By User"}
+            ></SectionTitle>
+          </div>
+          <div className="flex flex-col container mx-auto">
+            <div className="-m-1.5 overflow-x-auto mt-10">
+              <div className="p-1.5 min-w-full inline-block align-middle">
+                <div className="overflow-hidden">
+                  <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                        >
+                          User Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                        >
+                          User Email
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                        >
+                          User Role
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                        >
+                          Requested Role
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
                         >
                           Make Agent
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                      {users?.map((item) => (
+                       item.role === "agent"|| <tr key={item._id}>
+                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                         {item.name}
+                       </td>
+                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                         {item.email}
+                       </td>
+                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                         <h3 className="uppercase">{item.role}</h3>
+                       </td>
+                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                         <h3 className="uppercase">AGENT</h3>
+                       </td>
+                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                         <button
+                           className="flex shadow-2xl justify-center items-center gap-2 w-24 h-8 cursor-pointer rounded-2xl  text-white font-semibold bg-gradient-to-r from-[#072730] via-[#0e3c49da] to-[#0a3a47da] hover:shadow-xl hover:shadow-[#072730] hover:scale-105 duration-300 hover:from-[#072730da] hover:to-[#072730da]"
+                           onClick={() => handleMakeAgent(item)}
+                         >
+                           Make Agent
+                         </button>
+                       </td>
+                     </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div></div>}
+      )}
     </>
   );
 };

@@ -2,18 +2,24 @@ import toast from "react-hot-toast";
 import Button from "../../Shared/Button";
 import useGetUser from "../../Hooks/GetUserInfo/useGetUser";
 import useAxiosSecure from "../../Hooks/AxiosSecure/useAxiosSecure";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { PropTypes } from "prop-types";
+import useAuth from "../../Auth/UseAuth/useAuth";
 
 const Review = ({ property }) => {
   const { userinfo } = useGetUser();
+  const location = useLocation();
   const axiosSecure = useAxiosSecure();
-  const navigate = useNavigate()
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const handleCancel = (e) => {
     e.preventDefault();
     document.getElementById("my_modal_5").close();
     toast.error("Review Canceled");
   };
-
+  const handleNotSignIN = () => {
+    navigate("/signIn", { state: location?.pathname });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const date = new Date().toDateString();
@@ -31,12 +37,12 @@ const Review = ({ property }) => {
         reviewDate: date,
         propertyTitle: property.propertyTitle,
         propertyId: property._id,
-        agentName:property.agentName,
+        agentName: property.agentName,
       };
       axiosSecure.post("/addReview", review).then((res) => {
         if (res.data.insertedId) {
           toast.success("Review Submitted");
-          navigate("/dashboard/myReview")
+          navigate("/dashboard/myReview");
         }
       });
     } else {
@@ -46,12 +52,18 @@ const Review = ({ property }) => {
 
   return (
     <>
-      <div
-        className=""
-        onClick={() => document.getElementById("my_modal_5").showModal()}
-      >
-        <Button title={"Review"}></Button>
-      </div>
+      {user ? (
+        <div
+          className=""
+          onClick={() => document.getElementById("my_modal_5").showModal()}
+        >
+          <Button title={"Review"}></Button>
+        </div>
+      ) : (
+        <div className="" onClick={handleNotSignIN}>
+          <Button title={"Review"}></Button>
+        </div>
+      )}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <form className="p-4 md:p-5" onSubmit={handleSubmit}>
@@ -72,15 +84,15 @@ const Review = ({ property }) => {
               <div className="flex gap-4 justify-center items-center">
                 <button
                   onClick={handleCancel}
-                  className="relative px-8 py-2  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
-    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                  className="relative px-8 py-2 rounded-full  bg-[#072730] text-white  isolation-auto z-10 border  border-dashed border-main 
+                  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0  before:bg-main font-medium hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="relative px-8 py-2  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
-    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                  className="relative px-8 py-2 rounded-full  bg-[#072730] text-white  isolation-auto z-10 border  border-dashed border-main 
+                  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0  before:bg-main font-medium hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
                 >
                   Submit Review
                 </button>
@@ -94,3 +106,7 @@ const Review = ({ property }) => {
 };
 
 export default Review;
+
+Review.propTypes = {
+  property: PropTypes.obj,
+};
