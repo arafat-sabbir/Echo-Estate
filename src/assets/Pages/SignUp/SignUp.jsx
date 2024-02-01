@@ -7,22 +7,14 @@ import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
 import axios from "axios";
-
+const imageHostingKey = import.meta.env.VITE_IMAGE_HOST_KEY;
+const imageHostingAPi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
-  const [photoName, setPhotoName] = useState("");
-  const [photo, setPhoto] = useState("");
-  const imageHostingKey = import.meta.env.VITE_IMAGE_HOST_KEY;
-  const imageHostingAPi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
-  const formData = new FormData();
-  formData.append("image", photo);
-  const handlePhotoUpload = (e) => {
-    e.preventDefault();
-    setPhotoName(e.target.files[0].name);
-    setPhoto(e.target.files[0]);
-  }
+  const [photoName, setPhotoName] = useState(null);
+  const [photo, setPhoto] = useState(null);
 
   const {
     register,
@@ -31,43 +23,63 @@ const SignUp = () => {
     reset,
   } = useForm();
   const { signUpUser, updateUserProfile } = useAuth();
-  const onSubmit =async (data) => {
-    const toastid = toast.loading("Sign Up Processing");
-    const hostedPhoto = await axios.post(imageHostingAPi, formData, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
-    console.log(hostedPhoto.data.data.display_url);
-    signUpUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
-        updateUserProfile(data.name,hostedPhoto.data.data.display_url)
-          .then((res) => {
-            const userdata = {
-              email: data.email,
-              name: data.name,
-              photo:hostedPhoto.data.data.display_url,
-              role:'user',
-              creationDate:new Date().toDateString()
-            };
-            axiosSecure.post("/users", userdata).then((res) => {
-              if (res.data.insertedId) {
-                toast.success("Sign Up SuccessFully", { id: toastid });
-                reset();
-                navigate(location.state ? location.state : "/");
-              }
-            });
-          })
-          .catch((error) => console.log(error));
-        console.log(data);
-      })
-      .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          toast.error("Email Already Registered", { id: toastid });
+  // Handle SignUp Form Submit
+  const onSubmit = async (data) => {
+    const toastId = toast.loading("Sign Up Processing");
+
+    try { // Move this line here
+
+      // Upload photo first
+      const hostedPhoto = await axios.post(imageHostingAPi, photo, {
+        headers: {
+          'content-type': 'multipart/form-data'
         }
       });
+      // SignUpUser and updateUserProfile after photo upload is successful
+      signUpUser(data.email, data.password)
+        .then((res) => {
+          console.log(res.user);
+          updateUserProfile(data.name, hostedPhoto.data.data.display_url)
+            .then((res) => {
+              const userData = {
+                email: data.email,
+                name: data.name,
+                photo: hostedPhoto.data.data.display_url,
+                role: 'user',
+                creationDate: new Date().toDateString(),
+              };
+              // Sent The Data To Server
+              axiosSecure.post("/users", userData).then((res) => {
+                if (res.data.insertedId) {
+                  toast.success("Sign Up Successfully", { id: toastId });
+                  reset();
+                  navigate(location.state ? location.state : "/");
+                }
+              });
+            })
+            .catch((error) => console.log(error));
+
+          console.log(data);
+        })
+        .catch((error) => {
+          if (error.code === "auth/email-already-in-use") {
+            toast.error("Email Already Registered", { id: toastId });
+          }
+        });
+    } catch (error) {
+      console.error("Error uploading photo:", error);
+    }
   };
+  // Handle Photo Upload
+  const handlePhotoUpload = (e) => {
+    e.preventDefault();
+    console.log(e.target.files);
+    if (e.target.files.length > 0) {
+      setPhotoName(e.target.files[0].name);
+      setPhoto({ image: e.target.files[0] })
+    }
+  };
+
   return (
     <div
       style={{
@@ -76,13 +88,13 @@ const SignUp = () => {
       }}
     >
       <div className="flex h-screen gap-10 container mx-auto  justify-center items-center">
-      <Helmet>
-        <title>Echo Estate || Sign Up</title>
-      </Helmet>
+        <Helmet>
+          <title>Echo Estate || Sign Up</title>
+        </Helmet>
         <div className="lg:w-1/2 w-[90vw]">
           <div className="card  lg:w-3/4  mx-auto ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            <div className="form-control">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
@@ -114,19 +126,19 @@ const SignUp = () => {
                 <label className="label">
                   <span className="label-text">Photo</span>
                 </label>
-                
+
                 <div className="relative w-full">
-                <label className="label absolute -z-1 input pt-2 opacity-100  input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main w-full ">
-                 <span className="label-text ">{photoName || 'Choose Profile Picture'}</span>
-               </label>
-                <input
-                  onChange={handlePhotoUpload}
-                  accept="images/*"
-                  type="file"
-                  placeholder="upload your Photo"
-                  name="email"
-                  className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
-                />
+                  <label className="label absolute -z-1 input pt-2 opacity-100  input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main w-full ">
+                    <span className="label-text ">{photoName || 'Choose Profile Picture'}</span>
+                  </label>
+                  <input
+                    onChange={handlePhotoUpload}
+                    accept="images/*"
+                    type="file"
+                    placeholder="upload your Photo"
+                    name="email"
+                    className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
+                  />
                 </div>
               </div>
               <div className="form-control">

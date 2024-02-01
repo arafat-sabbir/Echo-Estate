@@ -19,12 +19,12 @@ import { Helmet } from "react-helmet";
 // ... (previous imports and useGetUser hook)
 
 const DashBoard = () => {
-  const { userinfo, refetch } = useGetUser();
+  const { userinfo } = useGetUser();
   const { signOutUser } = useAuth();
   const navigate = useNavigate();
   const handleSignOut = () => {
     signOutUser()
-      .then((result) => {
+      .then(() => {
         navigate("/");
       })
       .catch((error) => {
@@ -32,7 +32,7 @@ const DashBoard = () => {
       });
   };
   const role = userinfo?.role;
-  const dashboarditem = (
+  const dashboardItem = (
     <ul className="menu p-4 space-y-2 uppercase ">
       {role === "admin" ? (
         <>
@@ -137,7 +137,7 @@ const DashBoard = () => {
       <div className="pb-2 mx-auto" onClick={handleSignOut}>
         <button
           className="relative px-24 py-2   bg-[#072730] text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
-    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+          before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
         >
           Sign Out
         </button>
@@ -150,7 +150,7 @@ const DashBoard = () => {
       <Helmet>
         <title>Echo Estate || DashBoard</title>
       </Helmet>
-      <div className="h-screen w-72 bg-[#F2FFE9] rounded-2xl hidden lg:block">
+      <div className="fixed h-screen  w-72 bg-[#F2FFE9] rounded-2xl hidden lg:block">
         <img
           src={userinfo.photo}
           className="w-20 h-20 rounded-full p-4 mx-auto border border-dashed border-main  mt-6"
@@ -161,9 +161,9 @@ const DashBoard = () => {
           <span className="text-main  font-bold">{userinfo.name}</span>
         </h3>
         <div className="divider divider-error px-4 -mb-1"></div>
-        {dashboarditem}
+        {dashboardItem}
       </div>
-      <div className="drawer lg:hidden">
+      <div className="drawer  lg:hidden">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
@@ -201,12 +201,12 @@ const DashBoard = () => {
                 <span className="text-main font-bold">{userinfo.name}</span>
               </h3>
               <div className="divider divider-error px-4 -mb-1"></div>
-              <div>{dashboarditem}</div>
+              <div>{dashboardItem}</div>
             </div>
           </ul>
         </div>
       </div>
-      <div className="flex-1 hidden lg:block">
+      <div className="flex-1 ml-72 hidden lg:block">
         <Outlet></Outlet>
       </div>
     </div>

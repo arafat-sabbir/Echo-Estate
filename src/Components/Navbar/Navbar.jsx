@@ -1,6 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 
-import { useEffect, useState } from "react";
 import useAuth from "../../Auth/UseAuth/useAuth";
 import Button from "../../Shared/Button";
 import useGetUser from "../../Hooks/GetUserInfo/useGetUser";
@@ -91,13 +90,13 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className="hidden lg:flex  font-bold items-center">
+          <div className="hidden lg:flex  font-semibold items-center">
             <Link
               to={"/"}
               className={
                 location.pathname == "/"
                   ? `!flex font-black text-white  items-center  duration-300`
-                  : "!flex font-bold items-center  duration-300"
+                  : "!flex font-semibold items-center  duration-300"
               }
             >
               <img
@@ -128,7 +127,7 @@ const Navbar = () => {
             {user && (
               <ul className="p-2 shadow menu dropdown-content bg-[#072730da] z-[1]  rounded-box w-56">
                 <img
-                  className=" w-12 mx-auto  rounded-full mb-2 mt-2 border-2 border-main"
+                  className=" w-16 h-16 mx-auto  rounded-full my-2 border-2 border-main"
                   src={userinfo?.photo}
                   alt=""
                 />

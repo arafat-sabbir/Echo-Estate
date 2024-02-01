@@ -7,11 +7,11 @@ const CheckAgent = ({ children }) => {
   const { userinfo, isLoading } = useGetUser();
   const location = useLocation();
   const { loader, user } = useAuth();
-  const isagent = userinfo.role === "agent";
+  const isAgent = userinfo.role === "agent";
   if (loader || isLoading) {
     return <Loading></Loading>;
   }
-  if (user && isagent) {
+  if (user && isAgent) {
     return children;
   }
 

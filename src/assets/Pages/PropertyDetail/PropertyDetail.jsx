@@ -83,7 +83,7 @@ const PropertyDetail = () => {
               <img
                 src={propertyImage}
                 alt=""
-                className="rounded-xl lg:h-96 lg:w-[700px] w-[90vw] mx-auto"
+                className="rounded-sm lg:h-96 lg:w-[700px] w-[90vw] mx-auto"
               />
             </div>
             <div className="md:w-2/3 lg:m-4 mt-4 lg:mt-auto w-[90vw] mx-auto">

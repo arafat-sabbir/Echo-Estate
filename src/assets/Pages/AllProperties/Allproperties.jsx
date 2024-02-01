@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 
 const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
-  const [searchtext, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [priceSort, setPriceSort] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -22,11 +22,12 @@ const Allproperties = () => {
   const {
     data: properties = [],
     isLoading,
+    isPending,
   } = useQuery({
-    queryKey: ["properties", searchtext, priceSort, minPrice],
+    queryKey: ["properties", searchText, priceSort, minPrice],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/getVerifiedProperties?search=${searchtext}&&priceSort=${priceSort}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`
+        `/getVerifiedProperties?search=${searchText}&&priceSort=${priceSort}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`
       );
       return res.data;
     },
@@ -124,7 +125,7 @@ const Allproperties = () => {
             </select>
           </div>
         </div>
-        {isLoading && <Loading></Loading>}
+        {isLoading|| isPending ? <Loading></Loading>:""}
         {properties.length !== 0 && (
           <Container>
             <div
@@ -144,8 +145,8 @@ const Allproperties = () => {
           </Container>
         )}
       </div>
-      {properties.length === 0 && (
-        <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center w-screen">
+      {properties.length === 0 &&(
+        <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center ">
           <img
             className="mx-auto"
             src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"

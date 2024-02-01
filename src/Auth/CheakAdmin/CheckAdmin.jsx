@@ -7,11 +7,11 @@ const CheckAdmin = ({ children }) => {
   const { userinfo, isLoading } = useGetUser();
   const location = useLocation();
   const { loader, user } = useAuth();
-  const isadmin = userinfo.role === "admin";
+  const isAdmin = userinfo.role === "admin";
   if (loader || isLoading) {
     return <Loading></Loading>;
   }
-  if (user && isadmin) {
+  if (user && isAdmin) {
     return children;
   }
 

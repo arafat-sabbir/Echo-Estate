@@ -16,7 +16,7 @@ const BoughtPropertyCard = ({ item }) => {
   return (
     <div>
       <div>
-        <div className="cursor-pointer rounded-xl bg-white p-3 min-h-[400px] max-h-[400px] shadow-[0_0_20px_#E6E6E6] duration-300 hover:shadow-[0_0_10px_#FF5B22] lg:w-[480px] mx-auto">
+        <div className="cursor-pointer rounded-xl bg-white p-3 shadow-[0_0_20px_#E6E6E6] duration-300 hover:shadow-[0_0_10px_#FF5B22]  mx-auto">
           <div className="relative flex  items-end overflow-hidden rounded-xl  object-fill">
             <img src={propertyImage} alt="wallpaper" className="min-w-full max-h-[255px]" />
           </div>
@@ -26,9 +26,8 @@ const BoughtPropertyCard = ({ item }) => {
               <h2 className="text-slate-700 text-lg font-semibold mb-2">
                 {propertyTitle}
               </h2>
-              <p className="font-semibold">
-                Status :
-                <span className="uppercase text-main">{offerStatus}</span>
+              <p className="font-semibold text-sm">
+                Status :<span className="uppercase text-main">{offerStatus}</span>
               </p>
             </div>
             <div className="flex justify-between">
