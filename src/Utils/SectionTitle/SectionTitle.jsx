@@ -1,4 +1,3 @@
-import { HiArrowLongRight } from "react-icons/hi2";
 const SectionTitle = ({ title, subtitle }) => {
   return (
     <div>

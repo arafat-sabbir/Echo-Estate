@@ -12,7 +12,7 @@ body {
 
 .active{
     color: white !important;
-    background-color: #FF5B22 !important;
+    background-color: #BC8664 !important;
     font-weight: 600 ;
     border-radius: 20px !important;
 }
@@ -20,7 +20,3 @@ body {
 .swiper-button-prev {
   display: none !important;
 }
-/* 
-body{
-  font-family: 'Poppins', sans-serif;
-} */

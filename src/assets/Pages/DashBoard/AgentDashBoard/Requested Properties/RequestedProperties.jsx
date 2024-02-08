@@ -49,16 +49,14 @@ const RequestedProperties = () => {
     return <Loading></Loading>;
   }
   return (
-    <div>
-      <div className="flex flex-col container mx-auto">
-        <h3 className="text-3xl font-semibold text-center mt-10">
-          {" "}
+    <div className="flex flex-col">
+
+        <h3 className="text-3xl font-semibold text-center mt-20 my-10">
           <span className="font-bold text-main">{user.displayName}</span> Your
           Property Request List
         </h3>
-        <div className="-m-1.5 overflow-x-auto mt-10">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className="overflow-hidden">
+            <div className="lg:container  mx-auto w-[98vw]">
+            <div className="overflow-x-auto p-4 border-2 rounded-xl">
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                   <tr>
@@ -168,10 +166,8 @@ const RequestedProperties = () => {
                 </tbody>
               </table>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
   );
 };
 

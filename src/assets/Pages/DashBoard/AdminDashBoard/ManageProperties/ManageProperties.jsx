@@ -1,5 +1,4 @@
 import useProperties from "../../../../../Hooks/GetProperties/useProperties";
-import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
@@ -8,8 +7,10 @@ import Loading from "../../../../../Components/Loading/Loading";
 import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
 
 const ManageProperties = () => {
+  // Get all the property
   const { properties, refetch, isLoading } = useProperties();
   const axiosSecure = useAxiosSecure();
+  // Verify a Property For Showing On the All Property Page
   const handleVerifyProperty = (id) => {
     axiosSecure.patch(`/updateStatus/${id}?status=verified`).then((res) => {
       console.log(res.data);
@@ -19,7 +20,7 @@ const ManageProperties = () => {
       }
     });
   };
-
+// Reject a Property
   const handleRejectProperty = (id) => {
     axiosSecure.patch(`/updateStatus/${id}?status=rejected`).then((res) => {
       console.log(res.data);
@@ -33,16 +34,13 @@ const ManageProperties = () => {
     return <Loading></Loading>;
   }
   return (
-    <>
+    <div className="flex flex-col">
      <div className="ml-16">
       <SectionTitle title={"Manage Properties"} subtitle={"Manage Property Added By Agent"}> </SectionTitle>
      </div>
-      <div>
         <div>
-          <div className="flex flex-col container mx-auto">
-            <div className="-m-1.5 overflow-x-auto mt-10">
-              <div className="p-1.5 min-w-full inline-block align-middle">
-                <div className="overflow-hidden">
+          <div className="lg:container mx-auto w-[98vw]">
+                <div className="overflow-x-auto border-2 p-4 rounded-xl">
                   <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead>
                       <tr>
@@ -155,10 +153,7 @@ const ManageProperties = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import { AiOutlineDollar } from "react-icons/ai";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types"
 
 const BoughtPropertyCard = ({ item }) => {
   const {
@@ -63,7 +64,7 @@ const BoughtPropertyCard = ({ item }) => {
                   </Link>
                 )}
                 {
-                  offerStatus==="bought"&&<p className="text-xs font-semibold">Tid : <span className="text-main">{transactionId}</span></p>
+                  offerStatus === "bought" && <p className="text-xs font-semibold">Tid : <span className="text-main">{transactionId}</span></p>
                 }
               </div>
             </div>
@@ -75,3 +76,6 @@ const BoughtPropertyCard = ({ item }) => {
 };
 
 export default BoughtPropertyCard;
+BoughtPropertyCard.propTypes = {
+  item:PropTypes.obj,
+}

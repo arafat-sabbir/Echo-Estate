@@ -10,13 +10,14 @@ const AgentRequest = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["getuserinfo"],
+    queryKey: ["getUserinfo"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/agentReq`);
       return res.data;
     },
   });
   const axiosSecure = useAxiosSecure();
+  // Make a User Agent
   const handleMakeAgent = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -41,20 +42,23 @@ const AgentRequest = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
+  console.log(users.length);
+  console.log(users);
   return (
     <>
-      {users.length === 0 ? (
-        <div className="flex flex-col justify-items-center  h-screen justify-center items-center w-[80vw]">
-          <img
-            className="mx-auto"
-            src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
-            alt=""
-          />
-          <h3 className="text-3xl font-semibold text-center text-main">
-            No Agent Request
-          </h3>
-        </div>
-      ) : (
+    {
+      users?.length<1&&
+      <div className="flex flex-col justify-items-center  h-screen justify-center items-center w-[80vw]">
+        <img
+          className="mx-auto"
+          src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
+          alt=""
+        />
+        <h3 className="text-3xl font-semibold text-center text-main">
+          No Agent Request
+        </h3>
+      </div>
+    }
         <div>
           <div className="container mx-auto">
             <SectionTitle
@@ -62,10 +66,8 @@ const AgentRequest = () => {
               subtitle={"Mange All The Agent Request Made By User"}
             ></SectionTitle>
           </div>
-          <div className="flex flex-col container mx-auto">
-            <div className="-m-1.5 overflow-x-auto mt-10">
-              <div className="p-1.5 min-w-full inline-block align-middle">
-                <div className="overflow-hidden">
+          <div className="lg:container mx-auto w-[98vw]">
+                <div className="overflow-x-auto border-2 p-4 rounded-xl">
                   <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead>
                       <tr>
@@ -131,9 +133,6 @@ const AgentRequest = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };

@@ -1,17 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        "main":'#FF5B22',
+        main: "#bb7549",
       },
     },
   },
   plugins: [require("daisyui")],
-}
-
+};

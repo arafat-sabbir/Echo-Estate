@@ -14,7 +14,6 @@ const ManageUsers = () => {
     data: users = [],
     refetch,
     isLoading,
-    isError,
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -22,6 +21,7 @@ const ManageUsers = () => {
       return res.data;
     },
   });
+  // Make a user admin
   const handleMakeAdmin = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -43,6 +43,7 @@ const ManageUsers = () => {
       }
     });
   };
+  // Make a user Agent
   const handleMakeAgent = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -64,6 +65,7 @@ const ManageUsers = () => {
       }
     });
   };
+  // Make a Agent Fraud
   const handleMakeFraud = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -75,18 +77,19 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, Make Fraud!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const toastid = toast.loading("Making User Fraud");
+        const toastId = toast.loading("Making User Fraud");
         axiosSecure
           .patch(`/makeFraud/${user._id}?role=fraud&&email=${user.email}`)
           .then((res) => {
             if (res.data.modifiedCount > 0) {
-              toast.success("Modified User SuccessFully", { id: toastid });
+              toast.success("Modified User SuccessFully", { id: toastId });
               refetch();
             }
           });
       }
     });
   };
+  // Delete a user Data From Database
   const handleDeleteUser = (user) => {
     if (user.email === userinfo.email) {
       return toast.error("Your can't Delete Your own Account");
@@ -115,18 +118,15 @@ const ManageUsers = () => {
     return <Loading></Loading>;
   }
   return (
-  <>
-    <div className="mt-10">
+  <div className="flex flex-col">
      <div className="ml-16">
      <SectionTitle
         title={"Manage User"}
         subtitle={"Manage All The User Of Your Site"}
       ></SectionTitle>
      </div>
-      <div className="flex flex-col container mx-auto">
-        <div className="-m-1.5 overflow-x-auto mt-10">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className="overflow-hidden">
+      <div className="lg:container mx-auto w-[98vw]">
+            <div className="overflow-x-auto border-2 p-4 rounded-xl">
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                   <tr>
@@ -256,9 +256,6 @@ const ManageUsers = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </>
   );
 };
 

@@ -79,7 +79,7 @@ const Allproperties = () => {
   };
   return (
     <>
-      <div className="mb-10 container mx-auto p-4">
+      <div className="mb-10 lg:mt-[100px] container mx-auto p-4">
         <Helmet>
           <title>Echo Estate || All Property</title>
         </Helmet>
@@ -109,10 +109,11 @@ const Allproperties = () => {
               <option>Low To High</option>
             </select>
             <select
+              defaultValue={""}
               onChange={handlePriceRange}
               className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
             >
-              <option className="font-bold " disabled selected>
+              <option className="font-bold " disabled value={""}>
                 Search By Price Range
               </option>
               <option>$50000-$100000</option>
@@ -125,7 +126,7 @@ const Allproperties = () => {
             </select>
           </div>
         </div>
-        {isLoading|| isPending ? <Loading></Loading>:""}
+        {isLoading || isPending ? <Loading></Loading> : ""}
         {properties.length !== 0 && (
           <Container>
             <div
@@ -145,7 +146,7 @@ const Allproperties = () => {
           </Container>
         )}
       </div>
-      {properties.length === 0 &&(
+      {properties.length === 0 && (
         <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center ">
           <img
             className="mx-auto"
