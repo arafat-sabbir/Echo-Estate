@@ -48,19 +48,19 @@ const Navbar = () => {
   const links = (
     <>
       <li
-        className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 duration-300 hover:text-main text-slate-100 tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}>
+        className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}>
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <ul className="lg:flex drop-shadow-2xl ">
         <li
-          className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 duration-300 hover:text-main text-slate-100 tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}
+          className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}
         >
           <NavLink to={"/allProperties"}>All Properties</NavLink>
         </li>
         <li
           className={
             ` ${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/"
-              ? `hover:scale-110 duration-300 hover:text-main text-slate-100 tracking-wider font-bold`
+              ? `hover:scale-110 duration-300 hover:text-main  tracking-wider font-bold`
               : "hover:scale-110 duration-300 hover:text-main"}`
           }
         >
@@ -72,12 +72,12 @@ const Navbar = () => {
 
   // Navbar Jsx
   return (
-    <div className={`transition duration-300 ${isScrolled ? "bg-white  fixed top-0 left-0 right-0 z-50" : "bg-transparent fixed top-0 left-0 right-0 z-50"}`}>
+    <div className={`transition duration-300 ${isScrolled ? "bg-white  fixed top-0 left-0 right-0 z-50" : "bg-white fixed top-0 left-0 right-0 z-50"}`}>
       <div className="container mx-auto  top-0">
         <div
           className={
             location.pathname == "/"
-              ? `navbar  justify-center  py-4 relative container mx-auto  z-50`
+              ? `navbar  justify-center  py-6 relative container mx-auto  z-50`
               : "navbar  justify-center  py-6  container mx-auto z-50 "
           }
         >
@@ -120,7 +120,7 @@ const Navbar = () => {
                   src="https://i.ibb.co/rbX4J5H/Untitled-design-2.png"
                   alt=""
                 />
-                <p className={`${isScrolled ? "text-gray-600" : ""} text-2xl  font-semibold`}>Echo Estate</p>
+                <p className={`text-black text-2xl  font-semibold`}>Echo Estate</p>
               </Link>
             </div>
           </div>

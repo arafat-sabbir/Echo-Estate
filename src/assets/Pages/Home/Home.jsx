@@ -7,12 +7,15 @@ import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
-    <div>
+    <div className="lg:mt-[100px]">
       <Helmet>
         <title>Echo Estate || Home</title>
       </Helmet>
-      <Banner></Banner>,<Advertise></Advertise>,<LatestReview></LatestReview>,
-      <SeeRooms></SeeRooms>,<Ourpartner></Ourpartner>
+      <Banner></Banner>,
+      <Advertise></Advertise>,
+      <LatestReview></LatestReview>,
+      <SeeRooms></SeeRooms>,
+      <Ourpartner></Ourpartner>
     </div>
   );
 };
