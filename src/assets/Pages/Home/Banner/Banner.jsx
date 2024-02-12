@@ -20,25 +20,61 @@ const Banner = () => {
     }
   };
 
+  const handlePriceRange = () => {
+
+  }
+
+  const handleSearch = () => {
+
+  }
+
   console.log(priceSort, searchText);
 
   return (
-    <div className="mt-28w-full h-44 tracking-wider flex justify-center items-center leading-[60px] bg-[url('https://i.ibb.co/WyhVmvw/pexels-gdtography-950241.jpg')]">
-      <form className="h-[56px]  p-10 flex justify-center items-center gap-2  border-2">
-        <input type="text" name="title" placeholder="Search by Title" className="p-2" onChange={(e) => setSearchText(e.target.value)} id="" />
-        <div className="custom-select">
-          <select onChange={handlePriceSort} defaultValue={""} className="appearance-none border bg-transparent">
-            <option value={""}>Search By Price</option>
-            <option className="appearance-none">Low To High</option>
-            <option className="appearance-none">High To Low</option>
-          </select>
+    <div className="relative bg-[url('https://i.postimg.cc/c4PL0xjF/header.jpg')] w-[100vw] h-[70vh] bg-cover bg-no-repeat -mt-28 z-10">
+      <div className=" absolute top-[45%] left-[20%] ">
+        <div>
+          <div className="lg:w-[1200px] w-[90vw] mx-auto">
+            <div className="join w-full">
+              <div className="w-full">
+                <div className="w-full">
+                  <input
+                    onChange={handleSearch}
+                    className="input md:w-full  font-semibold input-bordered border-main  rounded-full focus:border-main join-item"
+                    placeholder="Search by Title"
+                  />
+                </div>
+              </div>
+              <select
+                onChange={handlePriceSort}
+                className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
+              >
+                <option className="font-bold " disabled selected>
+                  Search By Price
+                </option>
+                <option>High To Low</option>
+                <option>Low To High</option>
+              </select>
+              <select
+                defaultValue={""}
+                onChange={handlePriceRange}
+                className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
+              >
+                <option className="font-bold " disabled value={""}>
+                  Search By Price Range
+                </option>
+                <option>$50000-$100000</option>
+                <option>$100000-$200000</option>
+                <option>$200000-$400000</option>
+                <option>$400000-$600000</option>
+                <option>$600000-$800000</option>
+                <option>$800000-$900000</option>
+                <option>$900000-$1000000</option>
+              </select>
+            </div>
+          </div>
         </div>
-
-
-        <button><IoSearchOutline /></button>
-
-      </form>
-
+      </div>
     </div>
   );
 };

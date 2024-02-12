@@ -48,19 +48,19 @@ const Navbar = () => {
   const links = (
     <>
       <li
-        className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}>
+        className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 text-white duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}>
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <ul className="lg:flex drop-shadow-2xl ">
         <li
-          className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}
+          className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 text-white duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}
         >
           <NavLink to={"/allProperties"}>All Properties</NavLink>
         </li>
         <li
           className={
             ` ${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/"
-              ? `hover:scale-110 duration-300 hover:text-main  tracking-wider font-bold`
+              ? `hover:scale-110 text-white duration-300 hover:text-main  tracking-wider font-bold`
               : "hover:scale-110 duration-300 hover:text-main"}`
           }
         >
@@ -72,7 +72,7 @@ const Navbar = () => {
 
   // Navbar Jsx
   return (
-    <div className={`transition duration-300 ${isScrolled ? "bg-white  fixed top-0 left-0 right-0 z-50" : "bg-white fixed top-0 left-0 right-0 z-50"}`}>
+    <div className={`transition duration-300 ${isScrolled ? "bg-white  fixed top-0 left-0 right-0 z-50" : "bg-transparent fixed top-0 left-0 right-0 z-50"}`}>
       <div className="container mx-auto  top-0">
         <div
           className={
