@@ -7,7 +7,7 @@ const useAddedProperty = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data:Properties=[], isLoading, isError, refetch } = useQuery({
-    queryKey: ["getuserinfo"],
+    queryKey: ["getUserinfo"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/getProperty?email=${user?.email}`);
       return res.data;

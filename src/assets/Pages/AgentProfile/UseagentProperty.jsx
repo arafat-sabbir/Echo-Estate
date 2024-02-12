@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../Auth/UseAuth/useAuth";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 
-const UseagentProperty = ({email}) => {
+const UseAgentProperty = ({ email }) => {
   const axiosSecure = useAxiosSecure();
   const {
     data: Properties = [],
@@ -10,7 +9,7 @@ const UseagentProperty = ({email}) => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["getuserinfo"],
+    queryKey: ["getUserinfo"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/getProperty?email=${email}`);
       return res.data;
@@ -19,4 +18,4 @@ const UseagentProperty = ({email}) => {
   return { Properties, refetch, isLoading, isError };
 };
 
-export default UseagentProperty;
+export default UseAgentProperty;

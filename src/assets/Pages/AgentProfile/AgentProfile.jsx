@@ -1,10 +1,11 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import Navbar from "../../../Components/Navbar/Navbar";
-import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
+
 import { useQuery } from "@tanstack/react-query";
 import { FaLocationDot } from "react-icons/fa6";
 import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import { useEffect } from "react";
+import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 
 const AgentProfile = () => {
   useEffect(() => {
