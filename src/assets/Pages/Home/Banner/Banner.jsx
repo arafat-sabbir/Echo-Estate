@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { IoSearchOutline } from "react-icons/io5";
+import { HiOutlineSearch } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 
 const Banner = () => {
@@ -10,6 +11,8 @@ const Banner = () => {
   // https://i.ibb.co/wBBx9gg/webaliser-TPTXZd9m-Oo-unsplash.jpg
   const [searchText, setSearchText] = useState("");
   const [priceSort, setPriceSort] = useState("");
+
+  const navigate = useNavigate()
 
   const handlePriceSort = (e) => {
     const sort = e.target.value;
@@ -28,26 +31,27 @@ const Banner = () => {
 
   }
 
-  console.log(priceSort, searchText);
+  const handleSubmit = () => {
+    navigate("/allProperties")
+  }
 
   return (
-    <div className="relative bg-[url('https://i.postimg.cc/c4PL0xjF/header.jpg')] w-[100vw] h-[70vh] bg-cover bg-no-repeat -mt-28 z-10">
+    <div className="relative bg-[url('https://i.postimg.cc/c4PL0xjF/header.jpg')] w-full h-[70vh] bg-cover bg-no-repeat -mt-28 z-10">
       <div className=" absolute top-[45%] left-[20%] ">
         <div>
-          <div className="lg:w-[1200px] w-[90vw] mx-auto">
-            <div className="join w-full">
-              <div className="w-full">
-                <div className="w-full">
-                  <input
-                    onChange={handleSearch}
-                    className="input md:w-full  font-semibold input-bordered border-main  rounded-full focus:border-main join-item"
-                    placeholder="Search by Title"
-                  />
-                </div>
+          <div className="lg:w-[1200px] w-[80vw] mx-auto ">
+            <form onSubmit={handleSubmit} className="join w-full flex justify-center items-center justify-items-center bg-white p-4 shadow-[0_0_20px_#C4C4C4] rounded-full">
+              <div className="w-1/2">
+                <input
+                  onChange={handleSearch}
+                  className="input md:w-full placeholder:text-black border-none  font-semibold input-bordered rounded-full   focus:outline-none"
+                  placeholder="Search by Title"
+                />
               </div>
+              <div className="divider lg:divider-horizontal"></div>
               <select
                 onChange={handlePriceSort}
-                className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
+                className="select  lg:w-auto w-[20vw] focus:border-none  font-bold focus:outline-none  rounded-full  join-item"
               >
                 <option className="font-bold " disabled selected>
                   Search By Price
@@ -55,10 +59,11 @@ const Banner = () => {
                 <option>High To Low</option>
                 <option>Low To High</option>
               </select>
+              <div className="divider lg:divider-horizontal"></div>
               <select
                 defaultValue={""}
                 onChange={handlePriceRange}
-                className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
+                className="select  lg:w-auto w-[20vw] focus:outline-none focus:border-none font-bold rounded-full  join-item"
               >
                 <option className="font-bold " disabled value={""}>
                   Search By Price Range
@@ -71,7 +76,8 @@ const Banner = () => {
                 <option>$800000-$900000</option>
                 <option>$900000-$1000000</option>
               </select>
-            </div>
+              <button type="submit" className="bg-main hover:bg-white hover:text-main duration-300 transition rounded-full p-4 text-white"><HiOutlineSearch size={24} /></button>
+            </form>
           </div>
         </div>
       </div>

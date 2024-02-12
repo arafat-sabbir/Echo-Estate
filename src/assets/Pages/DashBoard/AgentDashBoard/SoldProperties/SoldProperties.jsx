@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../../Hooks/AxiosSecure/useAxiosSecure";
 import useAuth from "../../../../../Auth/UseAuth/useAuth";
 import SectionTitle from "../../../../../Utils/SectionTitle/SectionTitle";
 import Loading from "../../../../../Components/Loading/Loading";
+import { IoChevronForwardOutline, IoChevronBackOutline } from "react-icons/io5";
 
 const SoldProperties = () => {
   const axiosSecure = useAxiosSecure();
@@ -23,8 +24,10 @@ const SoldProperties = () => {
   if (isLoading) {
     return <Loading></Loading>
   }
+
+  console.log(soldProperties);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-10">
       <div className="ml-16 ">
         <SectionTitle
           title={"Sold Properties"}
@@ -36,6 +39,12 @@ const SoldProperties = () => {
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead>
               <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                >
+                  Property Image
+                </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
@@ -72,6 +81,9 @@ const SoldProperties = () => {
               {soldProperties?.map((item) => (
                 <tr key={item._id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                    <img src={item.propertyImage} className="w-16 h-16 rounded-xl" alt="" />
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
                     {item.propertyTitle}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
@@ -90,6 +102,11 @@ const SoldProperties = () => {
               ))}
             </tbody>
           </table>
+          <p className="border-t w-full mb-2"></p>
+          <div className="flex justify-between mb-2 px-2  ">
+            <button className=" px-4 py-2 font-semibold bg-gray-200 flex items-center"><IoChevronBackOutline />Prev</button>
+            <button className=" px-4 py-2 font-semibold bg-gray-200 flex items-center">Next<IoChevronForwardOutline /></button>
+          </div>
         </div>
       </div>
     </div>

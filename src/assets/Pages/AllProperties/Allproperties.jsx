@@ -116,13 +116,13 @@ const Allproperties = () => {
               <option className="font-bold " disabled value={""}>
                 Search By Price Range
               </option>
-              <option>$50000-$100000</option>
-              <option>$100000-$200000</option>
-              <option>$200000-$400000</option>
-              <option>$400000-$600000</option>
-              <option>$600000-$800000</option>
-              <option>$800000-$900000</option>
-              <option>$900000-$1000000</option>
+              <option value={"50000-100000"}>$50000-$100000</option>
+              <option value={"100000-200000"}>$100000-$200000</option>
+              <option value={"200000-400000"}>$200000-$400000</option>
+              <option value={"400000-600000"}>$400000-$600000</option>
+              <option value={"600000-800000"}>$600000-$800000</option>
+              <option value={"800000-900000"}>$800000-$900000</option>
+              <option value={"900000+"}>$900000 Or Above</option>
             </select>
           </div>
         </div>
@@ -146,6 +146,7 @@ const Allproperties = () => {
           </Container>
         )}
       </div>
+      {/* If no Property Available Show A Message */}
       {properties.length === 0 && (
         <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center ">
           <img
