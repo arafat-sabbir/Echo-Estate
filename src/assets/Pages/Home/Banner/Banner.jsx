@@ -9,9 +9,9 @@ const Banner = () => {
   // https://i.ibb.co/jHgyCMv/todd-carter-J8-v-XF8bpc-unsplash.jpg
   // https://i.ibb.co/ZTfGQt2/andreas-KRNVe-PAZw-Mg-unsplash.jpg
   // https://i.ibb.co/wBBx9gg/webaliser-TPTXZd9m-Oo-unsplash.jpg
-  const [searchText, setSearchText] = useState(null);
-  const [priceSort, setPriceSort] = useState(null);
-  const [priceRange, setPriceRange] = useState(null)
+  const [searchText, setSearchText] = useState(" ");
+  const [priceSort, setPriceSort] = useState(" ");
+  const [priceRange, setPriceRange] = useState(" ")
 
   const navigate = useNavigate()
 
@@ -34,10 +34,12 @@ const Banner = () => {
   }
 
   const handleSubmit = () => {
-    sessionStorage.setItem("priceSort", priceSort)
-    sessionStorage.setItem("priceRange", priceRange)
-    sessionStorage.setItem("searchText", searchText)
-    navigate("/allProperties")
+    if (searchText || priceRange || priceSort) {
+      sessionStorage.setItem("priceSort", priceSort)
+      sessionStorage.setItem("priceRange", priceRange)
+      sessionStorage.setItem("searchText", searchText)
+      navigate("/allProperties")
+    }
   }
 
   return (

@@ -12,11 +12,13 @@ const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
   // Get the searchText priceSort priceRange Value From SessionalStorage
   const [searchText, setSearchText] = useState(sessionStorage.getItem("searchText") || "");
-  const [priceSort, setPriceSort] = useState(sessionStorage.getItem("priceSort") || "asc");
-  const [priceRange, setPriceRange] = useState(sessionStorage.getItem("priceSort") || "0")
+  const [priceSort, setPriceSort] = useState(sessionStorage.getItem("priceSort") || "");
+  const [priceRange, setPriceRange] = useState(sessionStorage.getItem("priceRange") || "")
   useEffect(() => {
     ScrollToTop()
+    sessionStorage.clear()
   }, [])
+  console.log("priceRange", priceRange, "priceSort", priceSort, "searchText", searchText);
   const {
     data: properties = [],
     isLoading,
