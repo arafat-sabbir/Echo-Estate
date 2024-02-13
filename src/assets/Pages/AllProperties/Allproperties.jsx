@@ -6,28 +6,26 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet";
+import ScrollToTop from "../../../Utils/ScroolToTop/ScrollToTop";
 
 const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
-  const [searchText, setSearchText] = useState("");
-  const [priceSort, setPriceSort] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  // Get the searchText priceSort priceRange Value From SessionalStorage
+  const [searchText, setSearchText] = useState(sessionStorage.getItem("searchText") || "");
+  const [priceSort, setPriceSort] = useState(sessionStorage.getItem("priceSort") || "asc");
+  const [priceRange, setPriceRange] = useState(sessionStorage.getItem("priceSort") || "0")
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
+    ScrollToTop()
+  }, [])
   const {
     data: properties = [],
     isLoading,
     isPending,
   } = useQuery({
-    queryKey: ["properties", searchText, priceSort, minPrice],
+    queryKey: ["properties", searchText, priceSort, priceRange],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/getVerifiedProperties?search=${searchText}&&priceSort=${priceSort}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`
+        `/getVerifiedProperties?search=${searchText}&&priceSort=${priceSort}&&priceRange=${priceRange}`
       );
       return res.data;
     },
@@ -35,46 +33,13 @@ const Allproperties = () => {
   const handleSearch = (e) => {
     const searchText = e.target.value;
     setSearchText(searchText);
-    if (searchText) {
-      setMinPrice("");
-      setMaxPrice("");
-    }
   };
   const handlePriceSort = (e) => {
-    const sort = e.target.value;
-    if (sort === "Low To High") {
-      setPriceSort("asc");
-      setMaxPrice("");
-      setMinPrice("");
-    } else if (sort === "High To Low") {
-      setPriceSort("desc");
-      setMinPrice("");
-      setMaxPrice("");
-    }
+    setPriceSort(e.target.value)
   };
   const handlePriceRange = (e) => {
-    const priceRange = e.target.value;
-    if (priceRange === "$50000-$100000") {
-      setMinPrice(50000);
-      setMaxPrice(100000);
-    } else if (priceRange === "$100000-$200000") {
-      setMinPrice(100000);
-      setMaxPrice(200000);
-    } else if (priceRange === "$200000-$400000") {
-      setMinPrice(200000);
-      setMaxPrice(400000);
-    } else if (priceRange === "$400000-$600000") {
-      setMinPrice(400000);
-      setMaxPrice(600000);
-    } else if (priceRange === "$600000-$800000") {
-      setMinPrice(600000);
-      setMaxPrice(800000);
-    } else if (priceRange === "$800000-$900000") {
-      setMinPrice(800000);
-      setMaxPrice(900000);
-    } else if (priceRange === "$900000-$1000000") {
-      setMinPrice(900000);
-      setMaxPrice(1000000);
+    if (e.target.value) {
+      setPriceRange(e.target.value)
     }
   };
   return (
@@ -95,21 +60,23 @@ const Allproperties = () => {
                   onChange={handleSearch}
                   className="input md:w-full  font-semibold input-bordered border-main  rounded-full focus:border-main join-item"
                   placeholder="Search by Title"
+                  defaultValue={searchText}
                 />
               </div>
             </div>
             <select
               onChange={handlePriceSort}
+              defaultValue={priceSort}
               className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
             >
-              <option className="font-bold " disabled selected>
+              <option className="font-bold " disabled value={""}>
                 Search By Price
               </option>
-              <option>High To Low</option>
-              <option>Low To High</option>
+              <option value={"asc"}>Low To High</option>
+              <option value={"desc"}>High To Low</option>
             </select>
             <select
-              defaultValue={""}
+              defaultValue={priceRange}
               onChange={handlePriceRange}
               className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
             >

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../Auth/UseAuth/useAuth";
 
 const instance = axios.create({
-  baseURL: "https://echo-state-server.vercel.app/api",
+  baseURL: "http://localhost:5000/api",
   withCredentials: true,
 });
 
@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
   instance.interceptors.request.use(
     (config) => {
       const token = localStorage.getItem("access-token");
-      config.headers.authorization = `beared ${token}`;
+      config.headers.authorization = `bearer ${token}`;
       return config;
     },
     (error) => {
