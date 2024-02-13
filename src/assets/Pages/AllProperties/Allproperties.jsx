@@ -150,6 +150,7 @@ const Allproperties = () => {
       {properties.length === 0 && (
         <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center ">
           <img
+            loading="lazy"
             className="mx-auto"
             src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
             alt=""

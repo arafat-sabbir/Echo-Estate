@@ -9,29 +9,34 @@ const Banner = () => {
   // https://i.ibb.co/jHgyCMv/todd-carter-J8-v-XF8bpc-unsplash.jpg
   // https://i.ibb.co/ZTfGQt2/andreas-KRNVe-PAZw-Mg-unsplash.jpg
   // https://i.ibb.co/wBBx9gg/webaliser-TPTXZd9m-Oo-unsplash.jpg
-  const [searchText, setSearchText] = useState("");
-  const [priceSort, setPriceSort] = useState("");
+  const [searchText, setSearchText] = useState(null);
+  const [priceSort, setPriceSort] = useState(null);
+  const [priceRange, setPriceRange] = useState(null)
 
   const navigate = useNavigate()
 
   const handlePriceSort = (e) => {
-    const sort = e.target.value;
-    if (sort === "Low To High") {
-      setPriceSort("asc");
-    } else if (sort === "High To Low") {
-      setPriceSort("desc");
+    if (e.target.value) {
+      setPriceSort(e.target.value)
     }
   };
 
-  const handlePriceRange = () => {
-
+  const handlePriceRange = (e) => {
+    if (e.target.value) {
+      setPriceRange(e.target.value)
+    }
   }
 
-  const handleSearch = () => {
-
+  const handleSearch = (e) => {
+    if (e.target.value) {
+      setSearchText(e.target.value)
+    }
   }
 
   const handleSubmit = () => {
+    sessionStorage.setItem("priceSort", priceSort)
+    sessionStorage.setItem("priceRange", priceRange)
+    sessionStorage.setItem("searchText", searchText)
     navigate("/allProperties")
   }
 
@@ -56,8 +61,8 @@ const Banner = () => {
                 <option className="font-bold " disabled selected>
                   Search By Price
                 </option>
-                <option>High To Low</option>
-                <option>Low To High</option>
+                <option value={"asc"}>Low To High</option>
+                <option value={"desc"}>High To Low</option>
               </select>
               <div className="divider lg:divider-horizontal"></div>
               <select
@@ -68,13 +73,13 @@ const Banner = () => {
                 <option className="font-bold " disabled value={""}>
                   Search By Price Range
                 </option>
-                <option>$50000-$100000</option>
-                <option>$100000-$200000</option>
-                <option>$200000-$400000</option>
-                <option>$400000-$600000</option>
-                <option>$600000-$800000</option>
-                <option>$800000-$900000</option>
-                <option>$900000-$1000000</option>
+                <option value={"50000-100000"}>$50000-$100000</option>
+                <option value={"100000-200000"}>$100000-$200000</option>
+                <option value={"200000-400000"}>$200000-$400000</option>
+                <option value={"400000-600000"}>$400000-$600000</option>
+                <option value={"600000-800000"}>$600000-$800000</option>
+                <option value={"800000-900000"}>$800000-$900000</option>
+                <option value={"900000+"}>$900000 Or Above</option>
               </select>
               <button type="submit" className="bg-main hover:bg-white hover:text-main duration-300 transition rounded-full p-4 text-white"><HiOutlineSearch size={24} /></button>
             </form>
