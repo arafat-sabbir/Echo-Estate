@@ -7,13 +7,26 @@ import useGetUser from "../../../../../Hooks/GetUserInfo/useGetUser";
 import axios from "axios";
 import { useState } from "react";
 const AddProperty = () => {
+  // ImgbbHostingKey
   const imageHostingKey = import.meta.env.VITE_IMAGE_HOST_KEY;
+
+  // Get the axios Secure instance For Sending Token To The Server
   const axiosSecure = useAxiosSecure();
+
+  // Get the currently Logged in User Data From Database
   const { userinfo } = useGetUser();
+
+  // Get the PhotoName From User PhotoUpload
   const [photoName, setPhotoName] = useState(null);
+
+  // Get the photoFile From User PhotoUpload
   const [photo, setPhoto] = useState(null);
+
+  // User Navigate To Navigate The User
   const navigate = useNavigate();
   const imageHostingAPi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
+
+  // ImageUpload Input Handler
   const handlePhotoUpload = (e) => {
     e.preventDefault();
     console.log(e.target.files);
@@ -22,6 +35,8 @@ const AddProperty = () => {
       setPhoto({ image: e.target.files[0] })
     }
   };
+
+  // Form Submit Handler
   const {
     register,
     handleSubmit,
