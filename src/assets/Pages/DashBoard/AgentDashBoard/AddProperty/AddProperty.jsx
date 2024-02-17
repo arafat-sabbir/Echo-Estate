@@ -74,6 +74,7 @@ const AddProperty = () => {
         toast.error(error, { id: toastId })
       })
   };
+  const categoryOptions = ["Commercial", "Office", "Shop", "Residential", "Apartment", "Condo", "Multi Family House", "Single Family House", "Studio", "Other"]
   return (
     <Container>
       <div className="  rounded-xl mt-24 ">
@@ -179,47 +180,46 @@ const AddProperty = () => {
           {/* Property Category */}
           <div>
             <h1 className="font-semibold my-4">Select Categories</h1>
-            <div className="input-container ">
+            <div className="input-container">
               <select
-                className="select-input input-form"
+                className="select-input flex-1"
               >
                 <option className="font-bold " disabled value={""}>
-                  Search By Price
+                  Category
                 </option>
-                <option value={"All"}>All</option>
-                <option value={"asc"}>Low To High</option>
-                <option value={"desc"}>High To Low</option>
+                {categoryOptions?.map((category, index) => <option key={index} value={category}>{category}</option>)}
               </select>
               <select
-                className="select-input input-form"
+                className="select-input flex-1"
               >
                 <option className="font-bold " disabled value={""}>
-                  Search By Price
+                  Listed On
                 </option>
-                <option value={"All"}>All</option>
-                <option value={"asc"}>Low To High</option>
-                <option value={"desc"}>High To Low</option>
+                <option value={"rent"}>For Rent</option>
+                <option value={"sell"}>For Sell</option>
               </select>
             </div>
           </div>
           {/* Property Location */}
-          <div className="input-container">
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Property Location</span>
-              </label>
-              <input
-                type="text"
-                name="location"
-                placeholder="Property Location"
-                className="input-field"
-                {...register("propertyLocation", { required: true })}
-              />
-              {errors.propertyLocation && (
-                <p className="text-red-500 mt-4">Please Add Property Location</p>
-              )}
+          <div >
+            <h1 className="font-semibold my-4">Property Location</h1>
+            <div className="input-container">
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Property Location</span>
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Property Location"
+                  className="input-field"
+                  {...register("propertyLocation", { required: true })}
+                />
+                {errors.propertyLocation && (
+                  <p className="text-red-500 mt-4">Please Add Property Location</p>
+                )}
+              </div>
             </div>
-
             <label className="label">
               <span className="label-text">Photo</span>
             </label>
@@ -236,7 +236,6 @@ const AddProperty = () => {
                 className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
               />
             </div>
-
           </div>
 
           <div className="input-container">
