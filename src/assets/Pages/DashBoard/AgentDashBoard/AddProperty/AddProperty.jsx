@@ -461,12 +461,13 @@ const AddProperty = () => {
                 )}
               </div><div className="input-form">
                 <label className="label">
-                  <span className="label-text">Latitude (for Google Maps)</span>
+                  <span className="label-text">
+                    Estimated Taxes (*text)</span>
                 </label>
                 <input
                   type="number"
                   name="location"
-                  placeholder="Latitude (for Google Maps)"
+                  placeholder="Estimated Taxes (*text)"
                   className="input-field"
                   {...register("minPrice", { required: true })}
                 />
