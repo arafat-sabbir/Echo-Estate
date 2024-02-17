@@ -154,7 +154,7 @@ const AddProperty = () => {
     "Rangpur Division",
     "Mymensingh Division"
   ];
-  
+
 
 
   return (
@@ -300,7 +300,17 @@ const AddProperty = () => {
                 <p className="text-red-500 mt-4">Please Add Property Address</p>
               )}
             </div>
+            {/* Division And District */}
             <div className="input-container">
+              <select
+                className="select-input flex-1"
+                defaultValue={"Upazila"}
+              >
+                <option className="font-bold " disabled value={"Upazila"}>
+                  Select Division
+                </option>
+                {divisions?.map((division, index) => <option key={index} value={division}>{division}</option>)}
+              </select>
               <select
                 className="select-input flex-1 my-4"
                 defaultValue={"Districts"}
@@ -310,6 +320,10 @@ const AddProperty = () => {
                 </option>
                 {districts?.map((district, index) => <option key={index} value={district}>{district}</option>)}
               </select>
+
+            </div>
+            {/* Upozilla And Zip */}
+            <div className="input-container">
               <select
                 className="select-input flex-1"
                 defaultValue={"Upazila"}
@@ -319,36 +333,48 @@ const AddProperty = () => {
                 </option>
                 {upazilas?.map((upazila, index) => <option key={index} value={upazila}>{upazila}</option>)}
               </select>
+              {/* zip */}
+              <input
+                type="number"
+                name="location"
+                placeholder="Property Location"
+                className="input-field flex-1"
+                {...register("zip", { required: true })}
+              />
+              {errors.zip && (
+                <p className="text-red-500 mt-4">Add A Zip Code</p>
+              )}
             </div>
-            <div className="input-container">
+            {/* Longitutue and Latitude */}
+            <div className="input-container my-4">
               <div className="input-form">
                 <label className="label">
-                  <span className="label-text">Zip Code</span>
+                  <span className="label-text">Latitude (for Google Maps)</span>
                 </label>
                 <input
                   type="number"
                   name="location"
-                  placeholder="Property Location"
+                  placeholder="Latitude (for Google Maps)"
                   className="input-field"
-                  {...register("zip", { required: true })}
+                  {...register("minPrice", { required: true })}
                 />
-                {errors.zip && (
-                  <p className="text-red-500 mt-4">Add A Zip Code</p>
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
                 )}
               </div>
               <div className="input-form">
                 <label className="label">
-                  <span className="label-text">Property Location</span>
+                  <span className="label-text">Longitude (for Google Maps)</span>
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="location"
-                  placeholder="Property Location"
+                  placeholder="Longitude (for Google Maps)"
                   className="input-field"
-                  {...register("propertyLocation", { required: true })}
+                  {...register("minPrice", { required: true })}
                 />
-                {errors.propertyLocation && (
-                  <p className="text-red-500 mt-4">Please Add Property Location</p>
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
                 )}
               </div>
             </div>
@@ -369,49 +395,6 @@ const AddProperty = () => {
               name="email"
               className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
             />
-          </div>
-
-          <div className="input-container">
-
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Agent Name</span>
-              </label>
-              <input
-                type="text"
-                defaultValue={userinfo.name}
-                name="location"
-                disabled={true}
-                className="input-field"
-              />
-            </div>
-
-          </div>
-          <div className="input-container">
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Agent Email</span>
-              </label>
-              <input
-                type="text"
-                defaultValue={userinfo.email}
-                name="location"
-                disabled={true}
-                className="input-field"
-              />
-            </div>
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Agent Email</span>
-              </label>
-              <input
-                type="text"
-                defaultValue={userinfo.email}
-                name="location"
-                disabled={true}
-                className="input-field"
-              />
-            </div>
           </div>
           {/* Add Property Button */}
           <button
