@@ -75,6 +75,88 @@ const AddProperty = () => {
       })
   };
   const categoryOptions = ["Commercial", "Office", "Shop", "Residential", "Apartment", "Condo", "Multi Family House", "Single Family House", "Studio", "Other"]
+
+  const districts = [
+    "Dhaka", "Mymensingh", "Tangail", "Gazipur", "Manikganj", "Munshiganj", "Narayanganj", "Narsingdi",
+    "Rajbari", "Faridpur", "Gopalganj", "Madaripur", "Shariatpur", "Chandpur", "Brahmanbaria", "Comilla",
+    "Feni", "Khagrachari", "Lakshmipur", "Noakhali", "Rangamati", "Bandarban", "Chittagong", "Cox's Bazar",
+    "Rangamati", "Khulna", "Bagerhat", "Chuadanga", "Jessore", "Jhenaidah", "Khulna", "Kushtia", "Magura",
+    "Meherpur", "Narail", "Satkhira", "Barisal", "Barguna", "Bhola", "Jhalokati", "Patuakhali", "Pirojpur",
+    "Bogra", "Joypurhat", "Naogaon", "Natore", "Chapainawabganj", "Pabna", "Rajshahi", "Sirajganj", "Dinajpur",
+    "Gaibandha", "Kurigram", "Lalmonirhat", "Nilphamari", "Panchagarh", "Rangpur", "Thakurgaon", "Habiganj",
+    "Moulvibazar", "Sylhet", "Sunamganj", "Jamalpur", "Sherpur"
+  ]
+
+  const upazilas = [
+    "Dhaka", "Gazipur", "Gopalganj", "Kishoreganj", "Madaripur", "Manikganj", "Munshiganj", "Narayanganj", "Narsingdi", "Rajbari",
+    "Shariatpur", "Tangail", "Dhamrai", "Dohar", "Keraniganj", "Nawabganj", "Savar", "Tongi", "Bhairab", "Bajitpur",
+    "Belabo", "Monohardi", "Nandail", "Pakundia", "Tarail", "Araihazar", "Bandar", "Narayanganj Sadar", "Rupganj", "Siddhirganj",
+    "Sonargaon", "Bhanga", "Faridpur Sadar", "Madhukhali", "Nagarkanda", "Sadarpur", "Alfadanga", "Kotalipara", "Gopalganj Sadar", "Maksudpur",
+    "Tungipara", "Bajitpur", "Itna", "Karimganj", "Katiadi", "Kishoreganj Sadar", "Kuliarchar", "Mithamain", "Nikli", "Pakundia",
+    "Tarail", "Madaripur Sadar", "Rajoir", "Shibchar", "Manikganj Sadar", "Shibalaya", "Singair", "Saturia", "Daulatpur", "Gangni",
+    "Harirampur", "Kamarkhanda", "Baliakandi", "Ghior", "Kalukhali", "Rajbari Sadar", "Naria", "Zajira", "Ghatail", "Gopalpur",
+    "Kalihati", "Madhupur", "Mirzapur", "Nagarpur", "Sakhipur", "Basail", "Bhuapur", "Delduar", "Ghatail", "Gopalpur",
+    "Kalihati", "Madhupur", "Mirzapur", "Nagarpur", "Sakhipur", "Banaripara", "Gaurnadi", "Gopalganj Sadar", "Kotalipara", "Muksudpur",
+    "Jamalpur", "Mymensingh", "Netrokona", "Sherpur", "Austagram", "Bhaluka", "Gaffargaon", "Gauripur", "Haluaghat", "Isshorgonj",
+    "Muktagachha", "Nandail", "Phulpur", "Tarakanda", "Araihazar", "Bajitpur", "Bhairab", "Hossainpur", "Itna", "Karimganj",
+    "Katiadi", "Kuliarchar", "Mithamain", "Nikli", "Pakundia", "Sarail", "Bhaluka", "Dhobaura", "Fulbaria", "Gafargaon",
+    "Gauripur", "Haluaghat", "Ishwarganj", "Mymensingh Sadar", "Nandail", "Trishal", "Bhaluka", "Dhobaura", "Fulbaria", "Gafargaon",
+    "Gauripur", "Gouripur", "Haluaghat", "Ishwarganj", "Muktagachha", "Myemensingh Sadar", "Nandail", "Phulpur", "Tarail", "Trishal",
+    "Austagram", "Bajitpur", "Bhairab", "Hossainpur", "Itna", "Karimganj", "Katiadi", "Kuliarchar", "Mithamain", "Nikli",
+    "Pakundia", "Raipura", "Shibpur", "Tengail",
+    "Bandarban Sadar", "Lama", "Alikadam", "Rowangchhari", "Ruma", "Thanchi", "Naikhongchhari", "Bandarban Sadar", "Lama", "Alikadam",
+    "Rowangchhari", "Ruma", "Thanchi", "Naikhongchhari", "Bancharampur", "Brahmanpara", "Burichong", "Chandina", "Chauddagram", "Daudkandi",
+    "Debidwar", "Homna", "Barura", "Muradnagar", "Nangalkot", "Comilla Adarsha Sadar", "Chandina", "Chauddagram", "Daudkandi", "Debidwar",
+    "Homna", "Laksam", "Muradnagar", "Nangalkot", "Barura", "Brahmanpara", "Burichang", "Comilla Sadar Dakshin", "Comilla Sadar Uttar", "Daudkandi",
+    "Muradnagar", "Nangalkot", "Barura", "Brahmanpara", "Burichong", "Chandina", "Chauddagram", "Debidwar", "Homna", "Laksam",
+    "Monohorgonj", "Comilla Sadar Dakshin", "Chandina", "Daudkandi", "Muradnagar", "Nangalkot", "Barura", "Brahmanpara", "Burichong", "Chandina",
+    "Chauddagram", "Daudkandi", "Debidwar", "Homna", "Laksam", "Muradnagar", "Nangalkot", "Titas", "Daganbhuiyan", "Feni Sadar", "Parshuram",
+    "Sonagazi", "Chhagalnaiya", "Daganbhuiyan", "Fulgazi", "Parshuram", "Sonagazi", "Feni Sadar", "Chhagalnaiya", "Daganbhuiyan", "Fulgazi",
+    "Parshuram", "Sonagazi", "Belabo", "Monohardi", "Nandail", "Pakundia", "Tarail",
+    "Bagerhat Sadar", "Chitalmari", "Fakirhat", "Kachua", "Mollahat", "Mongla", "Morrelganj", "Rampal", "Sarankhola", "Bagerhat Sadar",
+    "Chitalmari", "Fakirhat", "Kachua", "Mollahat", "Mongla", "Morrelganj", "Rampal", "Sarankhola", "Bagerhat Sadar", "Chitalmari",
+    "Fakirhat", "Kachua", "Mollahat", "Mongla", "Morrelganj", "Rampal", "Sarankhola", "Fultala", "Morelganj", "Paikgachha",
+    "Rupsa", "Chuadanga Sadar", "Alamdanga", "Damurhuda", "Doulatganj", "Jessore Sadar", "Bagherpara", "Chaugachha", "Jessore Sadar", "Jhikargachha",
+    "Keshabpur", "Manirampur", "Abhaynagar", "Chuadanga Sadar", "Alamdanga", "Damurhuda", "Doulatganj", "Jhikargachha", "Keshabpur", "Jessore Sadar",
+    "Bagherpara", "Chaugachha", "Jhikargachha", "Keshabpur", "Manirampur", "Bheramara", "Khoksa", "Kumarkhali", "Kushtia Sadar", "Daulatpur",
+    "Kumarkhali", "Kushtia Sadar", "Mirpur", "Daulatpur", "Kumarkhali", "Kushtia Sadar", "Mirpur", "Jhenaidah Sadar", "Kaliganj",
+    "Barguna Sadar", "Amtali", "Bamna", "Barguna Sadar", "Amtali", "Bamna", "Barguna Sadar", "Amtali", "Bamna", "Barguna Sadar",
+    "Amtali", "Bamna", "Betagi", "Patharghata", "Barisal Sadar", "Agailjhara", "Babuganj", "Bakerganj", "Banari Para", "Gaurnadi",
+    "Hizla", "Mehendiganj", "Muladi", "Wazirpur", "Muladi", "Barisal Sadar", "Babuganj", "Bakerganj", "Banari Para", "Gaurnadi",
+    "Hizla", "Mehendiganj", "Wazirpur", "Bhola Sadar", "Burhanuddin", "Char Fasson", "Daulatkhan", "Lalmohan", "Manpura", "Tazumuddin",
+    "Bakerganj", "Banari Para", "Gaurnadi", "Hizla", "Mehendiganj", "Muladi", "Wazirpur",
+    "Adamdighi", "Bogra Sadar", "Dhunat", "Dhupchanchia", "Gabhindrapur", "Kahaloo", "Nandigram", "Sariakandi", "Shibganj", "Sonatola",
+    "Akkelpur", "Bogra Sadar", "Dupchachia", "Gurudaspur", "Kahaloo", "Nandigram", "Sherpur", "Shibganj", "Sonatala", "Sariakandi",
+    "Bogra Sadar", "Dupchachia", "Gabtali", "Kahaloo", "Nandigram", "Sariakandi", "Sherpur", "Shibganj", "Sonatala", "Bholahat",
+    "Gomastapur", "Nachole", "Nawabganj Sadar", "Shibganj", "Akkelpur", "Gomastapur", "Nawabganj Sadar", "Shibganj", "Akkelpur", "Gomastapur",
+    "Nawabganj Sadar", "Shibganj", "Godagari", "Mohanpur", "Paba", "Rajshahi Sadar", "Bagha", "Bagmara", "Charghat", "Durgapur",
+    "Godagari", "Mohanpur", "Paba", "Tanore", "Bagha", "Bagmara", "Charghat", "Durgapur", "Godagari", "Mohanpur", "Paba",
+    "Tanore", "Boalia", "Matihar", "Rajpara", "Shah Mokhdum",
+    "Badarganj", "Mithapukur", "Pirganj", "Rangpur Sadar", "Taraganj", "Gangachara", "Kaunia", "Pirgachha", "Pirganj", "Rangpur Sadar",
+    "Taraganj", "Badarganj", "Mithapukur", "Rangpur Sadar", "Kaunia", "Gangachara", "Pirgachha", "Rangpur Sadar", "Pirganj", "Mithapukur",
+    "Rangpur Sadar", "Badarganj", "Taraganj", "Pirganj", "Badarganj", "Mithapukur", "Pirganj", "Rangpur Sadar", "Taraganj", "Gangachara",
+    "Kaunia", "Pirgachha", "Biral", "Dimla", "Domar", "Jaldhaka", "Kishoreganj", "Nilphamari Sadar", "Saidpur", "Syedpur",
+    "Baliadangi", "Haripur", "Panchagarh Sadar", "Tetulia", "Atwari", "Boda", "Panchagarh Sadar", "Tetulia", "Boda", "Debiganj",
+    "Panchagarh Sadar", "Tetulia", "Boda", "Debiganj", "Panchagarh Sadar", "Tetulia",
+    "Balaganj", "Beanibazar", "Bishwanath", "Companiganj", "Fenchuganj", "Golapganj", "Gowainghat", "Jaintiapur", "Kanaighat", "Sylhet Sadar",
+    "Zakiganj", "Balaganj", "Beanibazar", "Bishwanath", "Companiganj", "Fenchuganj", "Golapganj", "Gowainghat", "Jaintiapur", "Kanaighat",
+    "Sylhet Sadar", "Zakiganj", "Dakshin Surma", "Golapganj", "Jaintiapur", "Kanaighat", "South Surma", "Sylhet Sadar", "Bianibazar",
+    "Golapganj", "Jaintiapur", "South Surma", "Zakiganj", "Bianibazar", "Golapganj", "Jaintiapur", "South Surma", "Zakiganj"
+  ]
+
+  const divisions = [
+    "Dhaka Division",
+    "Chattogram Division",
+    "Khulna Division",
+    "Rajshahi Division",
+    "Barishal Division",
+    "Sylhet Division",
+    "Rangpur Division",
+    "Mymensingh Division"
+  ];
+  
+
+
   return (
     <Container>
       <div className="  rounded-xl mt-24 ">
@@ -219,51 +301,39 @@ const AddProperty = () => {
               )}
             </div>
             <div className="input-container">
-              <div className="input-form">
-                <label className="label">
-                  <span className="label-text">Property Location</span>
-                </label>
-                <input
-                  type="text"
-                  name="location"
-                  placeholder="Property Location"
-                  className="input-field"
-                  {...register("propertyLocation", { required: true })}
-                />
-                {errors.propertyLocation && (
-                  <p className="text-red-500 mt-4">Please Add Property Location</p>
-                )}
-              </div>
-              <div className="input-form">
-                <label className="label">
-                  <span className="label-text">District</span>
-                </label>
-                <input
-                  type="text"
-                  name="location"
-                  placeholder="Property Location"
-                  className="input-field"
-                  {...register("propertyLocation", { required: true })}
-                />
-                {errors.propertyLocation && (
-                  <p className="text-red-500 mt-4">Please Add Property Location</p>
-                )}
-              </div>
+              <select
+                className="select-input flex-1 my-4"
+                defaultValue={"Districts"}
+              >
+                <option className="font-bold " disabled value={"Districts"}>
+                  Select Districts
+                </option>
+                {districts?.map((district, index) => <option key={index} value={district}>{district}</option>)}
+              </select>
+              <select
+                className="select-input flex-1"
+                defaultValue={"Upazila"}
+              >
+                <option className="font-bold " disabled value={"Upazila"}>
+                  Select Upazila
+                </option>
+                {upazilas?.map((upazila, index) => <option key={index} value={upazila}>{upazila}</option>)}
+              </select>
             </div>
             <div className="input-container">
               <div className="input-form">
                 <label className="label">
-                  <span className="label-text">Property Location</span>
+                  <span className="label-text">Zip Code</span>
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="location"
                   placeholder="Property Location"
                   className="input-field"
-                  {...register("propertyLocation", { required: true })}
+                  {...register("zip", { required: true })}
                 />
-                {errors.propertyLocation && (
-                  <p className="text-red-500 mt-4">Please Add Property Location</p>
+                {errors.zip && (
+                  <p className="text-red-500 mt-4">Add A Zip Code</p>
                 )}
               </div>
               <div className="input-form">
@@ -342,14 +412,6 @@ const AddProperty = () => {
                 className="input-field"
               />
             </div>
-          </div>
-          <div>
-            <label className="form-control">
-              <div className="label">
-                <span className="label-text">Property Description</span>
-              </div>
-              <textarea className="textarea textarea-bordered h-24" placeholder="Pr"></textarea>
-            </label>
           </div>
           {/* Add Property Button */}
           <button
