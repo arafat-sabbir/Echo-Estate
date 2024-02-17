@@ -83,7 +83,7 @@ const AddProperty = () => {
         >
           {/* Property Description */}
           <div>
-            <h3 className="font-semibold mb-2">Property Description</h3>
+            <h3 className="font-semibold mb-4">Property Description</h3>
             <div className="input-form">
               <label className="label">
                 <span className="label-text">Property Title</span>
@@ -108,71 +108,75 @@ const AddProperty = () => {
             </label>
           </div>
           {/* Property Prices */}
-          <div className="input-container">
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Min Price</span>
-              </label>
-              <input
-                type="number"
-                name="location"
-                placeholder="min Price"
-                className="input-field"
-                {...register("minPrice", { required: true })}
-              />
-              {errors.minPrice && (
-                <p className="text-red-500 mt-4">Please Add a Min Price</p>
-              )}
-            </div>
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Max Price</span>
-              </label>
-              <input
-                type="number"
-                name="location"
-                placeholder="max Price"
-                className="input-field"
-                {...register("maxPrice", { required: true })}
-              />
-              {errors.maxPrice && (
-                <p className="text-red-500 mt-4">Please Add a Max Price</p>
-              )}
-            </div>
+          <div >
+            <h1 className="font-semibold my-4">Property Prices</h1>
+            <div className="input-container">
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Min Price</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="min Price"
+                  className="input-field"
+                  {...register("minPrice", { required: true })}
+                />
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                )}
+              </div>
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Max Price</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="max Price"
+                  className="input-field"
+                  {...register("maxPrice", { required: true })}
+                />
+                {errors.maxPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Max Price</p>
+                )}
+              </div>
 
-          </div>
-          <div className="input-container">
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Monthly Rent</span>
-              </label>
-              <input
-                type="number"
-                name="location"
-                placeholder="min Price"
-                className="input-field"
-                {...register("minPrice", { required: true })}
-              />
-              {errors.minPrice && (
-                <p className="text-red-500 mt-4">Please Add a Min Price</p>
-              )}
             </div>
-            <div className="input-form">
-              <label className="label">
-                <span className="label-text">Yearly Tex</span>
-              </label>
-              <input
-                type="number"
-                name="location"
-                placeholder="max Price"
-                className="input-field"
-                {...register("maxPrice", { required: true })}
-              />
-              {errors.maxPrice && (
-                <p className="text-red-500 mt-4">Please Add a Max Price</p>
-              )}
+            <div className="input-container">
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Homeowners Association Fee(monthly)</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="min Price"
+                  className="input-field"
+                  {...register("associationFee", { required: true })}
+                />
+                {errors.associationFee && (
+                  <p className="text-red-500 mt-4">Homeowners Association Fee(monthly)</p>
+                )}
+              </div>
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Yearly Tax</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="max Price"
+                  className="input-field"
+                  {...register("yearlyTax", { required: true })}
+                />
+                {errors.yearlyTax && (
+                  <p className="text-red-500 mt-4">Please Add a Yearly Tax Rate</p>
+                )}
+              </div>
             </div>
           </div>
+          {/* Property Category */}
           {/* Property Location */}
           <div className="input-container">
             <div className="input-form">
