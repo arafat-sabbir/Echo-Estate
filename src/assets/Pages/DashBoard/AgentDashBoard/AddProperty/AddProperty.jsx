@@ -203,6 +203,21 @@ const AddProperty = () => {
           {/* Property Location */}
           <div >
             <h1 className="font-semibold my-4">Property Location</h1>
+            <div className="input-form">
+              <label className="label">
+                <span className="label-text">Address</span>
+              </label>
+              <input
+                type="text"
+                name="location"
+                placeholder="Enter Address"
+                className="input-field"
+                {...register("address", { required: true })}
+              />
+              {errors.address && (
+                <p className="text-red-500 mt-4">Please Add Property Address</p>
+              )}
+            </div>
             <div className="input-container">
               <div className="input-form">
                 <label className="label">
@@ -219,23 +234,71 @@ const AddProperty = () => {
                   <p className="text-red-500 mt-4">Please Add Property Location</p>
                 )}
               </div>
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">District</span>
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Property Location"
+                  className="input-field"
+                  {...register("propertyLocation", { required: true })}
+                />
+                {errors.propertyLocation && (
+                  <p className="text-red-500 mt-4">Please Add Property Location</p>
+                )}
+              </div>
             </div>
-            <label className="label">
-              <span className="label-text">Photo</span>
+            <div className="input-container">
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Property Location</span>
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Property Location"
+                  className="input-field"
+                  {...register("propertyLocation", { required: true })}
+                />
+                {errors.propertyLocation && (
+                  <p className="text-red-500 mt-4">Please Add Property Location</p>
+                )}
+              </div>
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Property Location</span>
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Property Location"
+                  className="input-field"
+                  {...register("propertyLocation", { required: true })}
+                />
+                {errors.propertyLocation && (
+                  <p className="text-red-500 mt-4">Please Add Property Location</p>
+                )}
+              </div>
+            </div>
+          </div>
+          {/*  */}
+          <label className="label">
+            <span className="label-text">Photo</span>
+          </label>
+          <div className="relative w-full">
+            <label className="label absolute -z-1 input pt-2 opacity-100  input-bordered  hover:bg-gray-100 border-dashed border-main focus:border-main w-full ">
+              <span className="label-text ">{photoName || 'Choose Property Picture'}</span>
             </label>
-            <div className="relative w-full">
-              <label className="label absolute -z-1 input pt-2 opacity-100  input-bordered  hover:bg-gray-100 border-dashed border-main focus:border-main w-full ">
-                <span className="label-text ">{photoName || 'Choose Property Picture'}</span>
-              </label>
-              <input
-                onChange={handlePhotoUpload}
-                accept="images/*"
-                type="file"
-                placeholder="upload your Photo"
-                name="email"
-                className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
-              />
-            </div>
+            <input
+              onChange={handlePhotoUpload}
+              accept="images/*"
+              type="file"
+              placeholder="upload your Photo"
+              name="email"
+              className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
+            />
           </div>
 
           <div className="input-container">
