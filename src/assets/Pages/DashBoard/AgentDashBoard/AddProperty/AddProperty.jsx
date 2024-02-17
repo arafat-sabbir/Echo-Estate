@@ -380,21 +380,101 @@ const AddProperty = () => {
             </div>
           </div>
           {/*  */}
-          <label className="label">
-            <span className="label-text">Photo</span>
-          </label>
-          <div className="relative w-full">
-            <label className="label absolute -z-1 input pt-2 opacity-100  input-bordered  hover:bg-gray-100 border-dashed border-main focus:border-main w-full ">
-              <span className="label-text ">{photoName || 'Choose Property Picture'}</span>
-            </label>
-            <input
-              onChange={handlePhotoUpload}
-              accept="images/*"
-              type="file"
-              placeholder="upload your Photo"
-              name="email"
-              className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
-            />
+          <div>
+            <h1 className="font-semibold my-4">Property Detail</h1>
+            <div className="input-container">
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Size in ft2 (*only numbers)</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="Size in ft2 (*only numbers)"
+                  className="input-field"
+                  {...register("minPrice", { required: true })}
+                />
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                )}
+              </div><div className="input-form">
+                <label className="label">
+                  <span className="label-text">Rooms (*only numbers)</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="Rooms (*only numbers)"
+                  className="input-field"
+                  {...register("minPrice", { required: true })}
+                />
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                )}
+              </div>
+            </div>
+            <div className="input-container">
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Bedrooms (*only numbers)</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="Bedrooms (*only numbers)"
+                  className="input-field"
+                  {...register("minPrice", { required: true })}
+                />
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                )}
+              </div><div className="input-form">
+                <label className="label">
+                  <span className="label-text">Bathrooms (*only numbers)</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="Bathrooms (*only numbers)"
+                  className="input-field"
+                  {...register("minPrice", { required: true })}
+                />
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                )}
+              </div>
+            </div>
+            <div className="input-container">
+              <div className="input-form">
+                <label className="label">
+                  <span className="label-text">Year Built (*numeric)</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="Year Built (*numeric)"
+                  className="input-field"
+                  {...register("minPrice", { required: true })}
+                />
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                )}
+              </div><div className="input-form">
+                <label className="label">
+                  <span className="label-text">Latitude (for Google Maps)</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="Latitude (for Google Maps)"
+                  className="input-field"
+                  {...register("minPrice", { required: true })}
+                />
+                {errors.minPrice && (
+                  <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                )}
+              </div>
+            </div>
           </div>
           {/* Add Property Button */}
           <button
