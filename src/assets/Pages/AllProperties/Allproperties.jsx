@@ -58,7 +58,7 @@ const Allproperties = () => {
             <select
               onChange={(e) => setPriceSort(e.target.value)}
               defaultValue={priceSort}
-              className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
+              className="select-input"
             >
               <option className="font-bold " disabled value={""}>
                 Search By Price
@@ -70,7 +70,7 @@ const Allproperties = () => {
             <select
               defaultValue={priceRange}
               onChange={(e) => setPriceRange(e.target.value)}
-              className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
+              className="select-input"
             >
               <option className="font-bold " value={""} disabled>
                 Search By Price Range

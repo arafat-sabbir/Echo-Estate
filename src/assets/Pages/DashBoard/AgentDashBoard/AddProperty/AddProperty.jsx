@@ -177,6 +177,31 @@ const AddProperty = () => {
             </div>
           </div>
           {/* Property Category */}
+          <div>
+            <h1 className="font-semibold my-4">Select Categories</h1>
+            <div className="input-container ">
+              <select
+                className="select-input input-form"
+              >
+                <option className="font-bold " disabled value={""}>
+                  Search By Price
+                </option>
+                <option value={"All"}>All</option>
+                <option value={"asc"}>Low To High</option>
+                <option value={"desc"}>High To Low</option>
+              </select>
+              <select
+                className="select-input input-form"
+              >
+                <option className="font-bold " disabled value={""}>
+                  Search By Price
+                </option>
+                <option value={"All"}>All</option>
+                <option value={"asc"}>Low To High</option>
+                <option value={"desc"}>High To Low</option>
+              </select>
+            </div>
+          </div>
           {/* Property Location */}
           <div className="input-container">
             <div className="input-form">
