@@ -1,18 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
+
+.input-container {
+  @apply lg:flex gap-2;
+}
+.input-form{
+  @apply form-control flex-1
+}
+
+.input-field{
+  @apply input input-bordered bg-white border-dashed border-main focus:border-main
+}
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .active {
   color: white !important;
-  background-color: #BC8664 !important;
+  background-color: #bc8664 !important;
   font-weight: 600;
   border-radius: 20px !important;
 }

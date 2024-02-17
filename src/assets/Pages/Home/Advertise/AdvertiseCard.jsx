@@ -1,4 +1,4 @@
-import { FaCheck, FaLocationDot } from "react-icons/fa6";
+import {  FaLocationDot } from "react-icons/fa6";
 import { MdOutlineVerified } from "react-icons/md";
 import { Link } from "react-router-dom";
 

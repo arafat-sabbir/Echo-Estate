@@ -9,29 +9,12 @@ const Banner = () => {
   // https://i.ibb.co/jHgyCMv/todd-carter-J8-v-XF8bpc-unsplash.jpg
   // https://i.ibb.co/ZTfGQt2/andreas-KRNVe-PAZw-Mg-unsplash.jpg
   // https://i.ibb.co/wBBx9gg/webaliser-TPTXZd9m-Oo-unsplash.jpg
-  const [searchText, setSearchText] = useState(" ");
-  const [priceSort, setPriceSort] = useState(" ");
-  const [priceRange, setPriceRange] = useState(" ")
+  const [searchText, setSearchText] = useState("Search By Property Title");
+  const [priceSort, setPriceSort] = useState("All");
+  const [priceRange, setPriceRange] = useState("All")
 
   const navigate = useNavigate()
 
-  const handlePriceSort = (e) => {
-    if (e.target.value) {
-      setPriceSort(e.target.value)
-    }
-  };
-
-  const handlePriceRange = (e) => {
-    if (e.target.value) {
-      setPriceRange(e.target.value)
-    }
-  }
-
-  const handleSearch = (e) => {
-    if (e.target.value) {
-      setSearchText(e.target.value)
-    }
-  }
 
   const handleSubmit = () => {
     if (searchText || priceRange || priceSort) {
@@ -50,14 +33,14 @@ const Banner = () => {
             <form onSubmit={handleSubmit} className="join w-full flex justify-center items-center justify-items-center bg-white p-4 shadow-[0_0_20px_#C4C4C4] rounded-full">
               <div className="w-1/2">
                 <input
-                  onChange={handleSearch}
+                  onChange={(e)=> setSearchText(e.target.value)}
                   className="input md:w-full placeholder:text-black border-none  font-semibold input-bordered rounded-full   focus:outline-none"
                   placeholder="Search by Title"
                 />
               </div>
               <div className="divider lg:divider-horizontal"></div>
               <select
-                onChange={handlePriceSort}
+                onChange={(e)=> setPriceSort(e.target.value)}
                 className="select  lg:w-auto w-[20vw] focus:border-none  font-bold focus:outline-none  rounded-full  join-item"
               >
                 <option className="font-bold " disabled selected>
@@ -69,10 +52,10 @@ const Banner = () => {
               <div className="divider lg:divider-horizontal"></div>
               <select
                 defaultValue={""}
-                onChange={handlePriceRange}
+                onChange={(e)=>setPriceRange(e.target.value)}
                 className="select  lg:w-auto w-[20vw] focus:outline-none focus:border-none font-bold rounded-full  join-item"
               >
-                <option className="font-bold " disabled value={""}>
+                <option className="font-bold " value={""} disabled>
                   Search By Price Range
                 </option>
                 <option value={"50000-100000"}>$50000-$100000</option>
@@ -81,7 +64,7 @@ const Banner = () => {
                 <option value={"400000-600000"}>$400000-$600000</option>
                 <option value={"600000-800000"}>$600000-$800000</option>
                 <option value={"800000-900000"}>$800000-$900000</option>
-                <option value={"900000+"}>$900000 Or Above</option>
+                <option value={"900000-+"}>$900000 Or Above</option>
               </select>
               <button type="submit" className="bg-main hover:bg-white hover:text-main duration-300 transition rounded-full p-4 text-white"><HiOutlineSearch size={24} /></button>
             </form>

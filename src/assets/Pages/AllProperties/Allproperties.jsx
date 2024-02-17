@@ -11,14 +11,13 @@ import ScrollToTop from "../../../Utils/ScroolToTop/ScrollToTop";
 const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
   // Get the searchText priceSort priceRange Value From SessionalStorage
-  const [searchText, setSearchText] = useState(sessionStorage.getItem("searchText") || "");
-  const [priceSort, setPriceSort] = useState(sessionStorage.getItem("priceSort") || "");
-  const [priceRange, setPriceRange] = useState(sessionStorage.getItem("priceRange") || "")
+  const [searchText, setSearchText] = useState(sessionStorage.getItem("searchText") || "Search By Property Title");
+  const [priceSort, setPriceSort] = useState(sessionStorage.getItem("priceSort") || "All");
+  const [priceRange, setPriceRange] = useState(sessionStorage.getItem("priceRange") || "All")
   useEffect(() => {
     ScrollToTop()
     sessionStorage.clear()
   }, [])
-  console.log("priceRange", priceRange, "priceSort", priceSort, "searchText", searchText);
   const {
     data: properties = [],
     isLoading,
@@ -32,18 +31,7 @@ const Allproperties = () => {
       return res.data;
     },
   });
-  const handleSearch = (e) => {
-    const searchText = e.target.value;
-    setSearchText(searchText);
-  };
-  const handlePriceSort = (e) => {
-    setPriceSort(e.target.value)
-  };
-  const handlePriceRange = (e) => {
-    if (e.target.value) {
-      setPriceRange(e.target.value)
-    }
-  };
+  console.log("search",searchText);
   return (
     <>
       <div className="mb-10 lg:mt-[100px] container mx-auto p-4">
@@ -59,39 +47,42 @@ const Allproperties = () => {
             <div className="w-full">
               <div className="w-full">
                 <input
-                  onChange={handleSearch}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder={"Search By Property Title"}
+                 defaultValue={`${searchText!=="Search By Property Title"?searchText:""}`}
                   className="input md:w-full  font-semibold input-bordered border-main  rounded-full focus:border-main join-item"
-                  placeholder="Search by Title"
-                  defaultValue={searchText}
+
                 />
               </div>
             </div>
             <select
-              onChange={handlePriceSort}
+              onChange={(e) => setPriceSort(e.target.value)}
               defaultValue={priceSort}
               className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
             >
               <option className="font-bold " disabled value={""}>
                 Search By Price
               </option>
+              <option value={"All"}>All</option>
               <option value={"asc"}>Low To High</option>
               <option value={"desc"}>High To Low</option>
             </select>
             <select
               defaultValue={priceRange}
-              onChange={handlePriceRange}
+              onChange={(e) => setPriceRange(e.target.value)}
               className="select select-bordered lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-full  join-item"
             >
-              <option className="font-bold " disabled value={""}>
+              <option className="font-bold " value={""} disabled>
                 Search By Price Range
               </option>
+              <option value={"All"}>All</option>
               <option value={"50000-100000"}>$50000-$100000</option>
               <option value={"100000-200000"}>$100000-$200000</option>
               <option value={"200000-400000"}>$200000-$400000</option>
               <option value={"400000-600000"}>$400000-$600000</option>
               <option value={"600000-800000"}>$600000-$800000</option>
               <option value={"800000-900000"}>$800000-$900000</option>
-              <option value={"900000+"}>$900000 Or Above</option>
+              <option value={"900000-Above"}>$900000 Or Above</option>
             </select>
           </div>
         </div>
