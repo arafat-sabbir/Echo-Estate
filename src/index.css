@@ -12,12 +12,11 @@
 }
 
 .input-field {
-  @apply input input-bordered bg-white border-dashed focus:outline-none border-main focus:border-main;
+  @apply input border-gray-200 bg-gray-100/50 focus:bg-white focus:outline-none border-2 focus:border-main;
 }
 .select-input {
-  @apply select select-bordered  font-bold focus:border-main rounded-lg  join-item;
+  @apply select border-gray-200 bg-gray-100/50  font-bold focus:outline-none focus:border-main rounded-lg  join-item;
 }
-
 
 body {
   font-family: "Montserrat", sans-serif;
