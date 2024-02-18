@@ -154,7 +154,30 @@ const AddProperty = () => {
     "Rangpur Division",
     "Mymensingh Division"
   ];
-
+  let interiorFacilities = []
+  const handeIneriorFacilities = (e) => {
+    if (e.target.checked) {
+      // Add facility to the array if checked
+      interiorFacilities.push(e.target.value);
+      console.log(interiorFacilities);
+    } else {
+      // Remove facility from the array if unchecked
+      interiorFacilities = interiorFacilities.filter(facility => facility !== e.target.value);
+      console.log(interiorFacilities);
+    }
+  };
+  let outdoorFacilities = []
+  const hanldeoutdoorFacilities = (e) => {
+    if (e.target.checked) {
+      // Add facility to the array if checked
+      outdoorFacilities.push(e.target.value);
+      console.log(outdoorFacilities);
+    } else {
+      // Remove facility from the array if unchecked
+      outdoorFacilities = outdoorFacilities.filter(facility => facility !== e.target.value);
+      console.log(outdoorFacilities);
+    }
+  };
 
 
   return (
@@ -477,10 +500,39 @@ const AddProperty = () => {
               </div>
             </div>
           </div>
+          {/* Checkbox */}
+          <div>
+            <h1 className="font-semibold my-4">Amenities and Features</h1>
+            <div className="flex items-center gap-8">
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Equipped Kitchen"} onChange={handeIneriorFacilities} className="checkbox" />
+                <span>Equipped Kitchen</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Fireplace"} onChange={handeIneriorFacilities} className="checkbox" />
+                <span>Fireplace</span>
+              </div> <div className="flex gap-2">
+                <input type="checkbox" value={"Hot Bath"} onChange={handeIneriorFacilities} className="checkbox" />
+                <span>Hot Bath</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Gym"} onChange={handeIneriorFacilities} className="checkbox" />
+                <span>Gym</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Laundry"} onChange={handeIneriorFacilities} className="checkbox" />
+                <span>Laundry</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Media Room"} onChange={handeIneriorFacilities} className="checkbox" />
+                <span>Media Room</span>
+              </div>
+            </div>
+          </div>
           {/* Add Property Button */}
           <button
             className="relative px-8 py-2  bg-[#072730] text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
-    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+             before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-main hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
           >
             Add Property
           </button>

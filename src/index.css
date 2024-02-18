@@ -18,6 +18,7 @@
   @apply select select-bordered  font-bold focus:border-main rounded-lg  join-item;
 }
 
+
 body {
   font-family: "Montserrat", sans-serif;
 }
