@@ -503,6 +503,7 @@ const AddProperty = () => {
           {/* Checkbox */}
           <div>
             <h1 className="font-semibold my-4">Amenities and Features</h1>
+            <h3 className="font-medium my-4">Interior Details</h3>
             <div className="flex items-center gap-8">
               <div className="flex gap-2">
                 <input type="checkbox" value={"Equipped Kitchen"} onChange={handeIneriorFacilities} className="checkbox" />
@@ -526,6 +527,51 @@ const AddProperty = () => {
               <div className="flex gap-2">
                 <input type="checkbox" value={"Media Room"} onChange={handeIneriorFacilities} className="checkbox" />
                 <span>Media Room</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h1 className="font-medium my-4">Outdoor Detail</h1>
+            <div className="flex items-center gap-8">
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Back yard"} onChange={hanldeoutdoorFacilities} className="checkbox" />
+                <span>Back yard</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Basketball court"} onChange={hanldeoutdoorFacilities} className="checkbox" />
+                <span>Basketball court</span>
+              </div> <div className="flex gap-2">
+                <input type="checkbox" value={"Chair Accessible"} onChange={hanldeoutdoorFacilities} className="checkbox" />
+                <span>Chair Accessible</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Garage Attached"} onChange={hanldeoutdoorFacilities} className="checkbox" />
+                <span>Garage Attached</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Pool"} onChange={hanldeoutdoorFacilities} className="checkbox" />
+                <span>Pool</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Water"} onChange={hanldeoutdoorFacilities} className="checkbox" />
+                <span>Water</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h1 className="font-medium my-4">Other Features</h1>
+            <div className="flex items-center gap-8">
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Elevator"} onChange={hanldeOtherFacilities} className="checkbox" />
+                <span>Elevator</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"Washer and dryer"} onChange={hanldeOtherFacilities} className="checkbox" />
+                <span>Washer and dryer</span>
+              </div>
+              <div className="flex gap-2">
+                <input type="checkbox" value={"WiFi"} onChange={hanldeOtherFacilities} className="checkbox" />
+                <span>WiFi</span>
               </div>
             </div>
           </div>
