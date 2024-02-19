@@ -77,7 +77,7 @@ const AddProperty = () => {
   };
 
   let interiorFacilities = []
-  const handleIneriorFacilities = (e) => {
+  const handleInteriorFacilities = (e) => {
     if (e.target.checked) {
       // Add facility to the array if checked
       interiorFacilities.push(e.target.value);
@@ -89,7 +89,7 @@ const AddProperty = () => {
     }
   };
   let outdoorFacilities = []
-  const handleoutdoorFacilities = (e) => {
+  const handleOutdoorFacilities = (e) => {
     if (e.target.checked) {
       // Add facility to the array if checked
       outdoorFacilities.push(e.target.value);
@@ -100,24 +100,22 @@ const AddProperty = () => {
       console.log(outdoorFacilities);
     }
   };
+
   let otherFacilities = []
   const handleOtherFacilities = (e) => {
     if (e.target.checked) {
       // Add facility to the array if checked
       otherFacilities.push(e.target.value);
-      console.log(otherFacilities);
     } else {
       // Remove facility from the array if unchecked
       otherFacilities = otherFacilities.filter(facility => facility !== e.target.value);
-      console.log(otherFacilities);
     }
   };
-  handleSubmit,onSubmit,hanldeOtherFacilities,hanldeoutdoorFacilities,register,errors,categoryOptions
 
   return (
     <Container>
       <div className="  rounded-xl mt-24 ">
-       <AddPropertyForm handleOtherFacilities={handleOtherFacilities} handleoutdoorFacilities={handleoutdoorFacilities} handleIneriorFacilities={handleIneriorFacilities} handleSubmit={handleSubmit} onSubmit={onsubmit} />
+        <AddPropertyForm handleOtherFacilities={handleOtherFacilities} handleOutdoorFacilities={handleOutdoorFacilities} handleInteriorFacilities={handleInteriorFacilities} handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors} register={register} />
       </div>
     </Container>
   );

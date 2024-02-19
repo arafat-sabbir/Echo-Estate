@@ -31,7 +31,7 @@ const Allproperties = () => {
       return res.data;
     },
   });
-  console.log("search",searchText);
+  console.log("search", searchText);
   return (
     <>
       <div className="mb-10 lg:mt-[100px] container mx-auto p-4">
@@ -49,8 +49,8 @@ const Allproperties = () => {
                 <input
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder={"Search By Property Title"}
-                 defaultValue={`${searchText!=="Search By Property Title"?searchText:""}`}
-                  className="input md:w-full  font-semibold input-bordered border-main  rounded-full focus:border-main join-item"
+                  defaultValue={`${searchText !== "Search By Property Title" ? searchText : ""}`}
+                  className="input md:w-full  font-semibold input-bordered bg-gray-100/50 focus:bg-white focus:outline-none rounded-full focus:border-main join-item"
 
                 />
               </div>
