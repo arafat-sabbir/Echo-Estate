@@ -1,6 +1,5 @@
 import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Container from "../../../Utils/Container/Container";
-import { FaLocationDot } from "react-icons/fa6";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
@@ -8,6 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 import useGetUser from "../../../Hooks/GetUserInfo/useGetUser";
 import useAuth from "../../../Auth/UseAuth/useAuth";
 import { IoLocationSharp } from "react-icons/io5";
+import { IoBedOutline } from "react-icons/io5";
+import { PiBuildingsThin, PiBathtub } from "react-icons/pi";
+import { TbResize } from "react-icons/tb";
+import { IoCalendarNumberOutline } from "react-icons/io5";
 
 const PropertyDetail = () => {
   const axiosSecure = useAxiosSecure();
@@ -23,7 +26,7 @@ const PropertyDetail = () => {
   }, []);
   const propertyDetail = useLoaderData();
   const {
-    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize } = propertyDetail;
+    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear } = propertyDetail;
   const { data: propertyReview = [], isLoading } = useQuery({
     queryKey: ["propertyReview"],
     queryFn: async () => {
@@ -74,6 +77,17 @@ const PropertyDetail = () => {
         {/* Property Image */}
         <img src={propertyImage} alt="" className="w-full lg:h-[600px] " />
         {/* Overview */}
+        <div className="bg-white p-10 rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+          <span className="font-semibold text-xl tracking-wide">OverView</span>
+          <div className="flex justify-between items-center">
+            <p>Update On : {addedDate}</p>
+            <p className="flex flex-col gap-3 cursor-pointer"><PiBuildingsThin size={29} className="mx-auto" /> {rooms} Rooms</p>
+            <p className="flex flex-col gap-3 cursor-pointer"><IoBedOutline size={29} className="mx-auto" /> {bedRooms} Bedrooms</p>
+            <p className="flex flex-col gap-3 cursor-pointer"><PiBathtub size={29} className="mx-auto" /> {bathRooms} Bathrooms</p>
+            <p className="flex flex-col gap-3 cursor-pointer"><TbResize className="mx-auto" size={29} /><span>{propertySize} ft<sup>2</sup></span></p>
+            <p className="flex flex-col gap-3 cursor-pointer"><IoCalendarNumberOutline size={29} className="mx-auto" /> YearBuilt: {builtYear}</p>
+          </div>
+        </div>
       </Container>
 
     </div>

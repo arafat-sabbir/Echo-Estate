@@ -9,7 +9,7 @@ const PropertyCard = ({ property }) => {
         <div className=" cursor-pointer overflow-hidden rounded-xl group group-hover:rounded-xl">
           <div className="relative">
             <img className="max-h-[176px]  group-hover:scale-105 transition duration-300  max-w-[298px] min-h-[176px] min-w-[298px] rounded-xl" src={propertyImage} alt="" />
-            <span className="text-xs font-semibold px-2 py-1 absolute top-4 right-4 text-white rounded-xl bg-main">{listedFor}</span>
+          <span className="text-xs font-semibold px-2 py-1 absolute top-4 right-4 text-white rounded-xl bg-main">{listedFor}</span>
             <Link to={`/agentProfile/${agentEmail}`}>
               <img className="h-10 absolute bottom-4 left-4 border-2 border-white w-10 rounded-full" src={agentImage} alt="" />
             </Link>
