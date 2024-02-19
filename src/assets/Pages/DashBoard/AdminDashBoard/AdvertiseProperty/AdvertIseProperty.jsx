@@ -27,7 +27,7 @@ const AdvertiseProperty = () => {
       return res.data;
     },
   });
-// Advertise A Property
+  // Advertise A Property
   const handleAdvertiseProperty = (id) => {
     if (advertisedProperty?.length > 5) {
       return toast.error("Can't advertise more than 6 properties");
@@ -56,13 +56,13 @@ const AdvertiseProperty = () => {
   }
 
   return (
-   <div className="flex flex-col">
-     <div className="mt-10 ml-16">
-     <SectionTitle title={"AdverTise Property"} subtitle={"Advertise Property To Home Page"}></SectionTitle>
+    <div className="flex flex-col">
+      <div className="mt-10 ml-16">
+        <SectionTitle title={"AdverTise Property"} subtitle={"Advertise Property To Home Page"}></SectionTitle>
 
-     </div>
-     <div className="lg:container mx-auto w-[98vw]">
-        <div className="overflow-x-auto border-2 p-4 rounded-xl">
+      </div>
+      <div className="lg:container mx-auto w-[98vw]">
+        <div className="overflow-x-auto border-2 rounded-xl">
           <table className="divide-y  w-full divide-gray-200 dark:divide-gray-700">
             <thead>
               <tr>
@@ -112,7 +112,7 @@ const AdvertiseProperty = () => {
                       <button
                         onClick={() => handleAdvertiseProperty(item._id)}
                         type="button"
-                        className="px-3 py-3 flex z-50 items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-[#17645a] hover:shadow-xl hover:shadow-[#072730da] hover:scale-110 duration-300"
+                        className="px-2 py-3 flex z-50 items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-[#17645a] hover:shadow-xl hover:shadow-[#072730da] hover:scale-110 duration-300"
                       >
                         <FaCheck />
                         Advertise
@@ -124,7 +124,7 @@ const AdvertiseProperty = () => {
                       <button
                         onClick={() => handleDisAdvertiseProperty(item._id)}
                         type="button"
-                        className="px-3 py-3 z-50 flex items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-red-500 hover:shadow-xl hover:shadow-red-500 hover:scale-110 duration-300"
+                        className="px-2 py-3 z-50 flex items-center gap-2 cursor-pointer rounded-full shadow-2xl text-white font-semibold bg-red-500 hover:shadow-xl hover:shadow-red-500 hover:scale-110 duration-300"
                       >
                         <span>
                           <MdOutlineCancel />
@@ -139,8 +139,8 @@ const AdvertiseProperty = () => {
           </table>
         </div>
 
-     </div>
       </div>
+    </div>
   );
 };
 

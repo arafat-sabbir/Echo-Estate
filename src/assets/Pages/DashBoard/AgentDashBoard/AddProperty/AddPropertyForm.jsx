@@ -4,7 +4,7 @@ import { FaUpload } from "react-icons/fa";
 
 
 
-const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, handleOtherFacilities, handleOutdoorFacilities, register, errors, handlePhotoUpload, photoName, setCategory, setUpozila, setDistrict, setDivision,setListedFor }) => {
+const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, handleOtherFacilities, handleOutdoorFacilities, register, errors, handlePhotoUpload, photoName, setCategory, setUpozila, setDistrict, setDivision, setListedFor }) => {
 
 
     return (
@@ -124,13 +124,13 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                         <select
                             className="select-input flex-1"
                             defaultValue={""}
-                            onChange={(e)=>setListedFor(e.target.value)}
+                            onChange={(e) => setListedFor(e.target.value)}
                         >
                             <option className="font-bold " disabled value={""}>
                                 Listed On
                             </option>
-                            <option value={"rent"}>For Rent</option>
-                            <option value={"sell"}>For Sell</option>
+                            <option value={"For Rent"}>For Rent</option>
+                            <option value={"For Sale"}>For Sale</option>
                         </select>
                     </div>
                 </div>
@@ -197,7 +197,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                                 <span className="label-text">Latitude (for Google Maps)</span>
                             </label>
                             <input
-                                type="number"
+                                type="text"
                                 name="location"
                                 placeholder="Latitude (for Google Maps)"
                                 className="input-field"
@@ -212,7 +212,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                                 <span className="label-text">Longitude (for Google Maps)</span>
                             </label>
                             <input
-                                type="number"
+                                type="text"
                                 name="location"
                                 placeholder="Longitude (for Google Maps)"
                                 className="input-field"

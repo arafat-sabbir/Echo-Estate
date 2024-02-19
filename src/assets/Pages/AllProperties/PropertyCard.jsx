@@ -1,54 +1,32 @@
-import { FaLocationDot } from "react-icons/fa6";
-import Button from "../../../Shared/Button";
+import { PropTypes } from "prop-types"
 import { Link } from "react-router-dom";
-import {PropTypes} from "prop-types"
 
 const PropertyCard = ({ property }) => {
-    const {agentImage,agentName,agentEmail,propertyImage,propertyLocation,propertyTitle,minPrice,maxPrice,_id}  = property;
+  const { agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize } = property;
   return (
     <>
-      <div className="flex  lg:h-[660px] flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-[0_0_10px_#BFBFBF]  lg:w-[480px] w-[400px] text-black">
-        <div className="flex space-x-4">
-         <Link to={`/agentProfile/${agentEmail}`}>
-         <img
-            alt=""
-            src={agentImage}
-            className="object-cover w-12 h-12 rounded-full shadow bg-gray-500 "
-          />
-         </Link>
-          <div className="flex flex-col space-y-1">
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="text-sm font-semibold"
-            >
-              {agentName}
-            </a>
+      <Link to={`/propertyDetail/${_id}`}>
+        <div className=" cursor-pointer overflow-hidden rounded-xl group group-hover:rounded-xl">
+          <div className="relative">
+            <img className="max-h-[176px]  group-hover:scale-105 transition duration-300  max-w-[298px] min-h-[176px] min-w-[298px] rounded-xl" src={propertyImage} alt="" />
+            <span className="text-xs font-semibold px-2 py-1 absolute top-4 right-4 text-white rounded-xl bg-main">{listedFor}</span>
+            <Link to={`/agentProfile/${agentEmail}`}>
+              <img className="h-10 absolute bottom-4 left-4 border-2 border-white w-10 rounded-full" src={agentImage} alt="" />
+            </Link>
           </div>
-        </div>
-        <div>
-          <img
-            src={propertyImage}
-            alt=""
-            className="object-cover w-full mb-4 h-60 sm:h-96 bg-gray-500 rounded-xl"
-          />
-          <div className="mb-1 text-lg font-semibold flex justify-between">
-            <h1>{propertyTitle}</h1>
-           
-            
+          <h1 className="mt-6 font-semibold text-lg">{propertyTitle}</h1>
+          <div className="text-sm  flex gap-1 my-1">
+            <span>{category}</span>.
+            <span>{listedFor}</span>
           </div>
-         <div className="flex justify-between mt-2">
-         <p className="text-md font-medium text-black">Price Range : <span className="font-bold">${minPrice}-${maxPrice}</span></p>
-         <h1 className="text-sm flex justify-center items-center">
-              <FaLocationDot className="text-xs text-main"></FaLocationDot>
-              <span className="ml-1 text-xs">{propertyLocation}</span>
-            </h1>
-         </div>
+          <div className="text-sm  flex gap-1 my-1">
+            <span>{bedRooms} BedRooms</span>.
+            <span>{bathRooms} Bathrooms</span>.
+            <span>Size {propertySize} ft<sup>2</sup></span>
+          </div>
+          <p className="font-semibold my-1 text-main">$ {minPrice}-{maxPrice}</p>
         </div>
-        <Link to={`/propertyDetail/${_id}`} className="flex justify-end">
-          <Button title={"See Detail"}></Button>
-        </Link>
-      </div>
+      </Link>
     </>
   );
 };

@@ -107,17 +107,20 @@ const AddProperty = () => {
       interiorFacilities,
       outdoorFacilities,
       otherFacilities,
-      bedRooms: item.bedrooms,
-      bathRooms: item.bathrooms,
-      rooms: item.rooms,
-      builtYear: item.builtYear,
-      associationFee: item.associationFee,
-      yearlyTax: item.yearlyTax,
+      bedRooms: parseInt(item.bedrooms),
+      bathRooms: parseInt(item.bathrooms),
+      rooms: parseInt(item.rooms),
+      builtYear: parseInt(item.builtYear),
+      associationFee: parseInt(item.associationFee),
+      yearlyTax: parseInt(item.yearlyTax),
       upozila,
       district,
       division,
       listedFor,
       category,
+      longitude: item.longitude,
+      latitude: item.latitude,
+      propertySize:parseInt(item.propertySize)
     };
     console.log(propertyData);
     // Sent the data to server

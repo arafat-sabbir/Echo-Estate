@@ -7,6 +7,7 @@ import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "../../../Utils/ScroolToTop/ScrollToTop";
+import AllPropertiesSkeleton from "./AllPropertiesSkeleton";
 
 const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
@@ -34,7 +35,7 @@ const Allproperties = () => {
   console.log("search", searchText);
   return (
     <>
-      <div className="mb-10 lg:mt-[100px] container mx-auto p-4">
+      <div className="mb-10 lg:mt-[100px] container 2xl mx-auto p-4">
         <Helmet>
           <title>Echo Estate || All Property</title>
         </Helmet>
@@ -86,38 +87,43 @@ const Allproperties = () => {
             </select>
           </div>
         </div>
-        {isLoading || isPending ? <Loading></Loading> : ""}
-        {properties.length !== 0 && (
-          <Container>
-            <div
-              className={
-                properties.length !== 0
-                  ? `grid grid-cols-1 items-stretch justify-items-center lg:grid-cols-2  2xl:grid-cols-3 gap-8 my-10 mt-12`
-                  : ""
-              }
-            >
-              {properties?.map((property) => (
-                <PropertyCard
-                  property={property}
-                  key={property._id}
-                ></PropertyCard>
-              ))}
-            </div>
-          </Container>
-        )}
-      </div>
+        {isLoading || isPending ? <AllPropertiesSkeleton /> : ""
+        }
+        {
+          properties.length !== 0 && (
+            <Container>
+              <div
+                className={
+                  properties.length !== 0
+                    ? `grid grid-cols-1 items-stretch justify-items-center md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-4 gap-8 my-10 mt-12`
+                    : ""
+                }
+              >
+                {properties?.map((property) => (
+                  <PropertyCard
+                    property={property}
+                    key={property._id}
+                  ></PropertyCard>
+                ))}
+              </div>
+            </Container>
+          )
+        }
+      </div >
       {/* If no Property Available Show A Message */}
-      {properties.length === 0 && (
-        <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center ">
-          <img
-            loading="lazy"
-            className="mx-auto"
-            src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
-            alt=""
-          />
-          <h3 className="text-3xl font-semibold text-center text-main">No Properties AvailAble</h3>
-        </div>
-      )}
+      {
+        properties.length === 0 && !isLoading && (
+          <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center ">
+            <img
+              loading="lazy"
+              className="mx-auto"
+              src="https://i.ibb.co/PFzsmpn/icons8-404-restricted-web-page-on-internet-browser-layout-100.png"
+              alt=""
+            />
+            <h3 className="text-3xl font-semibold text-center text-main">No Properties AvailAble</h3>
+          </div>
+        )
+      }
     </>
   );
 };
