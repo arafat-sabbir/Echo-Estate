@@ -12,6 +12,7 @@ import { PiBuildingsThin, PiBathtub } from "react-icons/pi";
 import { TbResize } from "react-icons/tb";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { FaChevronDown } from "react-icons/fa6";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 const PropertyDetail = () => {
   const axiosSecure = useAxiosSecure();
@@ -27,7 +28,7 @@ const PropertyDetail = () => {
   }, []);
   const propertyDetail = useLoaderData();
   const {
-    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear, description, division, upozila, district } = propertyDetail;
+    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear, description, division, upozila, district, interiorFacilities, outdoorFacilities, otherFacilities } = propertyDetail;
   const { data: propertyReview = [], isLoading } = useQuery({
     queryKey: ["propertyReview"],
     queryFn: async () => {
@@ -136,6 +137,28 @@ const PropertyDetail = () => {
 
           </div>
         </div>
+        {/* Features */}
+        <div tabIndex={0} className="collapse bg-white rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+          <input type="checkbox" />
+          <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
+            <p className="ml-6">Detail</p> <p className="mr-6"><FaChevronDown /></p>
+          </div>
+          <div className="collapse-content px-6 flex justify-between">
+            <div>
+              <p className="text-lg font-medium">Interior Facilities</p>
+              {interiorFacilities.map((item) => <p key={item} className="flex items-center gap-1"> <IoCheckmarkCircleOutline className="text-main" />{item}</p>)}
+            </div>
+            <div>
+              <p className="text-lg font-medium">Outdoor Facilities</p>
+              {outdoorFacilities.map((item) => <p key={item} className="flex items-center gap-1"> <IoCheckmarkCircleOutline className="text-main" />{item}</p>)}
+            </div>
+            <div>
+              <p className="text-lg font-medium">Other Facilities</p>
+              {otherFacilities.map((item) => <p key={item} className="flex items-center gap-1"> <IoCheckmarkCircleOutline className="text-main" />{item}</p>)}
+            </div>
+          </div>
+        </div>
+        {/* Map */}
       </Container>
 
     </div>
