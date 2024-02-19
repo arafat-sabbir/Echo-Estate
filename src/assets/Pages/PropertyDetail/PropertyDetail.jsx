@@ -27,7 +27,7 @@ const PropertyDetail = () => {
   }, []);
   const propertyDetail = useLoaderData();
   const {
-    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear, description } = propertyDetail;
+    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear, description, division, upozila, district } = propertyDetail;
   const { data: propertyReview = [], isLoading } = useQuery({
     queryKey: ["propertyReview"],
     queryFn: async () => {
@@ -95,13 +95,43 @@ const PropertyDetail = () => {
           <p className="tracking-wider leading-5">{description}</p>
         </div>
         {/* Address */}
-        <div tabIndex={0} className="collapse bg-white px-4 rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+        <div tabIndex={0} className="collapse bg-white rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
           <input type="checkbox" />
-          <div className="collapse-title text-xl font-medium flex items-center  justify-between">
-            <p>Address</p> <p className="mr-4"><FaChevronDown /></p>
+          <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
+            <p className="ml-6">Address</p> <p className="mr-6"><FaChevronDown /></p>
           </div>
-          <div className="collapse-content">
-            <p>hello</p>
+          <div className="collapse-content px-6">
+            <div className="flex justify-between">
+              <div>
+                <p>Address: {propertyLocation}</p>
+                <p>District: {district}</p>
+              </div>
+              <div>
+                <p>Division: {division}</p>
+                <p>Upozila: {upozila}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        {/* Detail */}
+        <div tabIndex={0} className="collapse bg-white rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+          <input type="checkbox" />
+          <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
+            <p className="ml-6">Address</p> <p className="mr-6"><FaChevronDown /></p>
+          </div>
+          <div className="collapse-content px-6">
+            <div className="flex justify-between">
+              <div>
+                <p>Address: {propertyLocation}</p>
+                <p>District: {district}</p>
+              </div>
+              <div>
+                <p>Division: {division}</p>
+                <p>Upozila: {upozila}</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </Container>
