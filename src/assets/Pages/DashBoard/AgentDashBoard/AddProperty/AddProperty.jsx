@@ -17,6 +17,8 @@ const AddProperty = () => {
   // Get the currently Logged in User Data From Database
   const { userinfo } = useGetUser();
 
+
+
   // Get the PhotoName From User PhotoUpload
   const [photoName, setPhotoName] = useState(null);
 
@@ -36,7 +38,44 @@ const AddProperty = () => {
       setPhoto({ image: e.target.files[0] })
     }
   };
-
+  const [category, setCategory] = useState(null)
+  const [listedFor, setListedFor] = useState(null)
+  const [division, setDivision] = useState(null)
+  const [district, setDistrict] = useState(null)
+  const [upozila, setUpozila] = useState(null)
+  // Interior Facilities
+  let interiorFacilities = []
+  const handleInteriorFacilities = (e) => {
+    if (e.target.checked) {
+      // Add facility to the array if checked
+      interiorFacilities.push(e.target.value);
+    } else {
+      // Remove facility from the array if unchecked
+      interiorFacilities = interiorFacilities.filter(facility => facility !== e.target.value);
+    }
+  };
+  // Outdoor Facilities
+  let outdoorFacilities = []
+  const handleOutdoorFacilities = (e) => {
+    if (e.target.checked) {
+      // Add facility to the array if checked
+      outdoorFacilities.push(e.target.value);
+    } else {
+      // Remove facility from the array if unchecked
+      outdoorFacilities = outdoorFacilities.filter(facility => facility !== e.target.value);
+    }
+  };
+  // Other Facilities
+  let otherFacilities = []
+  const handleOtherFacilities = (e) => {
+    if (e.target.checked) {
+      // Add facility to the array if checked
+      otherFacilities.push(e.target.value);
+    } else {
+      // Remove facility from the array if unchecked
+      otherFacilities = otherFacilities.filter(facility => facility !== e.target.value);
+    }
+  };
   // Form Submit Handler
   const {
     register,
@@ -50,6 +89,7 @@ const AddProperty = () => {
         'content-type': 'multipart/form-data'
       }
     });
+
     // Get the new Property Data From Form
     const propertyData = {
       propertyImage: res.data.data.display_url,
@@ -61,61 +101,43 @@ const AddProperty = () => {
       agentName: userinfo.name,
       agentEmail: userinfo.email,
       agentImage: userinfo.photo,
+      interiorFacilities,
+      outdoorFacilities,
+      otherFacilities,
+      zipCode: item.zipCode,
+      bedRooms: item.bedrooms,
+      bathRooms: item.bathRooms,
+      rooms: item.rooms,
+      builtYear: item.builtYear,
+      associationFee: item.associationFee,
+      yearlyTax: item.yearlyTax,
+      upozila,
+      district,
+      division,
+      listedFor,
+      category,
     };
+    console.log(propertyData);
     // Sent the data to server
-    axiosSecure.post(`/addProperty`, propertyData)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.insertedId) {
-          toast.success("Property Added Successfully", { id: toastId });
-          navigate("/dashboard/addedProperties");
-        }
-      })
-      .catch(error => {
-        toast.error(error, { id: toastId })
-      })
+    // axiosSecure.post(`/addProperty`, propertyData)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     if (res.data.insertedId) {
+    //       toast.success("Property Added Successfully", { id: toastId });
+    //       navigate("/dashboard/addedProperties");
+    //     }
+    //   })
+    //   .catch(error => {
+    //     toast.error(error, { id: toastId })
+    //   })
   };
 
-  let interiorFacilities = []
-  const handleInteriorFacilities = (e) => {
-    if (e.target.checked) {
-      // Add facility to the array if checked
-      interiorFacilities.push(e.target.value);
-      console.log(interiorFacilities);
-    } else {
-      // Remove facility from the array if unchecked
-      interiorFacilities = interiorFacilities.filter(facility => facility !== e.target.value);
-      console.log(interiorFacilities);
-    }
-  };
-  let outdoorFacilities = []
-  const handleOutdoorFacilities = (e) => {
-    if (e.target.checked) {
-      // Add facility to the array if checked
-      outdoorFacilities.push(e.target.value);
-      console.log(outdoorFacilities);
-    } else {
-      // Remove facility from the array if unchecked
-      outdoorFacilities = outdoorFacilities.filter(facility => facility !== e.target.value);
-      console.log(outdoorFacilities);
-    }
-  };
 
-  let otherFacilities = []
-  const handleOtherFacilities = (e) => {
-    if (e.target.checked) {
-      // Add facility to the array if checked
-      otherFacilities.push(e.target.value);
-    } else {
-      // Remove facility from the array if unchecked
-      otherFacilities = otherFacilities.filter(facility => facility !== e.target.value);
-    }
-  };
 
   return (
     <Container>
       <div className="  rounded-xl mt-24 ">
-        <AddPropertyForm handleOtherFacilities={handleOtherFacilities} handleOutdoorFacilities={handleOutdoorFacilities} handleInteriorFacilities={handleInteriorFacilities} handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors} photoName={photoName} handlePhotoUpload={handlePhotoUpload} register={register} />
+        <AddPropertyForm handleOtherFacilities={handleOtherFacilities} handleOutdoorFacilities={handleOutdoorFacilities} handleInteriorFacilities={handleInteriorFacilities} handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors} setCategory={setCategory} photoName={photoName} handlePhotoUpload={handlePhotoUpload} register={register} setListedFor={setListedFor} setDistrict={setDistrict} setUpozila={setUpozila} setDivision={setDivision} />
       </div>
     </Container>
   );
