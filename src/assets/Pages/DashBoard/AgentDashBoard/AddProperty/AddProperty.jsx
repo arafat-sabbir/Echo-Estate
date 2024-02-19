@@ -44,36 +44,38 @@ const AddProperty = () => {
   const [district, setDistrict] = useState(null)
   const [upozila, setUpozila] = useState(null)
   // Interior Facilities
-  let interiorFacilities = []
+  const [interiorFacilities, setInteriorFacilities] = useState([]);
+  const [outdoorFacilities, setOutdoorFacilities] = useState([]);
+  const [otherFacilities, setOtherFacilities] = useState([]);
+
+  // Update handlers to modify state variables
   const handleInteriorFacilities = (e) => {
     if (e.target.checked) {
-      // Add facility to the array if checked
-      interiorFacilities.push(e.target.value);
+      setInteriorFacilities([...interiorFacilities, e.target.value]);
     } else {
-      // Remove facility from the array if unchecked
-      interiorFacilities = interiorFacilities.filter(facility => facility !== e.target.value);
+      setInteriorFacilities(
+        interiorFacilities.filter((facility) => facility !== e.target.value)
+      );
     }
   };
-  // Outdoor Facilities
-  let outdoorFacilities = []
+
   const handleOutdoorFacilities = (e) => {
     if (e.target.checked) {
-      // Add facility to the array if checked
-      outdoorFacilities.push(e.target.value);
+      setOutdoorFacilities([...outdoorFacilities, e.target.value]);
     } else {
-      // Remove facility from the array if unchecked
-      outdoorFacilities = outdoorFacilities.filter(facility => facility !== e.target.value);
+      setOutdoorFacilities(
+        outdoorFacilities.filter((facility) => facility !== e.target.value)
+      );
     }
   };
-  // Other Facilities
-  let otherFacilities = []
+
   const handleOtherFacilities = (e) => {
     if (e.target.checked) {
-      // Add facility to the array if checked
-      otherFacilities.push(e.target.value);
+      setOtherFacilities([...otherFacilities, e.target.value]);
     } else {
-      // Remove facility from the array if unchecked
-      otherFacilities = otherFacilities.filter(facility => facility !== e.target.value);
+      setOtherFacilities(
+        otherFacilities.filter((facility) => facility !== e.target.value)
+      );
     }
   };
   // Form Submit Handler
@@ -90,11 +92,12 @@ const AddProperty = () => {
       }
     });
 
+    console.log(outdoorFacilities, interiorFacilities, otherFacilities);
     // Get the new Property Data From Form
     const propertyData = {
       propertyImage: res.data.data.display_url,
       propertyTitle: item.propertyTitle,
-      propertyLocation: item.propertyLocation,
+      propertyLocation: item.address,
       minPrice: parseInt(item.minPrice),
       maxPrice: parseInt(item.maxPrice),
       propertyVerificationStatus: "pending",
@@ -104,9 +107,8 @@ const AddProperty = () => {
       interiorFacilities,
       outdoorFacilities,
       otherFacilities,
-      zipCode: item.zipCode,
       bedRooms: item.bedrooms,
-      bathRooms: item.bathRooms,
+      bathRooms: item.bathrooms,
       rooms: item.rooms,
       builtYear: item.builtYear,
       associationFee: item.associationFee,
@@ -119,17 +121,17 @@ const AddProperty = () => {
     };
     console.log(propertyData);
     // Sent the data to server
-    // axiosSecure.post(`/addProperty`, propertyData)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     if (res.data.insertedId) {
-    //       toast.success("Property Added Successfully", { id: toastId });
-    //       navigate("/dashboard/addedProperties");
-    //     }
-    //   })
-    //   .catch(error => {
-    //     toast.error(error, { id: toastId })
-    //   })
+    axiosSecure.post(`/addProperty`, propertyData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success("Property Added Successfully", { id: toastId });
+          navigate("/dashboard/addedProperties");
+        }
+      })
+      .catch(error => {
+        toast.error(error, { id: toastId })
+      })
   };
 
 
