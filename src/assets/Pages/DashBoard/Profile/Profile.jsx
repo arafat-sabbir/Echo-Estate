@@ -8,7 +8,14 @@ const Profile = () => {
   const { userinfo, refetch, isLoading } = useGetUser();
   const agentReq = userinfo.agentReq;
   const axiosSecure = useAxiosSecure()
-  const handleagentReq = (id) => {
+  const handleAgentReq = (id, e) => {
+    e.preventDefault()
+    const form = e.target;
+    const twitter = form.twitter.value
+    const facebook = form.facebook.value
+    const linkedin = form.linkedin.value
+    const whatsapp = form.whatsapp.value
+    const agentInfo = { twitter, facebook, linkedin, whatsapp }
     refetch()
     if (userinfo.agentReq) {
       return toast.error("Please Wait You've Already Send A Request To The Admin")
@@ -24,7 +31,7 @@ const Profile = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const swal = toast.loading("Making User Agent");
-        axiosSecure.patch(`/agentRequest/${id}`).then((res) => {
+        axiosSecure.patch(`/agentRequest/${id}`, agentInfo).then((res) => {
           if (res.data.modifiedCount > 0) {
             toast.success(`Your Agent Request Has Been Sent Please Wait For Admin Response`, { id: swal });
           }
@@ -54,19 +61,16 @@ const Profile = () => {
 
             Your Email: <span className="text-main">{userinfo?.email}</span>
           </h3>
+          {agentReq && role === "user" && <p className="py-2 font-semibold text-lg text-red-500/70">Your Agent Request Is Pending Please Wait For Admin Approval</p>}
           {
-            role === "user" &&
-            <form className="flex border-2 flex-col">
-              <div>
-                <input type="text" className="input-field my-2 mx-2" placeholder="Your WhatsApp Number" />
-              </div>
-              <div>
-                <input type="text" className="input-field my-2 mx-2" placeholder="Linkedin Profile" />
-              </div>
-              <div>
-                <input type="text" className="input-field my-2 mx-2" placeholder="Facebook Profile" />
-              </div>
-              <div> <input type="text" className="input-field my-2 mx-2" placeholder="Twitter Profile" /></div>
+            role === "user" && !agentReq &&
+            <form onSubmit={(e) => handleAgentReq(userinfo._id, e)} className="flex flex-col">
+              <h1 className="font-semibold text-xl  mt-6">Update Your Info To Become A Agent</h1>
+              <input type="number" name="whatsapp" required className="input-field my-2 mx-2" placeholder="Your WhatsApp Number" />
+              <input type="text" name="linkedin" required className="input-field my-2 mx-2" placeholder="Linkedin Profile" />
+              <input type="text" name="facebook" required className="input-field my-2 mx-2" placeholder="Facebook Profile" />
+              <input type="text" name="twitter" required className="input-field my-2 mx-2" placeholder="Twitter Profile" />
+              <button type="submit" className={`${agentReq ? 'relative px-8 py-2  my-4 tracking-wider font-semibold  bg-gray-500 text-white  isolation-auto z-10 border rounded-full border-dashed border-main before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 ' : 'relative px-8 py-2  my-4 tracking-wider font-semibold  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700'}  `}>Become An Agent</button>
             </form>
           }
           {role !== "user" && (
@@ -74,9 +78,6 @@ const Profile = () => {
               You are a : <span className="uppercase text-main">{role}</span>
             </h3>
           )}
-          {
-            role === "user" && <button onClick={() => handleagentReq(userinfo._id)} className={`${agentReq ? 'relative px-8 py-2  my-4 tracking-wider font-semibold  bg-gray-500 text-white  isolation-auto z-10 border rounded-full border-dashed border-main before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 ' : 'relative px-8 py-2  my-4 tracking-wider font-semibold  bg-main text-white  isolation-auto z-10 border rounded-full border-dashed border-main before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-[#072730] hover:text-white before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700'}  `}>Become An Agent</button>
-          }
         </div>
       </div>
     </div>

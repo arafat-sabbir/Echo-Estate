@@ -12,6 +12,8 @@
 }
 ::selection {
   color: #bb7549;
+  font-weight: 700;
+  
 }
 .input-field {
   @apply input border-gray-200 bg-gray-100/50 focus:bg-white focus:outline-none border-2 focus:border-main;

@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import Container from "../../../Utils/Container/Container";
 import PropertyCard from "./PropertyCard";
-import Loading from "../../../Components/Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/AxiosSecure/useAxiosSecure";
 import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "../../../Utils/ScroolToTop/ScrollToTop";
 import AllPropertiesSkeleton from "./AllPropertiesSkeleton";
+import { BsFillHousesFill } from "react-icons/bs";
+import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { AiOutlineShop } from "react-icons/ai";
+import { HiOutlineBuildingLibrary } from "react-icons/hi2";
+import { MdApartment, MdOutlineFamilyRestroom, MdOutlineOtherHouses, MdOutlineHouseSiding, MdOutlinePeople, MdOtherHouses } from "react-icons/md";
+import { SiRobloxstudio } from "react-icons/si";
 
 const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
@@ -36,6 +41,7 @@ const Allproperties = () => {
   return (
     <>
       <div className="mb-10 lg:mt-[100px] container 2xl mx-auto p-4">
+
         <Helmet>
           <title>Echo Estate || All Property</title>
         </Helmet>
@@ -86,6 +92,18 @@ const Allproperties = () => {
               <option value={"900000-Above"}>$900000 Or Above</option>
             </select>
           </div>
+        </div>
+        <div className="flex gap-8 justify-items-center items-center justify-center my-14">
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOutlineOtherHouses size={26} /></p>Multi Family House</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><BsFillHousesFill size={26} /></p> Commercial</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><HiOutlineOfficeBuilding size={26} /></p>Office</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><AiOutlineShop size={26} /></p>Shop</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><HiOutlineBuildingLibrary size={26} /></p>Residential</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdApartment size={26} /></p>Apartment</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOutlineFamilyRestroom size={26} /></p>Condo</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><SiRobloxstudio size={26} /></p>Studio</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOtherHouses size={26} /></p>Other</p>
+          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOutlineHouseSiding size={26} /></p>Single Family House</p>
         </div>
         {isLoading || isPending ? <AllPropertiesSkeleton /> : ""
         }
