@@ -115,7 +115,7 @@ const AddProperty = () => {
   return (
     <Container>
       <div className="  rounded-xl mt-24 ">
-        <AddPropertyForm handleOtherFacilities={handleOtherFacilities} handleOutdoorFacilities={handleOutdoorFacilities} handleInteriorFacilities={handleInteriorFacilities} handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors} register={register} />
+        <AddPropertyForm handleOtherFacilities={handleOtherFacilities} handleOutdoorFacilities={handleOutdoorFacilities} handleInteriorFacilities={handleInteriorFacilities} handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors} photoName={photoName} handlePhotoUpload={handlePhotoUpload} register={register} />
       </div>
     </Container>
   );

@@ -50,7 +50,7 @@ const Allproperties = () => {
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder={"Search By Property Title"}
                   defaultValue={`${searchText !== "Search By Property Title" ? searchText : ""}`}
-                  className="input md:w-full  font-semibold input-bordered bg-gray-100/50 focus:bg-white focus:outline-none rounded-full focus:border-main join-item"
+                  className="input md:w-full  font-semibold input-bordered bg-gray-100/50 focus:bg-white focus:outline-none rounded-lg focus:border-main join-item"
 
                 />
               </div>

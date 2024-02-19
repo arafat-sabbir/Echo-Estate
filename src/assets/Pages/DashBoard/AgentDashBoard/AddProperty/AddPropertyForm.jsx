@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanldeOtherFacilities, hanldeoutdoorFacilities, register, errors }) => {
+const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, handleOtherFacilities, handleOutdoorFacilities, register, errors,handlePhotoUpload,photoName }) => {
 
     const categoryOptions = ["Commercial", "Office", "Shop", "Residential", "Apartment", "Condo", "Multi Family House", "Single Family House", "Studio", "Other"]
 
@@ -229,7 +229,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                             className="select-input flex-1"
                             defaultValue={"Upazila"}
                         >
-                            <option className="font-bold " disabled value={"Upazila"}>
+                            <option className="font-bold" disabled value={"Upazila"}>
                                 Select Division
                             </option>
                             {divisions?.map((division, index) => <option key={index} value={division}>{division}</option>)}
@@ -262,10 +262,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                             name="location"
                             placeholder="Property Location"
                             className="input-field flex-1"
-                            {...register("zip", { required: true })}
+                            {...register("zipCode", { required: true })}
                         />
-                        {errors.zip && (
-                            <p className="text-red-500 mt-4">Add A Zip Code</p>
+                        {errors.zipCode && (
+                            <p className="text-red-500 mt-4">Please Add A Zip Code</p>
                         )}
                     </div>
                     {/* Longitutue and Latitude */}
@@ -279,10 +279,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                                 name="location"
                                 placeholder="Latitude (for Google Maps)"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("latitude", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.latitude && (
+                                <p className="text-red-500 mt-4">Please Add Latitude For Google Map</p>
                             )}
                         </div>
                         <div className="input-form">
@@ -294,10 +294,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                                 name="location"
                                 placeholder="Longitude (for Google Maps)"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("longitude", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.longitude && (
+                                <p className="text-red-500 mt-4">Please Add Longitude For Google Map</p>
                             )}
                         </div>
                     </div>
@@ -315,10 +315,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                                 name="location"
                                 placeholder="Size in ft2"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("propertySize", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.propertySize && (
+                                <p className="text-red-500 mt-4">Please Add PropertySize</p>
                             )}
                         </div><div className="input-form">
                             <label className="label">
@@ -327,12 +327,12 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                             <input
                                 type="number"
                                 name="location"
-                                placeholder="Number of Rooms "
+                                placeholder="Number of Rooms"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("rooms", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.rooms && (
+                                <p className="text-red-500 mt-4">Please Add Total Number Of Rooms</p>
                             )}
                         </div>
                     </div>
@@ -346,10 +346,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                                 name="location"
                                 placeholder="Number of  Bedrooms"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("bedrooms", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.bedrooms && (
+                                <p className="text-red-500 mt-4">Please Add Number Of Bedrooms</p>
                             )}
                         </div><div className="input-form">
                             <label className="label">
@@ -360,10 +360,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                                 name="location"
                                 placeholder="Number of Bathrooms"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("bathrooms", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.bathrooms && (
+                                <p className="text-red-500 mt-4">Please Add Number of Bathrooms</p>
                             )}
                         </div>
                     </div>
@@ -377,10 +377,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                                 name="location"
                                 placeholder="Property Built Year"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("builtYear", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.builtYear && (
+                                <p className="text-red-500 mt-4">Please Add The Year Of the Property Was Build</p>
                             )}
                         </div><div className="input-form">
                             <label className="label">
@@ -392,10 +392,10 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                                 name="location"
                                 placeholder="Estimated Taxes (*text)"
                                 className="input-field"
-                                {...register("minPrice", { required: true })}
+                                {...register("estimatedTaxes ", { required: true })}
                             />
-                            {errors.minPrice && (
-                                <p className="text-red-500 mt-4">Please Add a Min Price</p>
+                            {errors.estimatedTaxes && (
+                                <p className="text-red-500 mt-4">Please Add a Estimated Tax</p>
                             )}
                         </div>
                     </div>
@@ -406,26 +406,26 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                     <h3 className="font-medium my-4">Interior Details</h3>
                     <div className="flex items-center gap-8">
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Equipped Kitchen"} onChange={handeIneriorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Equipped Kitchen"} onChange={handleInteriorFacilities} className="checkbox checkbox-error" />
                             <span>Equipped Kitchen</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Fireplace"} onChange={handeIneriorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Fireplace"} onChange={handleInteriorFacilities} className="checkbox checkbox-error" />
                             <span>Fireplace</span>
                         </div> <div className="flex gap-2">
-                            <input type="checkbox" value={"Hot Bath"} onChange={handeIneriorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Hot Bath"} onChange={handleInteriorFacilities} className="checkbox checkbox-error" />
                             <span>Hot Bath</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Gym"} onChange={handeIneriorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Gym"} onChange={handleInteriorFacilities} className="checkbox checkbox-error" />
                             <span>Gym</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Laundry"} onChange={handeIneriorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Laundry"} onChange={handleInteriorFacilities} className="checkbox checkbox-error" />
                             <span>Laundry</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Media Room"} onChange={handeIneriorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Media Room"} onChange={handleInteriorFacilities} className="checkbox checkbox-error" />
                             <span>Media Room</span>
                         </div>
                     </div>
@@ -434,26 +434,26 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                     <h1 className="font-medium my-4">Outdoor Detail</h1>
                     <div className="flex items-center gap-8">
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Back yard"} onChange={hanldeoutdoorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Back yard"} onChange={handleOutdoorFacilities} className="checkbox checkbox-error" />
                             <span>Back yard</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Basketball court"} onChange={hanldeoutdoorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Basketball court"} onChange={handleOutdoorFacilities} className="checkbox checkbox-error" />
                             <span>Basketball court</span>
                         </div> <div className="flex gap-2">
-                            <input type="checkbox" value={"Chair Accessible"} onChange={hanldeoutdoorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Chair Accessible"} onChange={handleOutdoorFacilities} className="checkbox checkbox-error" />
                             <span>Chair Accessible</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Garage Attached"} onChange={hanldeoutdoorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Garage Attached"} onChange={handleOutdoorFacilities} className="checkbox checkbox-error" />
                             <span>Garage Attached</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Pool"} onChange={hanldeoutdoorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Pool"} onChange={handleOutdoorFacilities} className="checkbox checkbox-error" />
                             <span>Pool</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Water"} onChange={hanldeoutdoorFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Water"} onChange={handleOutdoorFacilities} className="checkbox checkbox-error" />
                             <span>Water</span>
                         </div>
                     </div>
@@ -462,19 +462,32 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handeIneriorFacilities, hanld
                     <h1 className="font-medium my-4">Other Features</h1>
                     <div className="flex items-center gap-8">
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Elevator"} onChange={hanldeOtherFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Elevator"} onChange={handleOtherFacilities} className="checkbox checkbox-error" />
                             <span>Elevator</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"Washer and dryer"} onChange={hanldeOtherFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"Washer and dryer"} onChange={handleOtherFacilities} className="checkbox checkbox-error" />
                             <span>Washer and dryer</span>
                         </div>
                         <div className="flex gap-2">
-                            <input type="checkbox" value={"WiFi"} onChange={hanldeOtherFacilities} className="checkbox checkbox-error" />
+                            <input type="checkbox" value={"WiFi"} onChange={handleOtherFacilities} className="checkbox checkbox-error" />
                             <span>WiFi</span>
                         </div>
                     </div>
                 </div>
+                <div className="relative w-full">
+              <label className="label absolute -z-1 input pt-2 opacity-100  input-bordered  hover:bg-gray-100 border-dashed border-main focus:border-main w-full ">
+                <span className="label-text ">{photoName || 'Choose Property Picture'}</span>
+              </label>
+              <input
+                onChange={handlePhotoUpload}
+                accept="images/*"
+                type="file"
+                placeholder="upload your Photo"
+                name="email"
+                className="input w-full pt-2 z-50 opacity-0 input-bordered bg-gray-100 hover:bg-gray-100 border-dashed border-main focus:border-main"
+              />
+            </div>
                 {/* Add Property Button */}
                 <button
                     className="relative px-8 py-2 mt-6  bg-[#072730] text-white  isolation-auto z-10 border rounded-full border-dashed border-main 
