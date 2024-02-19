@@ -118,17 +118,19 @@ const PropertyDetail = () => {
         <div tabIndex={0} className="collapse bg-white rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
           <input type="checkbox" />
           <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
-            <p className="ml-6">Address</p> <p className="mr-6"><FaChevronDown /></p>
+            <p className="ml-6">Detail</p> <p className="mr-6"><FaChevronDown /></p>
           </div>
           <div className="collapse-content px-6">
             <div className="flex justify-between">
               <div>
-                <p>Address: {propertyLocation}</p>
-                <p>District: {district}</p>
+                <p>Total Rooms : {rooms}</p>
+                <p>Bedrooms: {bedRooms}</p>
+                <p>Bathrooms {bathRooms}</p>
               </div>
               <div>
-                <p>Division: {division}</p>
-                <p>Upozila: {upozila}</p>
+                <p>Property Size: {propertySize}</p>
+                <p>Property Price: ${minPrice}-${maxPrice}</p>
+                <p>Year Built: {builtYear}</p>
               </div>
             </div>
 
