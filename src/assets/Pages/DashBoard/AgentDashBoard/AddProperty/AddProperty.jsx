@@ -121,7 +121,8 @@ const AddProperty = () => {
       longitude: item.longitude,
       latitude: item.latitude,
       propertySize: parseInt(item.propertySize),
-      addedDate: new Date().toDateString()
+      addedDate: new Date().toDateString(),
+      description: item.description
     };
     console.log(propertyData);
     // Sent the data to server

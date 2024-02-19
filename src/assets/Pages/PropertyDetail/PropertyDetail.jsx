@@ -11,6 +11,7 @@ import { IoBedOutline } from "react-icons/io5";
 import { PiBuildingsThin, PiBathtub } from "react-icons/pi";
 import { TbResize } from "react-icons/tb";
 import { IoCalendarNumberOutline } from "react-icons/io5";
+import { FaChevronDown } from "react-icons/fa6";
 
 const PropertyDetail = () => {
   const axiosSecure = useAxiosSecure();
@@ -26,7 +27,7 @@ const PropertyDetail = () => {
   }, []);
   const propertyDetail = useLoaderData();
   const {
-    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear } = propertyDetail;
+    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear, description } = propertyDetail;
   const { data: propertyReview = [], isLoading } = useQuery({
     queryKey: ["propertyReview"],
     queryFn: async () => {
@@ -65,7 +66,7 @@ const PropertyDetail = () => {
     });
   };
   return (
-    <div className="mt-[120px] bg-[#FDFCFB]">
+    <div className="mt-[140px] bg-[#FDFCFB]">
       <Container>
         {/* Top Info */}
         <div>
@@ -86,6 +87,21 @@ const PropertyDetail = () => {
             <p className="flex flex-col gap-3 cursor-pointer"><PiBathtub size={29} className="mx-auto" /> {bathRooms} Bathrooms</p>
             <p className="flex flex-col gap-3 cursor-pointer"><TbResize className="mx-auto" size={29} /><span>{propertySize} ft<sup>2</sup></span></p>
             <p className="flex flex-col gap-3 cursor-pointer"><IoCalendarNumberOutline size={29} className="mx-auto" /> YearBuilt: {builtYear}</p>
+          </div>
+        </div>
+        {/* Description */}
+        <div className="bg-white p-10 rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+          <span className="font-semibold text-xl">Description</span>
+          <p className="tracking-wider leading-5">{description}</p>
+        </div>
+        {/* Address */}
+        <div tabIndex={0} className="collapse bg-white px-4 rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+          <input type="checkbox" />
+          <div className="collapse-title text-xl font-medium flex items-center  justify-between">
+            <p>Address</p> <p className="mr-4"><FaChevronDown /></p>
+          </div>
+          <div className="collapse-content">
+            <p>hello</p>
           </div>
         </div>
       </Container>

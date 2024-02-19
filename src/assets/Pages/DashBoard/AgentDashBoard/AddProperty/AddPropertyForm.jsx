@@ -36,7 +36,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                         <div className="label">
                             <span className="label-text">Property Description</span>
                         </div>
-                        <textarea className="textarea border-2 bg-gray-100 border-gray-200 focus:bg-white focus:outline-none h-24" placeholder="Property Description"></textarea>
+                        <textarea  {...register("description", { required: true })} className="textarea border-2 bg-gray-100 border-gray-200 focus:bg-white focus:outline-none h-24" placeholder="Property Description"></textarea>
                     </label>
                 </div>
                 {/* Property Prices */}
