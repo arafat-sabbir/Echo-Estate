@@ -28,7 +28,7 @@ const PropertyDetail = () => {
   }, []);
   const propertyDetail = useLoaderData();
   const {
-    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear, description, division, upozila, district, interiorFacilities, outdoorFacilities, otherFacilities } = propertyDetail;
+    agentImage, agentName, agentEmail, propertyImage, propertyLocation, propertyTitle, minPrice, maxPrice, _id, listedFor, category, bedRooms, bathRooms, propertySize, addedDate, rooms, builtYear, description, division, upozila, district, interiorFacilities, outdoorFacilities, otherFacilities, longitude, latitude } = propertyDetail;
   const { data: propertyReview = [], isLoading } = useQuery({
     queryKey: ["propertyReview"],
     queryFn: async () => {
@@ -67,14 +67,14 @@ const PropertyDetail = () => {
     });
   };
   return (
-    <div className="mt-[140px] bg-[#FDFCFB]">
+    <div className="mt-[140px] bg-[#FDFCFB]" >
       <Container>
         {/* Top Info */}
-        <div>
+        <div className="space-y-4">
           <span className="text-xs font-semibold px-2 py-1   text-white rounded-xl bg-main">{listedFor}</span>
           <span className="text-xs font-semibold px-2 py-1  ml-2 text-white rounded-xl bg-main">{category}</span>
           <h1 className="font-semibold text-4xl">{propertyTitle}</h1>
-          <p className="flex items-center gap-1"><IoLocationSharp className="text-gray-600" size={22} /> {propertyLocation}</p>
+          <p className="flex items-center gap-1 "><IoLocationSharp className="text-gray-600" size={22} /> {propertyLocation}</p>
         </div>
         {/* Property Image */}
         <img src={propertyImage} alt="" className="w-full lg:h-[600px] " />
@@ -96,7 +96,7 @@ const PropertyDetail = () => {
           <p className="tracking-wider leading-5">{description}</p>
         </div>
         {/* Address */}
-        <div tabIndex={0} className="collapse bg-white rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+        <div tabIndex={0} className="collapse bg-white  rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
           <input type="checkbox" />
           <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
             <p className="ml-6">Address</p> <p className="mr-6"><FaChevronDown /></p>
@@ -116,7 +116,7 @@ const PropertyDetail = () => {
           </div>
         </div>
         {/* Detail */}
-        <div tabIndex={0} className="collapse bg-white rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+        <div tabIndex={0} className="collapse bg-white  rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
           <input type="checkbox" />
           <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
             <p className="ml-6">Detail</p> <p className="mr-6"><FaChevronDown /></p>
@@ -138,10 +138,10 @@ const PropertyDetail = () => {
           </div>
         </div>
         {/* Features */}
-        <div tabIndex={0} className="collapse bg-white rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+        <div tabIndex={0} className="collapse bg-white  rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
           <input type="checkbox" />
           <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
-            <p className="ml-6">Detail</p> <p className="mr-6"><FaChevronDown /></p>
+            <p className="ml-6">Facilities</p> <p className="mr-6"><FaChevronDown /></p>
           </div>
           <div className="collapse-content px-6 flex justify-between">
             <div>
@@ -159,6 +159,22 @@ const PropertyDetail = () => {
           </div>
         </div>
         {/* Map */}
+        <div tabIndex={0} className="collapse bg-white  rounded-xl shadow-[0_0_100px_#F0EFEE] my-10">
+          <input type="checkbox" />
+          <div className="collapse-title text-xl font-medium flex items-center -m-4  justify-between">
+            <p className="ml-6">Maps</p> <p className="mr-6"><FaChevronDown /></p>
+          </div>
+          <div className="collapse-content px-6 flex justify-between">
+            <iframe className="container"
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59035.63401401714!2d${longitude}!3d${latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd8a2a645ee07%3A0x2a94a4fa61c7b1a3!2z4Kaw4KeH4Kah4Ka_4Ka44KaoIOCmrOCnjeCmsuCngSDgpprgpp_gp43gpp_gppfgp43gprDgpr7gpq4g4Kas4KeHIOCmreCmv-CmiQ!5e0!3m2!1sbn!2sbd!4v1708326601796!5m2!1sbn!2sbd`}
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen="true"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
       </Container>
 
     </div>

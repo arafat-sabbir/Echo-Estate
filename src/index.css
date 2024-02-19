@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap")
-  @tailwind base;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -12,6 +13,7 @@
 ::selection {
   color: #bb7549;
   font-weight: 700;
+  
 }
 .input-field {
   @apply input border-gray-200 bg-gray-100/50 focus:bg-white focus:outline-none border-2 focus:border-main;
@@ -21,7 +23,7 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .active {
