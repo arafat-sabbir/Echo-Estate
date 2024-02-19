@@ -7,12 +7,7 @@ import SectionTitle from "../../../Utils/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "../../../Utils/ScroolToTop/ScrollToTop";
 import AllPropertiesSkeleton from "./AllPropertiesSkeleton";
-import { BsFillHousesFill } from "react-icons/bs";
-import { HiOutlineOfficeBuilding } from "react-icons/hi";
-import { AiOutlineShop } from "react-icons/ai";
-import { HiOutlineBuildingLibrary } from "react-icons/hi2";
-import { MdApartment, MdOutlineFamilyRestroom, MdOutlineOtherHouses, MdOutlineHouseSiding, MdOutlinePeople, MdOtherHouses } from "react-icons/md";
-import { SiRobloxstudio } from "react-icons/si";
+import Category from "../../../Utils/useCategoryIcon";
 
 const Allproperties = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,6 +15,8 @@ const Allproperties = () => {
   const [searchText, setSearchText] = useState(sessionStorage.getItem("searchText") || "Search By Property Title");
   const [priceSort, setPriceSort] = useState(sessionStorage.getItem("priceSort") || "All");
   const [priceRange, setPriceRange] = useState(sessionStorage.getItem("priceRange") || "All")
+  const [selectedCategory, setSelectedCategory] = useState("")
+  console.log(selectedCategory);
   useEffect(() => {
     ScrollToTop()
     sessionStorage.clear()
@@ -29,15 +26,14 @@ const Allproperties = () => {
     isLoading,
     isPending,
   } = useQuery({
-    queryKey: ["properties", searchText, priceSort, priceRange],
+    queryKey: ["properties", searchText, priceSort, priceRange, selectedCategory],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/getVerifiedProperties?search=${searchText}&&priceSort=${priceSort}&&priceRange=${priceRange}`
+        `/getVerifiedProperties?search=${searchText}&&priceSort=${priceSort}&&priceRange=${priceRange}&&category=${selectedCategory}`
       );
       return res.data;
     },
   });
-  console.log("search", searchText);
   return (
     <>
       <div className="mb-10 lg:mt-[100px] container 2xl mx-auto p-4">
@@ -94,16 +90,13 @@ const Allproperties = () => {
           </div>
         </div>
         <div className="flex gap-8 justify-items-center items-center justify-center my-14">
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOutlineOtherHouses size={26} /></p>Multi Family House</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><BsFillHousesFill size={26} /></p> Commercial</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><HiOutlineOfficeBuilding size={26} /></p>Office</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><AiOutlineShop size={26} /></p>Shop</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><HiOutlineBuildingLibrary size={26} /></p>Residential</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdApartment size={26} /></p>Apartment</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOutlineFamilyRestroom size={26} /></p>Condo</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><SiRobloxstudio size={26} /></p>Studio</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOtherHouses size={26} /></p>Other</p>
-          <p className="flex flex-col gap-1 cursor-pointer"><p className="mx-auto"><MdOutlineHouseSiding size={26} /></p>Single Family House</p>
+          {Category.map(item => (
+            <p key={item.category} onClick={() => setSelectedCategory(item.category)} className={`flex flex-col gap-1 cursor-pointer ${selectedCategory === item.category ? " text-main border-b-2 border-b-main" : ""}`}>
+              <item.icon size={26} className="mx-auto" />
+              {item.category}
+            </p>
+          ))}
+
         </div>
         {isLoading || isPending ? <AllPropertiesSkeleton /> : ""
         }
