@@ -124,7 +124,7 @@ const Allproperties = () => {
       {/* If no Property Available Show A Message */}
       {
         properties.length === 0 && !isLoading && (
-          <div className="flex flex-col justify-items-center  h-[40vh] justify-center items-center ">
+          <div className="flex flex-col justify-items-center mb-16 -mt-8 justify-center items-center ">
             <img
               loading="lazy"
               className="mx-auto"
