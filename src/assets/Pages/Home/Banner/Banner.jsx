@@ -27,20 +27,21 @@ const Banner = () => {
 
   return (
     <div className="relative bg-[url('https://i.postimg.cc/c4PL0xjF/header.jpg')] w-full h-[70vh] bg-cover bg-no-repeat -mt-28 z-10">
-      <div className=" absolute top-[45%] left-[20%] ">
+      <div className="h-full bg-black inset-0 opacity-10"></div>
+      <div className=" absolute top-[45%] left-[20%] z-50 ">
         <div>
           <div className="lg:w-[1200px] w-[80vw] mx-auto ">
             <form onSubmit={handleSubmit} className="join w-full flex justify-center items-center justify-items-center bg-white p-4 shadow-[0_0_20px_#C4C4C4] rounded-full">
               <div className="w-1/2">
                 <input
-                  onChange={(e)=> setSearchText(e.target.value)}
+                  onChange={(e) => setSearchText(e.target.value)}
                   className="input md:w-full placeholder:text-black border-none  font-semibold input-bordered rounded-full   focus:outline-none"
                   placeholder="Search by Title"
                 />
               </div>
               <div className="divider lg:divider-horizontal"></div>
               <select
-                onChange={(e)=> setPriceSort(e.target.value)}
+                onChange={(e) => setPriceSort(e.target.value)}
                 className="select  lg:w-auto w-[20vw] focus:border-none  font-bold focus:outline-none  rounded-full  join-item"
               >
                 <option className="font-bold " disabled selected>
@@ -52,7 +53,7 @@ const Banner = () => {
               <div className="divider lg:divider-horizontal"></div>
               <select
                 defaultValue={""}
-                onChange={(e)=>setPriceRange(e.target.value)}
+                onChange={(e) => setPriceRange(e.target.value)}
                 className="select  lg:w-auto w-[20vw] focus:outline-none focus:border-none font-bold rounded-full  join-item"
               >
                 <option className="font-bold " value={""} disabled>

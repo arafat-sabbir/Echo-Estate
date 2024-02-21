@@ -120,7 +120,7 @@ const Navbar = () => {
                   src="https://i.ibb.co/rbX4J5H/Untitled-design-2.png"
                   alt=""
                 />
-                <p className={`text-black text-2xl  font-semibold`}>Echo Estate</p>
+                <p className={`text-black text-2xl ${location.pathname == "/" && !isScrolled ? "text-white" : "text-black"} font-semibold`}>Echo Estate</p>
               </Link>
             </div>
           </div>
