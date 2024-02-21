@@ -6,7 +6,6 @@ import {
   MdApartment,
   MdOutlineFamilyRestroom,
   MdOutlineOtherHouses,
-  MdOutlineHouseSiding,
   MdOutlinePeople,
   MdOtherHouses,
 } from "react-icons/md";
@@ -22,7 +21,7 @@ const Category = [
   { category: "Multi Family House", icon: MdOutlineOtherHouses },
   { category: "Single Family House", icon: MdOutlinePeople },
   { category: "Other", icon: MdOtherHouses },
-  { category: "SiRobloxstudio", icon: SiRobloxstudio },
+  { category: "Studio", icon: SiRobloxstudio },
 ];
 
 export default Category;
