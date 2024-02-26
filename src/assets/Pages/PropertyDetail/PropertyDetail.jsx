@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Container from "../../../Utils/Container/Container";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
@@ -13,6 +13,7 @@ import { TbResize } from "react-icons/tb";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { FaChevronDown } from "react-icons/fa6";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import Button from "../../../Shared/Button";
 
 const PropertyDetail = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,13 +38,17 @@ const PropertyDetail = () => {
     },
   });
   const handleNotSignIN = () => {
+    console.log("not sign in");
+    toast.error("Sign In To Add To Wishlist")
     navigate("/signIn", { state: location?.pathname });
   };
-  const handleAddtoWishlist = () => {
+  const handleAddToWishlist = () => {
+    console.log("sign in");
+    const toastId = toast.loading("Adding To Wishlist")
     if (userinfo.email === agentEmail) {
-      return toast.error("You can't Add Your Own Product");
+      return toast.error("You can't Add Your Own Product", { id: toastId });
     } else if (userinfo.role === "agent" || userinfo.role === "admin") {
-      return toast.error("Agent||Admin Can't Add Product To Wishlist");
+      return toast.error("Agent||Admin Can't Add Product To Wishlist", { id: toastId });
     }
 
     const wishListData = {
@@ -60,7 +65,7 @@ const PropertyDetail = () => {
     };
     axiosSecure.post("/addToWishlist", wishListData).then((res) => {
       if (res.data.insertedId) {
-        toast.success("Added To WishList SuccessFully");
+        toast.success("Added To WishList SuccessFully", { id: toastId });
         navigate("/dashboard/wishlist");
       }
     });
@@ -175,6 +180,14 @@ const PropertyDetail = () => {
             ></iframe>
           </div>
         </div>
+        <div className="my-4 ">
+          {user ? (
+            <Button onClick={handleAddToWishlist} title="Add To Wishlist" />
+          ) : (
+            <Button onClick={handleNotSignIN} title="Add To Wishlist" />
+          )}
+        </div>
+
       </Container>
 
     </div>
