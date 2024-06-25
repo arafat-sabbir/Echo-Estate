@@ -5,36 +5,25 @@ import useGetUser from "../../Hooks/GetUserInfo/useGetUser";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  // Get The User Info From useGetUser Hooks
   const { userinfo } = useGetUser();
-
   const location = useLocation();
-
-  // Navbar Scroll Effect
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if the user has scrolled down
       const scrolled = window.scrollY > 0;
       setIsScrolled(scrolled);
     };
 
-    // Attach the event listener when the component mounts
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Use the isScrolled state to conditionally apply styles
-
-
-  // Geth Auth Related Function From UseAuth
   const { user, signOutUser } = useAuth();
-  // SignOut User 
+
   const handleSignOut = () => {
     signOutUser()
       .then((result) => {
@@ -44,131 +33,78 @@ const Navbar = () => {
         console.log(error);
       });
   };
-  // Navbar Links
+
   const links = (
     <>
       <li
-        className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 text-white duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}>
+        className={`font-semibold ${
+          isScrolled ? "text-gray-600" : location.pathname === "/" ? "text-white hover:text-main" : "hover:text-main"
+        } duration-300`}
+      >
         <NavLink to={"/"}>Home</NavLink>
       </li>
-      <ul className="lg:flex drop-shadow-2xl ">
-        <li
-          className={`${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/" ? `hover:scale-110 text-white duration-300 hover:text-main  tracking-wider font-bold` : "hover:scale-110 duration-300 hover:text-main"}`}
-        >
-          <NavLink to={"/allProperties"}>All Properties</NavLink>
-        </li>
-        <li
-          className={
-            ` ${isScrolled ? "!text-gray-600" : ""} ${location.pathname == "/"
-              ? `hover:scale-110 text-white duration-300 hover:text-main  tracking-wider font-bold`
-              : "hover:scale-110 duration-300 hover:text-main"}`
-          }
-        >
-          <NavLink to={"/dashboard/myProfile"}>DashBoard</NavLink>
-        </li>
-      </ul>
+      <li
+        className={`font-semibold ${
+          isScrolled ? "text-gray-600" : location.pathname === "/" ? "text-white hover:text-main" : "hover:text-main"
+        } duration-300`}
+      >
+        <NavLink to={"/allProperties"}>All Properties</NavLink>
+      </li>
+      <li
+        className={`font-semibold ${
+          isScrolled ? "text-gray-600" : location.pathname === "/" ? "text-white hover:text-main" : "hover:text-main"
+        } duration-300`}
+      >
+        <NavLink to={"/dashboard/myProfile"}>Dashboard</NavLink>
+      </li>
     </>
   );
 
-  // Navbar Jsx
   return (
-    <div className={`transition duration-300 ${isScrolled ? "bg-white  fixed top-0 left-0 right-0 z-50" : "bg-transparent fixed top-0 left-0 right-0 z-50"}`}>
-      <div className="container mx-auto  top-0">
-        <div
-          className={
-            location.pathname == "/"
-              ? `navbar  justify-center  py-6 relative container mx-auto  z-50`
-              : "navbar  justify-center  py-6  container mx-auto z-50 "
-          }
-        >
-          <div className="navbar-start">
-            <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content font-semibold mx-2 mt-3 z-[50] p-2 shadow bg-base-100 rounded-box w-52 hover:scale-110"
-              >
-                {links}
-              </ul>
-            </div>
-            <div className="hidden lg:flex  font-semibold items-center">
-              <Link
-                to={"/"}
-                className={
-                  location.pathname == "/"
-                    ? `!flex font-black text-white  items-center  duration-300`
-                    : "!flex font-semibold items-center  duration-300"
-                }
-              >
-                <img
-                  className="w-22 h-12"
-                  src="https://i.ibb.co/rbX4J5H/Untitled-design-2.png"
-                  alt=""
-                />
-                <p className={`text-black text-2xl ${location.pathname == "/" && !isScrolled ? "text-white" : "text-black"} font-semibold`}>Echo Estate</p>
-              </Link>
-            </div>
-          </div>
-          <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal  font-semibold gap-4 px-1 ">
+    <div className={`w-full ${isScrolled ? "bg-white shadow-md" : "lg:bg-transparent bg-white"} fixed top-0 left-0 z-50`}>
+      <div className="container mx-auto p-4 flex justify-between items-center">
+        <div className="flex items-center">
+          <div className="dropdown lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+            </label>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               {links}
             </ul>
           </div>
-          <div className="navbar-end">
-            <div className="dropdown dropdown-bottom dropdown-end z-50 ">
-              <label tabIndex={0} className="">
-                {user && (
-                  <img
-                    className="w-12 mr-4 h-12  rounded-full border-2 border-main  "
-                    src={userinfo?.photo}
-                    alt=""
-                  />
-                )}
+          <Link to={"/"} className="flex items-center">
+            <img className="w-22 h-12" src="https://i.ibb.co/rbX4J5H/Untitled-design-2.png" alt="Echo Estate" />
+            <p className={`text-2xl font-semibold ml-2 ${location.pathname === "/" && !isScrolled ? "lg:text-white text-black" : "text-black"}`}>
+              Echo Estate
+            </p>
+          </Link>
+        </div>
+        <div className="hidden lg:flex items-center">
+          <ul className="menu menu-horizontal gap-4">{links}</ul>
+        </div>
+        <div className="flex items-center">
+          {user && (
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="cursor-pointer">
+                <img className="w-12 h-12 rounded-full border-2 border-main" src={userinfo?.photo} alt="User" />
               </label>
-              {user && (
-                <ul className="p-2 shadow menu dropdown-content bg-[#072730da] z-[1]  rounded-box w-56">
-                  <img
-                    className=" w-16 h-16 mx-auto  rounded-full my-2 border-2 border-main"
-                    src={userinfo?.photo}
-                    alt=""
-                  />
-                  <p className="font-semibold text-center mr-2 mb-2 text-main ">
-                    {userinfo?.name}
-                  </p>
-                  <p className="font-semibold text-center mr-2 mb-2  text-main ">
-                    {userinfo?.email}
-                  </p>
-                  <div className="pb-2 mx-auto" onClick={handleSignOut}>
-                    <Button title={"Sign Out"}></Button>
-                  </div>
-                </ul>
-              )}
+              <ul tabIndex={0} className="menu dropdown-content mt-3 p-2 shadow bg-white rounded-box w-56">
+                <li className="flex flex-col items-center">
+                  <img className="w-16 h-16 rounded-full border-2 border-main mb-2" src={userinfo?.photo} alt="User" />
+                  <p className="text-center font-semibold text-main mb-2">{userinfo?.name}</p>
+                  <p className="text-center font-semibold text-main mb-2">{userinfo?.email}</p>
+                  <Button title="Sign Out" onClick={handleSignOut} />
+                </li>
+              </ul>
             </div>
-            {user ? (
-              ""
-            ) : (
-              <div>
-                <Link to={"/signIn "} className="">
-                  <Button title={"Sign In"}></Button>
-                </Link>
-              </div>
-            )}
-          </div>
+          )}
+          {!user && (
+            <Link to={"/signIn"}>
+              <Button title="Sign In" />
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const LatestReview = () => {
   const { reviews } = useReview();
 
   return (
-    <div className="max-w-7xl mx-auto  p-4">
+    <div className="max-w-6xl mx-auto mb-20 p-4">
       <SectionTitle
         title={"Client Review"}
         subtitle={"See Our Client Latest Review"}
