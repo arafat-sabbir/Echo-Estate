@@ -27,7 +27,7 @@ import CheckAdmin from "../../Auth/CheakAdmin/CheckAdmin";
 import CheckAgent from "../../Auth/CheakAgent/CheckAgent";
 import AgentProfile from "../Pages/AgentProfile/AgentProfile";
 import AgentRequest from "../Pages/DashBoard/AdminDashBoard/AgentRequest/AgentRequest";
-
+// from laptop
 export const routes = createBrowserRouter([
   {
     path: "/",
