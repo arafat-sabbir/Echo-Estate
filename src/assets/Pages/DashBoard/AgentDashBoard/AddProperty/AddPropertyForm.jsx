@@ -36,7 +36,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                         <div className="label">
                             <span className="label-text">Property Description</span>
                         </div>
-                        <textarea  {...register("description", { required: true })} className="textarea border-2 bg-gray-100 border-gray-200 focus:bg-white focus:outline-none h-24" placeholder="Property Description"></textarea>
+                        <textarea  {...register("description", { required: true })} className="textarea border-2 bg-gray-100 border-gray-200 md:w-full w-[365px] focus:bg-white focus:outline-none h-24" placeholder="Property Description"></textarea>
                     </label>
                 </div>
                 {/* Property Prices */}
@@ -326,7 +326,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                 <div>
                     <h1 className="font-semibold my-4">Amenities and Features</h1>
                     <h3 className="font-medium my-4">Interior Details</h3>
-                    <div className="flex items-center gap-8">
+                    <div className=" grid lg:grid-cols-6 grid-cols-2 md:grid-cols-5 items-center gap-8">
                         <div className="flex gap-2">
                             <input type="checkbox" value={"Equipped Kitchen"} onChange={handleInteriorFacilities} className="checkbox checkbox-error" />
                             <span>Equipped Kitchen</span>
@@ -354,7 +354,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                 </div>
                 <div>
                     <h1 className="font-medium my-4">Outdoor Detail</h1>
-                    <div className="flex items-center gap-8">
+                    <div className="grid lg:grid-cols-6 grid-cols-2 md:grid-cols-5 items-center gap-8">
                         <div className="flex gap-2">
                             <input type="checkbox" value={"Back yard"} onChange={handleOutdoorFacilities} className="checkbox checkbox-error" />
                             <span>Back yard</span>
@@ -382,7 +382,7 @@ const AddPropertyForm = ({ handleSubmit, onSubmit, handleInteriorFacilities, han
                 </div>
                 <div>
                     <h1 className="font-medium my-4">Other Features</h1>
-                    <div className="flex items-center gap-8">
+                    <div className="grid lg:grid-cols-6 grid-cols-2 md:grid-cols-5 items-center gap-8">
                         <div className="flex gap-2">
                             <input type="checkbox" value={"Elevator"} onChange={handleOtherFacilities} className="checkbox checkbox-error" />
                             <span>Elevator</span>

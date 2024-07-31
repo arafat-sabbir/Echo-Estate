@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .input-container {
-  @apply lg:flex gap-4 items-center justify-items-center;
+  @apply lg:flex gap-4 items-center justify-items-center ;
 }
 .input-form {
   @apply form-control flex-1;
@@ -16,10 +16,10 @@
   font-weight: 700;
 }
 .input-field {
-  @apply input border-gray-200 bg-gray-100/50 focus:bg-white focus:outline-none border-2 focus:border-main;
+  @apply input border-gray-200 bg-gray-100/50 focus:bg-white focus:outline-none border-2 focus:border-main md:w-full w-[365px];
 }
 .select-input {
-  @apply select border-gray-200 bg-gray-100/50 font-bold focus:outline-none focus:border-main rounded-lg join-item;
+  @apply select border-gray-200 bg-gray-100/50 font-bold focus:outline-none focus:border-main rounded-lg join-item md:w-full w-[365px];
 }
 
 body {
