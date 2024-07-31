@@ -38,21 +38,21 @@ const Navbar = () => {
     <>
       <li
         className={`font-semibold ${
-          isScrolled ? "text-gray-600" : location.pathname === "/" ? "text-white hover:text-main" : "hover:text-main"
+          isScrolled ? "text-gray-600" : location.pathname === "/" ? "md:text-white hover:text-main" : "hover:text-main"
         } duration-300`}
       >
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li
         className={`font-semibold ${
-          isScrolled ? "text-gray-600" : location.pathname === "/" ? "text-white hover:text-main" : "hover:text-main"
+          isScrolled ? "text-gray-600" : location.pathname === "/" ? "md:text-white hover:text-main" : "hover:text-main"
         } duration-300`}
       >
         <NavLink to={"/allProperties"}>All Properties</NavLink>
       </li>
       <li
         className={`font-semibold ${
-          isScrolled ? "text-gray-600" : location.pathname === "/" ? "text-white hover:text-main" : "hover:text-main"
+          isScrolled ? "text-gray-600" : location.pathname === "/" ? "md:text-white hover:text-main" : "hover:text-main"
         } duration-300`}
       >
         <NavLink to={"/dashboard/myProfile"}>Dashboard</NavLink>
@@ -76,7 +76,7 @@ const Navbar = () => {
           </div>
           <Link to={"/"} className="flex items-center">
             <img className="w-22 h-12" src="https://i.ibb.co/rbX4J5H/Untitled-design-2.png" alt="Echo Estate" />
-            <p className={`text-2xl font-semibold ml-2 ${location.pathname === "/" && !isScrolled ? "lg:text-white text-black" : "text-black"}`}>
+            <p className={`md:text-2xl font-semibold ml-2 ${location.pathname === "/" && !isScrolled ? "lg:text-white text-black" : "text-black"}`}>
               Echo Estate
             </p>
           </Link>
@@ -90,10 +90,10 @@ const Navbar = () => {
               <label tabIndex={0} className="cursor-pointer">
                 <img className="w-12 h-12 rounded-full border-2 border-main" src={userinfo?.photo} alt="User" />
               </label>
-              <ul tabIndex={0} className="menu dropdown-content mt-3 p-2 shadow bg-white rounded-box w-56">
-                <li className="flex flex-col items-center">
-                  <img className="w-16 h-16 rounded-full border-2 border-main mb-2" src={userinfo?.photo} alt="User" />
-                  <p className="text-center font-semibold text-main mb-2">{userinfo?.name}</p>
+              <ul tabIndex={0} className=" dropdown-content mt-3 p-2  bg-white rounded-box w-60 shadow-xl">
+                <li className="flex flex-col items-center ">
+                <img className="w-12 h-12 rounded-full border-2 border-main" src={userinfo?.photo} alt="User" />
+                  <p className="text-center font-semibold text-main mb-2 px-2">{userinfo?.name}</p>
                   <p className="text-center font-semibold text-main mb-2">{userinfo?.email}</p>
                   <Button title="Sign Out" onClick={handleSignOut} />
                 </li>

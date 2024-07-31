@@ -64,7 +64,7 @@ const Profile = () => {
           {agentReq && role === "user" && <p className="py-2 font-semibold text-lg text-red-500/70">Your Agent Request Is Pending Please Wait For Admin Approval</p>}
           {
             role === "user" && !agentReq &&
-            <form onSubmit={(e) => handleAgentReq(userinfo._id, e)} className="flex flex-col">
+            <form onSubmit={(e) => handleAgentReq(userinfo._id, e)} className="flex bg-gray-50/50 px-10 py-1 flex-col">
               <h1 className="font-semibold text-xl  mt-6">Update Your Info To Become A Agent</h1>
               <input type="number" name="whatsapp" required className="input-field my-2 mx-2" placeholder="Your WhatsApp Number" />
               <input type="text" name="linkedin" required className="input-field my-2 mx-2" placeholder="Linkedin Profile" />
