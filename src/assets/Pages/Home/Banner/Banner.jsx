@@ -19,7 +19,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative bg-[url('https://i.postimg.cc/c4PL0xjF/header.jpg')] w-full h-[70vh] bg-cover bg-no-repeat -mt-28 z-10">
+    <div className="relative bg-[url('https://i.postimg.cc/c4PL0xjF/header.jpg')] w-full h-[700px] bg-cover bg-no-repeat -mt-28 z-10">
       <div className="h-full bg-black inset-0 opacity-10 w-full absolute"></div>
       <div className="w-full absolute top-1/2 transform -translate-y-1/2 flex justify-center items-center z-50 px-4">
         <div className="w-full max-w-7xl">
